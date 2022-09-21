@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http:www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <link href="" th:href="@{/CSS/registration1.css}" rel="stylesheet">
+    <script th:src="@{/JS/example.js}"></script>
+
+</head>
+<body>
+    <div class="container">
+        <div class="title"><b>Student Registration</b></div>
+        <form th:action="@{/save}" th:object="${student}" method="post">
+            <div class="student-datils">
+                <!--<div class="input-box">
+                    <span class="details">Initials</span>
+                    <input type="text"   placeholder="Initials" required>
+                </div>-->
+            <div class="input-box">
+                <span class="details">First Name</span>
+                <input type="text"  th:field="*{firstName}"  placeholder="First Name" required>
+            </div>
+            <div class="input-box">
+                <span class="details">Last Name</span>
+                <input type="text" th:field="*{lastName}"  placeholder="Last Name" required>
+            </div>
+            <div class="input-box">
+                <span class="details">Date of Birth</span>
+                <input type="date" th:field="*{dateOfBirth}" required>
+            </div>
+            <div class="input-box">
+                <span class="details">Attend Date</span>
+                <input type="date" th:field="*{dateOfAttend}" required>
+            </div>
+            <div class="input-box">
+                <span class="details">School</span>
+                <input type="text" th:field="*{school}" placeholder="School" required>
+            </div>
+            <div class="input-box">
+                <span class="details" >Grade</span>
+               <select name="" id="" th:field="*{gradeId}" required >
+                   <option value="">==Select==</option>
+              <!-- <option th:each="grade: ${grade}"
+                       th:value="${grade.gradeId}"
+                       th:text="${grade.description}">
+
+               </option>-->
+                   <option value="6">grade 6</option>
+               </select>
+            </div>
+            <div class="input-box">
+                <span class="details">Address</span>
+                <textarea th:field="*{address}" ></textarea>
+            </div>
+            <div class="input-box">
+                <input type="radio" name="gender" th:field="*{gender}" value="Male" id="dot-1">
+                <input type="radio" name="gender" th:field="*{gender}" value="Female" id="dot-2">
+            <span class="gender-title">Gender</span>
+            <div class="category">
+                <label for="dot-1">
+                    <span class="dot one"  ></span>
+                    <span class="gender">Male</span>
+                </label>
+                <label for="dot-2">
+                    <span class="dot two"  ></span>
+                    <span class="gender">Female</span>
+                </label>
+            </div>
+            </div>
+
+         <div class="input-box">
+            <span class="details">Parent Name</span>
+            <input type="text" th:field="*{parentName}"  placeholder="Parent Name" required>
+        </div><div class="input-box">
+            <span class="details">Relationship</span>
+            <select th:field="*{relationship}" required>
+                <option value="">==Select==</option>
+                <option value="Mother">Mother</option>
+                <option value="Father">Father</option>
+                <option value="Guardian">Guardian</option>
+            </select>    
+        </div>
+       <div class="input-box">
+            <span class="details">Landline Number</span>
+            <input type="text" th:field="*{landNumber}" placeholder="Landline Number">
+        </div>
+        <div class="input-box">
+            <span class="details">Mobile Number</span>
+            <input type="text" th:field="*{mobileNumber}" placeholder="Mobile Number">
+        </div>
+    </div>
+    <div class="button">
+        <input type="submit" onclick="test()" value="Submit">
+    </div>
+    </form>
+</div>
+
+    
+    
+</body>
+</html>

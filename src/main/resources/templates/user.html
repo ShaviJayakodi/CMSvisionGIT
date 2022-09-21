@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http:www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User_Registration</title>
+    <!--<script src="../static/JS/example.js"></script>-->
+    <script th:src="@{/JS/example.js}"></script>
+    <script th:src="@{/JS/jquery.min.js}"></script>
+
+</head>
+<body>
+<div>
+    <h1>User Registration</h1>
+    <div>
+        <span><br>User Name</span>
+        <input type="text" id="userName" placeholder="User Name">
+    </div>
+
+    <div>
+        <span><br>Password</span>
+        <input type="password" id="pass" placeholder="Password">
+    </div>
+
+    <div>
+        <span><br>Password</span>
+        <input type="date" id="birthDay">
+    </div>
+    <div>
+        <button type="submit" onclick="submit()">Submit</button>
+    </div>
+
+</div>
+
+<div>
+    <input type="text" id="userId" placeholder="ID" autofocus>
+</div>
+<div>
+    <button type="submit"onclick="checkById()" >Search</button>
+</div>
+<div id="details">
+</div>
+
+<div id="getdata">
+    <div id="getUI">
+        <input type="hidden" id="getUserID">
+    </div>
+    <div id="getUN">
+        <input type="text" id="getUserName"placeholder="User Name" autofocus>
+    </div>
+    <div id="getPass">
+        <input type="text" id="getUserPass"placeholder="User Name" autofocus>
+    </div>
+    <div id="gb">
+        <input type="hidden" id="gbday"placeholder="User Name">
+    </div>
+    <button type="submit" onclick="update()">Update</button>
+    <button type="submit" onclick="Delete()">Delete</button>
+
+</div>
+
+</body>
+</html>

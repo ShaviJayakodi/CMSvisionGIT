@@ -1,0 +1,371 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;1,700&display=swap');
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:  'Poppons', sans-serif;
+}
+body
+{
+    background-color: #868788;
+    background-image: url("../IMAGES/340461 (1).jpg");
+    justify-content: center;
+    align-items: center;
+}
+section
+{
+    position: relative;
+    width: 100%;
+    height:100vh;
+    display:flex;
+    color: rgba(230, 36, 36, 0.801);
+    justify-content: center;
+    align-items: center;
+}
+section#sec
+{
+    display: flex;
+}
+section .container
+{
+    display: flex;
+    width: 80%;
+    height: 90%;
+    border-radius: 10px;
+    background-color: #fff;
+    padding-left: 0;
+    padding-right: 0;
+}/*
+section .container .contentBx .formBx .container1
+{
+    width: 100%;
+    display:block;
+}
+section .container .contentBx .formBx .container1 label
+{
+    display: none;
+    position: absolute;
+}/*
+section .container .contentBx .formBx .container1 input#searchGradeCode
+{
+
+}
+section .container .contentBx .formBx .container1 button
+{
+
+}
+section .container .contentBx .formBx .col-sm-10
+{
+color: #203cdd;
+padding-left: 0;
+border-radius: 100px;
+font-family: 'Popins' sans-serif;
+
+}
+.col-sm-10 input{
+    border-radius: 10px;
+    height: 35px;
+}
+section .container .contentBx .formBx .col-sm-2 input
+{
+    color: #203cdd;
+    height: 30px;
+    width: 60px;
+}*/
+section .imgBx
+{
+    position: relative;
+    width: 50%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+
+}
+section .imgBx span{
+    font-size: 100px;
+    color: #000000;
+    display: flex;
+    position: absolute;
+}
+section .imgBx:before
+{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* background: linear-gradient(to right, #000000 10%, #999966 100%);*/
+    z-index: 1;
+    mix-blend-mode: screen;
+    border-top-left-radius:10px;
+    border-bottom-left-radius: 10px ;
+
+}
+
+
+section .imgBx img
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-top-left-radius:10px;
+    border-bottom-left-radius: 10px ;
+
+}
+
+section .contentBx
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 100%;
+}
+
+section .contentBx .formBx
+{
+    width: 80%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+
+section .contentBx .formBx span#head {
+    color:#607d8b;
+    font-weight: 600;
+    font-size: 20px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    padding-bottom: 5px;
+    border-bottom: 4px solid #203cdd;
+    display: inline-block;
+    letter-spacing: 0.2em;
+    margin-top: 20px;
+}
+section .contentBx .formBx .inputBx
+{
+    margin-bottom: 20px;
+}
+
+
+section .contentBx .formBx .inputBx span
+{
+    font-size: 18px;
+    margin-bottom: 5px;
+    display: inline-block;
+    color: #000000;
+    font-weight: 500;
+    letter-spacing: 1px;
+
+}
+section .contentBx .formBx .mb-3
+{
+    display: flex;
+    justify-content: left;
+    padding: 0;
+
+}
+section .contentBx .formBx .mb-3 .form-select
+{
+    width: 100%;
+    border-radius: 8px;
+    font-size: 16px;
+    height: 40px;
+    margin-bottom: 40px;
+
+}
+section .contentBx .formBx .mb-3 .btn{
+    width: 50%;
+    height: 35px;
+    border-radius: 8px;
+    font-size: 16px;
+    margin-bottom: 0;
+    margin-top: 20px;
+}
+section .contentBx .formBx .inputBx input,section .contentBx .formBx .inputBx button
+{
+    width: 100%;
+    padding: 10px 20px;
+    outline: none;
+    border: none;
+    font-weight: 400;
+    border: 1px solid #607d8b;
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: #000000;
+    background: transparent;
+    border-radius: 10px;
+}
+section .contentBx .formBx .inputBx input#gradeCode
+{
+    text-transform: capitalize;
+}
+
+section .contentBx .formBx .inputBx input#gradeDes
+{
+    text-transform: capitalize;
+}
+
+section .contentBx .formBx .inputBx input:focus,
+section .contentBx .formBx .inputBx input:valid
+{
+    border-color:#203cdd;
+}
+
+section .contentBx .formBx .inputBx button
+{
+    background: #203cdd;
+    color: #fff;
+    outline: none;
+    border: none;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+section .contentBx .formBx .inputBx button:hover
+{
+    background: #05125e;
+}
+
+section .contentBx .formBx  .remember
+{
+    margin-bottom: 10px;
+    color: #607d8b;
+    font-weight: 400;
+    font-size: 14px;
+
+}
+
+section .contentBx .formBx .inputBx p
+{
+    color: #607d8b;
+}
+
+section .contentBx .formBx .inputBx a
+{
+    color: #ff4584;
+}
+
+section .contentBx .copyright{
+    text-align: center;
+    justify-content: end;
+
+
+}
+section .contentBx .copyright span{
+    position: relative;
+    bottom: 0;
+}
+section .contentBx .formBx .inputBx .rButton
+{
+    display: flex;
+    font-family: 'Popins' sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    color: #000000;
+    background-color: #636363;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border-radius: 10px;
+    justify-content: space-between;
+
+
+    /*
+    font-weight: 500;
+    font-size: 14px;
+    color: #000000;
+    background-color: #464748;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border-radius: 10px;
+    justify-content: center;
+    left: 10px;
+    padding-left: 21px;
+    */
+}
+section .contentBx .formBx .inputBx .rButton input[type=radio]
+{
+
+    width: inherit;
+    left: 0;
+    position: relative;
+    justify-content: space-between;
+    cursor: pointer;
+    margin-right: 5px;
+    margin-top: 0;
+    /*margin-right: 5px;*/
+}
+section .contentBx .formBx .inputBx .rButton label{
+    margin-right: 20px;
+    justify-content: center;
+    cursor: pointer;
+    font-weight: 500;
+    display: flex;
+    margin-bottom: 0;
+}
+
+@media (max-width: 990px)
+{
+    body{
+        background-image: none;
+        top: 0;
+    }
+    .container
+    {
+        margin-top: 0px;
+    }
+    section .imgBx
+    {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: transparent;
+        margin-top: 0px;
+
+    }
+    section .imgBx img
+    {
+        border-radius: 0;
+    }
+
+    section .contentBx
+    {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+
+    }
+
+    section .contentBx .formBx
+    {
+        width: 100%;
+        padding: 40px;
+        background: rgb(255 255 255 / 0.8);
+        margin: 50px;
+
+    }
+    section .contentBx .formBx .inputBx#btnSub {
+        margin-bottom: 0;
+
+    }
+    section .contentBx .formBx span#head
+    {
+        margin-top: 0;
+        font-size: 24px;
+        align-items: center;
+    }
+
+}

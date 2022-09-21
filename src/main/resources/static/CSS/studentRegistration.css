@@ -1,0 +1,96 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins',sans-serif;
+}
+
+.body
+{
+    background: rgb(219, 226, 226);
+}
+.mt-2{
+
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+.head
+{
+    font-weight :200;
+    width: 350px;
+    background-color: aqua;
+    border-radius: 0;
+    padding-left: 0;
+
+}
+.head#head,.head#head1
+{
+    width: fit-content;
+    height: 30px;
+    letter-spacing: 2px;
+    border-radius: 5px;
+    background: rgb(219, 226, 226);
+    margin-bottom: 10px;
+    align-items:center ;
+    justify-content: center;
+}
+.row
+{
+    background: white;
+    border-radius: 30px;
+}
+.row#new
+{
+    background-color: transparent;
+    width: 80%;
+    margin: auto;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 0;
+}
+
+.col .row#titleN
+{
+    display: none;
+}
+.form-control
+{
+    font-size: 14px;
+    padding-left: 10px;
+}
+.col input,.col select, .col .form-check-label
+{
+    font-size: 16px;
+
+}
+.inputLbl
+{
+    font-size: 18px;
+}
+img{
+    border-bottom-left-radius: 30px;
+    border-top-left-radius: 30px;
+
+
+}
+.btn
+{
+    border: none;
+    outline: none;
+    color: white;
+    width: 100px;
+
+}
+
+.after .col
+{
+    color: black;
+}
+@media(max-width :991px)
+{
+    .d-flex#imgCon, .img-fluid#conImg{
+        height: 450px;
+        width: 100%;
+    }
+}
+
