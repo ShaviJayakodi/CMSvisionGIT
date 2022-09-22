@@ -20,3 +20,9 @@ function loadDeletePage()
         $("#mainContainerPage").load("loadStudentDelete/");
         $("#mainContainerPage").value=true;
 }
+
+function  inquiry()
+{
+        $("#mainContainerPage").load("loadStudentInquiry/");
+        $("#mainContainerPage").value=true;
+}

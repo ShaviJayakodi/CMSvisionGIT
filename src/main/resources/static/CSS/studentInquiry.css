@@ -1,0 +1,47 @@
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+
+}
+body
+{
+    background-color: rgba(226,226,219,0.3);
+}
+
+.container
+{
+    background-color: #ffffff;
+
+}
+
+.row
+{
+    background-color: rgba(114,129 ,155,0.3);
+}
+
+.scrollable
+{
+    height: 400px;
+    overflow: auto;
+}
+
+.row .col label
+{
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: 500;
+
+}
+
+
+.scrollable .table th{
+
+
+    top: 0;
+    background-color: rgb(226,226,219);
+    position: sticky;
+    border-bottom: 4px solid black;
+}
