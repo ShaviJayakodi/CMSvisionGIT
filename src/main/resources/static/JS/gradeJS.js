@@ -92,6 +92,7 @@ function submit()
             },
             error: function (data) {
                 console.log(data.success);
+                loadDeletePage();
 
             },
 
@@ -132,7 +133,7 @@ function gradeLoad()
     });
 }
 
-function setGradeSelectBox(uniqueGrade)
+function setGradeDetailsToFields(uniqueGrade)
 {
     document.getElementById("gradeId").value=uniqueGrade.gradeId;
     document.getElementById("gradeCode").value = uniqueGrade.gradeCode;
@@ -142,7 +143,7 @@ function setGradeSelectBox(uniqueGrade)
 function getUniqueDetailById()
 {
     var getId = document.getElementById("selectGradeCode").value;
-    console.log(getId);
+
     $.ajax({
         url:"/gradeController/getUniqueDetailsById?gradeId="+getId,
         type: "GET",
@@ -153,8 +154,7 @@ function getUniqueDetailById()
         dataType: "json",
         success:function (data)
         {
-            console.log(data);
-            setGradeSelectBox(data);
+            setGradeDetailsToFields(data);
         }
     });
 }

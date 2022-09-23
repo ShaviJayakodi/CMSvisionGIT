@@ -32,13 +32,13 @@ public class GradeController {
     @GetMapping("/getUniqueDetailsById")
     public GradeDTO getUniqueDetailsById(@RequestParam int gradeId)
     {
+        System.out.println(gradeId);
         return gradeService.findByGradeId(gradeId);
     }
 
     @GetMapping("/getAll")
     public List<GradeDTO> getAllGrades()
     {
-        System.out.println(gradeService.getAllGrade());
         return gradeService.getAllGrade();
     }
 

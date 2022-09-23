@@ -82,17 +82,17 @@ public class GradeService {
 
     public String deleteByGradeId(int gradeId)
     {
-        String status="";
+        String data="";
         if(gradeRepo.existsById(gradeId))
         {
             gradeRepo.deleteById(gradeId);
-            status+="Successfully Deleted";
+            data+="Successfully Deleted";
         }
         else
         {
-            status+= "Grade Id Not Exist";
+            data+= "Grade Id Not Exist";
         }
-        return status;
+        return data;
     }
 
 }

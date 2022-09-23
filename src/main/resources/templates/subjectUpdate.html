@@ -25,35 +25,37 @@
           <h1 class="mt-2">SUBJECT UPDATE</h1>
         </div>
 
-        <form action="">
+        <div class="d-flex row" id="searchBar">
+          <div class="col" style="width: 50%;">
+            <label  class="visually-hidden" for="selectSubjectBox">Subject Name</label>
+            <select id="selectSubjectBox"  name="selectSubjectBox" class="form-control">
 
-          <div class="d-flex row" id="searchBar">
-            <div class="col" style="width: 50%;">
-              <label  class="visually-hidden" for="searchSubjectName">Subject Name</label>
-              <input type="text" id="searchSubjectName" name="searchSubjectName" class="form-control"  placeholder="Subject Name">
-              <div id="divSearchSubjectName" name="divSearchSubjectName"></div>
-            </div>
-            <div class="col-auto">
-              <button type="submit" class="btn btn-primary">Search</button>
-            </div>
-
+            </select>
+            <div id="divSelectSubjectBox" name="divSelectSubjectBox"></div>
+          </div>
+          <div class="col-auto">
+            <button type="submit" onclick="getUniqueSubDetailsById()" class="btn btn-primary">Search</button>
           </div>
 
+        </div>
 
+        <form action="">
+
+          <div class="row">
+            <input type="hidden" id="subjectId" name="subjectId">
+            <div class="col my-2">
+              <label class="inputLbl"for="subjectCode">Subject Code</label>
+              <input type="text" id="subjectCode" name="subjectCode" class="form-control p-lg-2 "placeholder="Subject Code">
+              <div id="divSubjectCode" name="divSubjectCode"></div>
+            </div>
+          </div>
           <div class="row">
             <div class="col my-2">
               <label class="inputLbl"for="subjectName">Subject Name</label>
               <input type="text" id="subjectName" name="subjectName" class="form-control p-lg-2 "placeholder="Subject Name">
               <div id="divSubjectName" name="divSubjectName"></div>
             </div>
-          </div>
-          <div class="row">
 
-            <div class="col my-2">
-              <label class="inputLbl"for="subjectCode">Subject Code</label>
-              <input type="text" id="subjectCode" name="subjectCode" class="form-control p-lg-2 "placeholder="Subject Code">
-              <div id="divSubjectCode" name="divSubjectCode"></div>
-            </div>
 
           </div>
 
