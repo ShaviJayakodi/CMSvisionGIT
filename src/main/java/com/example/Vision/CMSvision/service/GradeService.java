@@ -2,6 +2,7 @@ package com.example.Vision.CMSvision.service;
 
 import com.example.Vision.CMSvision.dto.GradeDTO;
 
+import com.example.Vision.CMSvision.dto.UserDTO;
 import com.example.Vision.CMSvision.entity.Grade;
 
 import com.example.Vision.CMSvision.repo.GradeRepo;
@@ -29,24 +30,27 @@ public class GradeService {
     private CommonService commonService;
 
     public Grade saveGrade(GradeDTO gradeDTO)
-    {
-        Grade grade = new Grade();
+    {   //gradeRepo.save(modelMapper.map(gradeDTO, Grade.class));
+        //int maxId = gradeRepo.getMaxGradeId();
+        // int regNo= Integer.parseInt(commonService.genarateRegNo(maxId));
 
-        //gradeRepo.save(modelMapper.map(gradeDTO, Grade.class));
-        int maxId = gradeRepo.getMaxGradeId();
-        grade.setGradeCode(gradeDTO.getGradeCode());
-        grade.setGradeDescription(gradeDTO.getGradeDescription());
-        int regNo= Integer.parseInt(commonService.genarateRegNo(maxId));
+        Grade grade = new Grade();
+        if(gradeDTO.getGradeId()>0)
+        {
+            grade.setGradeId(gradeDTO.getGradeId());
+            grade.setGradeCode(gradeDTO.getGradeCode());
+            grade.setGradeDescription(gradeDTO.getGradeDescription());
+        }
+        else
+        {
+            grade.setGradeCode(gradeDTO.getGradeCode());
+            grade.setGradeDescription(gradeDTO.getGradeDescription());
+        }
+
         gradeRepo.save(modelMapper.map(grade,Grade.class));
         return grade;
     }
-   /* public Grade findByGradeCode(String gradeCode)
-    {
 
-        System.out.println(gradeCode);
-        return modelMapper.map(gradeRepo.findByGradeCode(gradeCode).compareTo(gradeCode),Grade.class);
-
-    }*/
 
     public GradeDTO findByGradeCode(int gradeCode)
     {
@@ -59,4 +63,36 @@ public class GradeService {
        // System.out.println(gradeList);
        return modelMapper.map(gradeList,new TypeToken<List<GradeDTO>>(){}.getType());
     }
+
+    public GradeDTO findByGradeId(int gradeId) {
+        return modelMapper.map(gradeRepo.findById(gradeId).get(),GradeDTO.class);
+
+    }
+
+
+    public GradeDTO update(GradeDTO gradeDTO)
+    {
+        GradeDTO grade = new GradeDTO();
+        grade.setGradeId(gradeDTO.getGradeId());
+        grade.setGradeCode(gradeDTO.getGradeCode());
+        grade.setGradeDescription(gradeDTO.getGradeDescription());
+        gradeRepo.save(modelMapper.map(grade,Grade.class));
+        return grade;
+    }
+
+    public String deleteByGradeId(int gradeId)
+    {
+        String status="";
+        if(gradeRepo.existsById(gradeId))
+        {
+            gradeRepo.deleteById(gradeId);
+            status+="Successfully Deleted";
+        }
+        else
+        {
+            status+= "Grade Id Not Exist";
+        }
+        return status;
+    }
+
 }

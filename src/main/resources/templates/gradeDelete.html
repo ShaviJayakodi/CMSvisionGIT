@@ -27,11 +27,14 @@
 
         <div class="d-flex row" id="searchBar">
           <div class="col" style="width: 50%;">
-            <label  class="visually-hidden" for="searchGradeCode">Grade Code</label>
-            <input type="text" id="searchGradeCode" name="searchGradeCode" class="form-control"  placeholder="Grae Code">
+            <label  class="visually-hidden" for="selectGradeCode">Grade Code</label>
+            <select id="selectGradeCode" onclick="clearFields()" name="selectGradeCode" class="form-control">
+
+            </select>
+            <div id="divSelectGradeBox" name="divSelectGradeBox"></div>
           </div>
           <div class="col-auto">
-            <button type="submit" class="btn btn-primary">Search</button>
+            <button type="submit" onclick="getUniqueDetailById()" class="btn btn-primary">Search</button>
           </div>
 
         </div>
@@ -39,18 +42,19 @@
 
 
         <form action="">
+          <input type="hidden" id="gradeId" name="gradeId">
           <div class="row">
 
             <div class="col my-2">
-              <label class="inputLbl"for="gadeCode">Grade Code</label>
-              <input type="text" disabled id="gadeCode" name="gadeCode" class="form-control p-lg-2 "placeholder="Grade Code">
+              <label class="inputLbl"for="gradeCode">Grade Code</label>
+              <input type="text" disabled id="gradeCode" name="gradeCode" class="form-control p-lg-2 "placeholder="Grade Code">
             </div>
 
           </div>
           <div class="row">
             <div class="col my-2">
-              <label class="inputLbl"for="gadeDescription">Grade Description</label>
-              <input type="text" disabled id="gadeDescription" name="gadeDescription" class="form-control p-lg-2 "placeholder="Grade Description">
+              <label class="inputLbl"for="gradeDescription">Grade Description</label>
+              <input type="text" disabled id="gradeDescription" name="gradeDescription" class="form-control p-lg-2 "placeholder="Grade Description">
             </div>
           </div>
 

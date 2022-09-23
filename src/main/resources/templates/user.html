@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>User_Registration</title>
-    <!--<script src="../static/JS/example.js"></script>-->
-    <script th:src="@{/JS/example.js}"></script>
+    <!--<script src="../static/JS/example.js"></script>
+   <script th:src="@{/JS/example.js}"></script>-->
+    <script th:src="@{/JS/grade.js}"></script>
     <script th:src="@{/JS/jquery.min.js}"></script>
 
 </head>
@@ -41,6 +42,7 @@
 </div>
 
 <div id="getdata">
+    </div>
     <div id="getUI">
         <input type="hidden" id="getUserID">
     </div>
@@ -53,8 +55,21 @@
     <div id="gb">
         <input type="hidden" id="gbday"placeholder="User Name">
     </div>
-    <button type="submit" onclick="update()">Update</button>
+    <button type="submit" onclick="getGrade()">Update</button>
     <button type="submit" onclick="Delete()">Delete</button>
+
+    <div class="select">
+        <select id="gradeSelect" name="gradeSelect">
+
+        </select>
+    </div>
+
+    <div class="mainContainer" id="mainContainer">
+
+    </div>
+    <table id="table-content">
+
+    </table>
 
 </div>
 

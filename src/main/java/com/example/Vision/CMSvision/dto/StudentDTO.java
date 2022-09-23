@@ -1,5 +1,6 @@
 package com.example.Vision.CMSvision.dto;
 
+import com.example.Vision.CMSvision.entity.Grade;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,12 +18,12 @@ public class StudentDTO {
     private String firstName;
     private String lastName;
     private String address;
-    private String dateOfBirth;
-    private String dateOfAttend;
+    private String birthDay;
+    private String attendDate;
     private String parentName;
     private String relationship;
     private String mobileNumber;
-    private String gradeId;
+    private Grade gradeId;
     private String school;
     private String landNumber;
     private String gender;

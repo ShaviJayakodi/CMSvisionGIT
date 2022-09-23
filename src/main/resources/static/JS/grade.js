@@ -27,21 +27,19 @@ function setGradeSelectToSelectBox(gradeList)
 
 }
 function loadGradeSelectBox()
-{var text ="";
+{
     $.ajax({
         url:"/gradeController/getAll",
         type:"GET",
         data:{},
-
         success:function (data)
         {
             console.log("ok");
-            console.log(data.gradeDescription[0]);
         },
         error: function(xhr) {
             alert("Error");
         }
-    })
+    });
 }
 
 
@@ -71,6 +69,89 @@ if(checkEmpty()) {
 
 }
 }
+function getGrade(){
+
+
+        $.ajax({
+            url: "/gradeController/getAll",
+            type: "GET",
+            data: {},
+            success: function(data) {
+              //  $.each(data,function (index,value){
+                   // console.log(`${index}:${value.gradeId}:${value.gradeCode}:${value.gradeDescription}`);
+                 /*   var row = $('<tr><td>' + value.gradeId + '</td><td>' + value.gradeCode+ '</td><td>' + value.gradeDescription + '</td></tr>');
+                    $("#table-content").append(row);
+
+                    $("#gradeSelect").append(
+                        "<option value="+value.gradeId+">"+value.gradeCode+" " +
+                        " || "+value.gradeDescription+"</option>"
+                    );
+                })
+              // setGradeListToTable(data.response);
+                for (var i=0; i<data.length; i++)
+                {
+                    var row = $('<tr><td>' + data[i].gradeId + '</td><td>' + data[i].gradeCode+ '</td><td>' + data[i].gradeDescription + '</td></tr>');
+                    $("#table-content").append(row);
+                }
+                  */
+
+                  setGradeListToTable(data);
+                 // setGradeSelectToSelectBox(this.data)
+                    },
+            error: function(xhr) {
+                alert("Error");
+            }
+        });
+
+}
+function setGradeSelectToSelectBox(){
+    $('#gradeCodeSelect').append(
+        "<option value=0>==SELECT==</option>");
+    $.each(gradeList, function (index, grade){
+        $('#gradeCodeSelect').append(
+            "<option value="+grade.gradeId+">"+grade.gradeCode+" " +
+            " || "+grade.gradeDescription+"</option>"
+        );
+    });
+}
+function setGradeListToTable(gradeList)
+{
+    //var data = gradeList;
+    $('#mainContainer').empty();
+    $('#mainContainer').append(
+        "<table class=\"table table-striped\" id=\"details\" style=\"background-color:#ffffff; width: 80%;\" align=\"center\">"+
+        "<th>Grade Code</th>"+
+        "<th>Discription</th>"
+    );
+    $('#mainContainer').append(
+        "</table>"
+    );
+
+   /* for (var i=0; i<data.length; i++)
+    {
+        var row = $('<tr><td>' + data[i].gradeId + '</td><td>' + data[i].gradeCode+ '</td><td>' + data[i].gradeDescription + '</td></tr>');
+        $("#table-content").append(row);
+    }*/
+    $.each(gradeList,function (index,grade){
+        $("#gradeSelect").append(
+            "<option value="+grade.gradeId+">"+grade.gradeCode+" " +
+            " || "+grade.gradeDescription+"</option>"
+        );
+    });
+
+
+   /* $.each(gradeList, function (index, grade){
+        $('#details').append(
+            "<tr>" +
+            "<td>"+grade.gradeCode+"</td>"+
+            "<td>"+grade.gradeDescription+"</td>"+
+            //"<td><button onclick='userEdit("+user.userId+")'>Edit</button><button onclick='userDelete("+user.userId+")'>Delete</button></td>"+
+            "</tr>"
+        );
+    });*/
+
+}
+
 function searchByCode()
 {
     var searchCode = document.getElementById("searchGradeCode").value;

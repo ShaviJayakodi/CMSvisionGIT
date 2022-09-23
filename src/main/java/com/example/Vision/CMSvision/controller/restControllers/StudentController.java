@@ -14,6 +14,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
+@RequestMapping("/studentController")
 
 public class StudentController {
 
@@ -23,16 +24,17 @@ public class StudentController {
     private StudentService studentService;
 
     @PostMapping("/saveStudent")
-    public StudentDTO saveNewStudent(@RequestBody StudentDTO studentDTO)
+    public Student saveNewStudent(@RequestBody StudentDTO studentDTO)
     {
+        System.out.println(studentDTO);
          return studentService.saveNewStudent(studentDTO);
 
     }
-    @PostMapping("/save")
+    /*@PostMapping("/save")
     public ResponseEntity<StudentDTO> saveStudent(@RequestBody StudentDTO studentDTO)
     {
         return new ResponseEntity<StudentDTO>(studentService.saveNewStudent(studentDTO), HttpStatus.OK);
-    }
+    }*/
 
     @GetMapping("/getByStudentId")
     public ResponseEntity<List<Student>> getStudentById(@RequestParam int studentId)

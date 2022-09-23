@@ -21,17 +21,36 @@ public class GradeController {
         System.out.println(gradeDTO);
         return gradeService.saveGrade(gradeDTO);
     }
-    @GetMapping("/getByGradeCode")
-    public GradeDTO findByGradeCode(@RequestParam int gradeCode)
+   /* @GetMapping("/getByGradeCode")
+    public GradeDTO findByGradeCode(@RequestParam int graadeId)
     {
         System.out.println(gradeCode);
         return gradeService.findByGradeCode(gradeCode);
 
+    }*/
+
+    @GetMapping("/getUniqueDetailsById")
+    public GradeDTO getUniqueDetailsById(@RequestParam int gradeId)
+    {
+        return gradeService.findByGradeId(gradeId);
     }
+
     @GetMapping("/getAll")
     public List<GradeDTO> getAllGrades()
     {
         System.out.println(gradeService.getAllGrade());
         return gradeService.getAllGrade();
+    }
+
+    @PutMapping("/updateGrade")
+    public GradeDTO update (@RequestBody GradeDTO gradeDTO)
+    {
+        return gradeService.update(gradeDTO);
+    }
+
+    @DeleteMapping("/deleteGrade")
+    public String deleteByGradeId(int gradeId)
+    {
+        return gradeService.deleteByGradeId(gradeId);
     }
 }

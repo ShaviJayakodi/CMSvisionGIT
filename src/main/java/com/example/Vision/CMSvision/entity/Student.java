@@ -19,12 +19,14 @@ public class Student {
     private String firstName;
     private String lastName;
     private String address;
-    private String dateOfBirth;
-    private String dateOfAttend;
+    private String birthDay;
+    private String attendDate;
     private String parentName;
     private String relationship;
     private String mobileNumber;
-    private String gradeId;
+    @ManyToOne(fetch = FetchType.EAGER,optional = false, cascade = CascadeType.ALL)
+    @JoinColumn(name = "grade_gradeId")
+    private Grade gradeId;
     private String school;
     private String landNumber;
     private String gender;

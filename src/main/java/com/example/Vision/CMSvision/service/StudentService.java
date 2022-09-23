@@ -21,10 +21,16 @@ public class StudentService {
     @Autowired
     private ModelMapper modelMapper;
 
-    public StudentDTO saveNewStudent(StudentDTO studentDTO)
+    public Student saveNewStudent(StudentDTO studentDTO)
     {
-        studentRepo.save(modelMapper.map(studentDTO, Student.class));
+        Student student = new Student();
+        student.setFirstName(studentDTO.getFirstName());
+        student.setLastName(studentDTO.getLastName());
+        student.setGradeId(studentDTO.getGradeId());
+        student.setAddress(studentDTO.getAddress());
+        student.setSchool(studentDTO.getSchool());
+        studentRepo.save(modelMapper.map(student, Student.class));
 
-        return studentDTO;
+        return student;
     }
 }
