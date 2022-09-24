@@ -7,6 +7,7 @@ import com.example.Vision.CMSvision.entity.Grade;
 
 import com.example.Vision.CMSvision.repo.GradeRepo;
 
+import com.example.Vision.CMSvision.repo.StudentRepo;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,12 +30,13 @@ public class GradeService {
     @Autowired
     private CommonService commonService;
 
+
     public Grade saveGrade(GradeDTO gradeDTO)
     {   //gradeRepo.save(modelMapper.map(gradeDTO, Grade.class));
         //int maxId = gradeRepo.getMaxGradeId();
         // int regNo= Integer.parseInt(commonService.genarateRegNo(maxId));
 
-        Grade grade = new Grade();
+       Grade grade = new Grade();
         if(gradeDTO.getGradeId()>0)
         {
             grade.setGradeId(gradeDTO.getGradeId());

@@ -38,6 +38,12 @@ public class SubjectController {
         return subjectService.getUniqueById(subjectId);
     }
 
+    @DeleteMapping("/deleteSubject")
+    public String deleteSubject(int subjectId)
+    {
+         return subjectService.deleteSubject(subjectId);
+    }
+
 
 
 }

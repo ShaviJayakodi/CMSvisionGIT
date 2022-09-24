@@ -1,6 +1,7 @@
 package com.example.Vision.CMSvision.service;
 
 import com.example.Vision.CMSvision.dto.GradeDTO;
+import com.example.Vision.CMSvision.dto.StudentDTO;
 import com.example.Vision.CMSvision.dto.SubjectDTO;
 import com.example.Vision.CMSvision.entity.Subject;
 import com.example.Vision.CMSvision.repo.SubjectRepo;
@@ -21,20 +22,45 @@ public class SubjectService {
     @Autowired
     private ModelMapper modelMapper;
 
-    public SubjectDTO saveSubject(SubjectDTO subjectDTO)
-    {
-        subjectRepo.save(modelMapper.map(subjectDTO, Subject.class));
-        return subjectDTO;
+    public SubjectDTO saveSubject(SubjectDTO subjectDTO) {
+        SubjectDTO subject = new SubjectDTO();
+        if (subjectDTO.getSubjectId() > 0) {
+            subject.setSubjectId(subjectDTO.getSubjectId());
+            subject.setSubjectCode(subjectDTO.getSubjectCode());
+            subject.setSubjectName(subjectDTO.getSubjectName());
+        } else {
+
+            subject.setSubjectCode(subjectDTO.getSubjectCode());
+            subject.setSubjectName(subjectDTO.getSubjectName());
+        }
+        subjectRepo.save(modelMapper.map(subject, Subject.class));
+        return subject;
     }
 
 
     public List<SubjectDTO> getAllSubjects() {
         List<Subject> subjectList = subjectRepo.findAll();
-        return modelMapper.map(subjectList,new TypeToken<List<SubjectDTO>>(){}.getType());
+        return modelMapper.map(subjectList, new TypeToken<List<SubjectDTO>>() {
+        }.getType());
     }
 
     public SubjectDTO getUniqueById(int subjectId) {
 
-       return modelMapper.map(subjectRepo.findById(subjectId).get(),SubjectDTO.class);
+        return modelMapper.map(subjectRepo.findById(subjectId).get(), SubjectDTO.class);
     }
+
+    public String deleteSubject(int subjectId) {
+
+        String status = "";
+        if (subjectRepo.existsById(subjectId)) {
+            subjectRepo.deleteById(subjectId);
+            status += "Successful Deleted";
+        } else {
+            status += "Subject Not Found!";
+        }
+
+        return status;
+    }
+
+
 }

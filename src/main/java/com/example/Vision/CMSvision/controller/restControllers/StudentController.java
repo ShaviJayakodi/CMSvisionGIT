@@ -27,7 +27,7 @@ public class StudentController {
     public Student saveNewStudent(@RequestBody StudentDTO studentDTO)
     {
         System.out.println(studentDTO);
-         return studentService.saveNewStudent(studentDTO);
+        return studentService.saveNewStudent(studentDTO);
 
     }
     /*@PostMapping("/save")

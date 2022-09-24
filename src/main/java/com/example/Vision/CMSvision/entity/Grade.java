@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
@@ -17,6 +18,7 @@ public class Grade {
     private int gradeId;
     private String gradeCode;
     private String gradeDescription;
+
 
 
 

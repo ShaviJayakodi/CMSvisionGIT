@@ -16,6 +16,7 @@ function submit() {
                 var address = document.getElementById("address").value;
                 var school = document.getElementById("school").value;
                 var gradeId = document.getElementById("gradeSelect").value;
+                var intGradeId =parseInt(gradeId);
                 var gender = "";
                 if ($("#male").prop("checked")) {
                         gender = document.getElementById("male").value;
@@ -30,7 +31,7 @@ function submit() {
                             attendDate: attendDate,
                             address: address,
                             school: school,
-                            gradeId: gradeId,
+                            gradeId: intGradeId,
                             gender: gender
 
                             }
@@ -87,7 +88,7 @@ function  inquiry()
 function setGradeListToSelectBox(gradeList)
 {
         $("#gradeSelect").append(
-            "<option value=0>==SELECT==</option>"
+            "<option value=null>==SELECT==</option>"
         );
         $.each(gradeList,function (index,grade){
                 $("#gradeSelect").append(

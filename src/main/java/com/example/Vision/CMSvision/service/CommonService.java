@@ -10,9 +10,9 @@ import java.time.LocalDateTime;
 @Service
 @Transactional
 public class CommonService {
-    public String genarateRegNo(int maxId)
+    public String genarateRegNo(int maxId ,String code)
     {
-        System.out.println(maxId);
+
         String regNo="";
         LocalDateTime currantDate = LocalDateTime.now();
         LocalDate date1 = currantDate.toLocalDate();
@@ -21,9 +21,8 @@ public class CommonService {
         String pattern = "0000";
         DecimalFormat decimalFormat = new DecimalFormat(pattern);
         String format = decimalFormat.format(maxId+1);
-        regNo=Integer.toString(year)+format;
+        regNo=Integer.toString(year)+code+format;
 
-        System.out.println(regNo);
         return regNo;
     }
 }

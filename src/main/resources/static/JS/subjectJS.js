@@ -30,6 +30,66 @@ function submit() {
             });
 
     }
+
+    if($("#rbUpdate").prop("checked"))
+    {
+        var subjectId = document.getElementById("subjectId").value;
+        var subjectCode = document.getElementById("subjectCode").value;
+        var subjectName = document.getElementById("subjectName").value;
+
+        var requestObj =
+            {
+                subjectId:subjectId,
+                subjectCode:subjectCode,
+                subjectName:subjectName
+            }
+            $.ajax({
+                url:"/subjectController/saveSubject",
+                type:"POST",
+                headers : {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                dataType: "json",
+                data:JSON.stringify(requestObj),
+                success:function (data)
+                {
+                    alert("Success");
+                    loadUpdatePage();
+                }
+
+            });
+    }
+
+    if($("#rbDelete").prop("checked"))
+    {
+        var subjectId = document.getElementById("subjectId").value;
+
+        $.ajax({
+            url:"/subjectController/deleteSubject?subjectId="+subjectId,
+            type:"DELETE",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            dataType:"json",
+            success:function (data)
+            { if (!data.success) {
+                alert(data.statusList);
+            } else {
+                alert("Successfully Deleted.")
+                loadUpdatePage();
+                console.log(data.status);
+            }
+            },
+            error: function (data) {
+                console.log(data.success);
+                alert("ERROR")
+                console.log(data.status);
+
+            },
+        });
+    }
 }
 
 

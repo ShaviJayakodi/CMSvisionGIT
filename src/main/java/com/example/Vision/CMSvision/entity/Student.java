@@ -1,5 +1,7 @@
 package com.example.Vision.CMSvision.entity;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,8 +26,7 @@ public class Student {
     private String parentName;
     private String relationship;
     private String mobileNumber;
-    @ManyToOne(fetch = FetchType.EAGER,optional = false, cascade = CascadeType.ALL)
-    @JoinColumn(name = "grade_gradeId")
+    @ManyToOne(cascade = CascadeType.ALL)
     private Grade gradeId;
     private String school;
     private String landNumber;

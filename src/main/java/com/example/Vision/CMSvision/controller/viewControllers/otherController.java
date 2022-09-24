@@ -178,4 +178,30 @@ public class otherController {
     {
         return "subjectDelete";
     }
+
+    //Hall Mapping
+
+    @RequestMapping(value = "/loadHallMain",method = RequestMethod.GET)
+    public String loadHallMain()
+    {
+        return "hallMain";
+    }
+
+    @RequestMapping(value = "/loadHallRegistration",method = RequestMethod.GET)
+    public String loadRegistration()
+    {
+        return "hallRegistration";
+    }
+
+    @RequestMapping(value = "/loadHallUpdate",method = RequestMethod.GET)
+    public String loadHallUpdate()
+    {
+        return "hallUpdate";
+    }
+
+    @RequestMapping(value = "/loadHallDelete",method = RequestMethod.GET)
+    public String loadHllDelete()
+    {
+        return "hallDelete";
+    }
 }
