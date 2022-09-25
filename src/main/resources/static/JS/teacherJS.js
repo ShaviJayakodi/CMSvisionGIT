@@ -55,7 +55,7 @@ function submit()
             error: function(data){
                 console.log(data.success);
 
-            }
+            },
         });
     }
 
