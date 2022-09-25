@@ -5,6 +5,7 @@ import com.example.Vision.CMSvision.dto.TeacherDTO;
 import com.example.Vision.CMSvision.entity.Teacher;
 import com.example.Vision.CMSvision.repo.TeacherRepo;
 import com.example.Vision.CMSvision.enums.stakeHolderValues;
+import com.example.Vision.CMSvision.enums.statusValue;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,6 +42,7 @@ public class TeacherService {
             teacher.setMobNum2(teacherDTO.getMobNum2());
             teacher.setEmailAddress(teacherDTO.getEmailAddress());
             teacher.setRegNO(teacherDTO.getRegNO());
+            teacher.setStatus(statusValue.ACTIVE.sts());
         }
         else
         {
@@ -55,7 +57,7 @@ public class TeacherService {
             teacher.setMobNum2(teacherDTO.getMobNum2());
             teacher.setEmailAddress(teacherDTO.getEmailAddress());
             teacher.setRegNO(Integer.parseInt(commonService.genarateRegNo(maxId,stakeHolderValues.TEACHER.code())));
-
+            teacher.setStatus(statusValue.ACTIVE.sts());
 
         }
         teacherRepo.save(modelMapper.map(teacher, Teacher.class));
@@ -67,7 +69,7 @@ public class TeacherService {
     public TeacherDTO getByRegNO (int regNo)
     {
         Teacher teacher = teacherRepo.getTeachersByRegNO(regNo);
-        
+
         return modelMapper.map(teacher,TeacherDTO.class);
     }
 

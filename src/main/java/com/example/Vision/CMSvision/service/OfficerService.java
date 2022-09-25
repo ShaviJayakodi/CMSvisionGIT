@@ -4,6 +4,7 @@ import com.example.Vision.CMSvision.dto.OfficerDTO;
 import com.example.Vision.CMSvision.entity.Officer;
 import com.example.Vision.CMSvision.repo.OfficerRepo;
 import com.example.Vision.CMSvision.enums.stakeHolderValues;
+import com.example.Vision.CMSvision.enums.statusValue;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +44,7 @@ public class OfficerService {
             officer.setMobNum1(officerDTO.getMobNum1());
             officer.setMobNum2(officerDTO.getMobNum2());
             officer.setRegNo(officerDTO.getRegNo());
+            officer.setStatus(statusValue.ACTIVE.sts());
         }
         else
         {
@@ -58,6 +60,7 @@ public class OfficerService {
             officer.setMobNum1(officerDTO.getMobNum1());
             officer.setMobNum2(officerDTO.getMobNum2());
             officer.setRegNo(Integer.parseInt(commonService.genarateRegNo(maxId,stakeHolderValues.OFFICER.code())));
+            officer.setStatus(statusValue.ACTIVE.sts());
 
         }
         officerRepo.save(modelMapper.map(officer, Officer.class));
@@ -80,7 +83,7 @@ public class OfficerService {
     {
         String status="";
         officerRepo.deleteById(officerId);
-            status+="Teacher Deleted";
+            status+="Officer Deleted";
             return status;
 
     }

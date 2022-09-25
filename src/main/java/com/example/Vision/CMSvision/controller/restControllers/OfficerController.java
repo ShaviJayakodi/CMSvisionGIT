@@ -30,6 +30,7 @@ public class OfficerController {
     @GetMapping("/getUniqueByRegNo")
     public OfficerDTO getOfficerByRegNo(@RequestParam int officerRegNo)
     {
+        System.out.println(officerRegNo);
         return officerService.getOfficerByRegNo(officerRegNo);
     }
 

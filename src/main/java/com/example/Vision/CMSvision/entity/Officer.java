@@ -29,6 +29,7 @@ public class Officer {
     public String mobNum2;
     public String emailAddress;
     private int regNo;
+    private int status;
 
 
 }

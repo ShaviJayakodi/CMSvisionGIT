@@ -28,23 +28,25 @@
         </div>
         <div class="d-flex row" id="searchBar">
           <div class="col" style="width: 50%;">
-            <label  class="visually-hidden" for="regNo">RegNo</label>
-            <input type="text" id="regNo" name="regNo" class="form-control"  placeholder="RegNo">
+            <label  class="visually-hidden" for="searchRegNo">RegNo</label>
+            <input type="text" onchange="getUniqueOfficerByRegNo()" id="searchRegNo" name="searchRegNo" class="form-control"  placeholder="RegNo">
           </div>
           <div class="col-auto">
             <button type="submit" class="btn btn-primary">Search</button>
           </div>
 
           <div class="col" style="width: 50%;">
-            <label class="visually-hidden" for="teacherName">Student Name</label>
-            <input type="text" id="teacherName" name="teacherName" class="form-control"  placeholder="Teacher Name">
+            <label class="visually-hidden" for="officerName">Student Name</label>
+            <input type="text" disabled id="officerName" name="officerName" class="form-control"  placeholder="Officer Name">
           </div>
           <div class="col-auto">
-            <button type="submit" class="btn btn-primary ">Confirm</button>
+            <button type="submit" onclick="getUniqueOfficerById()" class="btn btn-primary ">Confirm</button>
           </div>
         </div>
 
         <form action="">
+          <input type="hidden" id="officerId" name="officerId">
+          <input type="hidden" id="regNo" name="regNo">
           <div class="row">
             <div class="row m-auto mr-0 pt-3 ">
               <h4 class="head p-1" id="head">Personal Details</h4>
@@ -88,12 +90,12 @@
             <div class="col my-2 ">
               <label class="inputLbl"for="firstName">Gender</label><br>
               <div class="form-check form-check-inline m-1">
-                <input class="form-check-input" disabled  type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                <label class="form-check-label" for="inlineRadio1">Male</label>
+                <input class="form-check-input" disabled  type="radio" name="gender" id="male" value="Male">
+                <label class="form-check-label" for="male">Male</label>
               </div>
               <div class="form-check form-check-inline m-1">
-                <input class="form-check-input"  disabled  type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                <label class="form-check-label" for="inlineRadio2">Female</label>
+                <input class="form-check-input"  disabled  type="radio" name="gender" id="female" value="Female">
+                <label class="form-check-label" for="female">Female</label>
               </div>
             </div>
 
