@@ -204,4 +204,29 @@ public class otherController {
     {
         return "hallDelete";
     }
+
+    //Class Mapping
+    @RequestMapping(value = "/loadClassMain",method = RequestMethod.GET)
+    public String loadClassMain()
+    {
+        return "classMain";
+    }
+
+    @RequestMapping(value = "/loadClassRegistration",method = RequestMethod.GET)
+    public String loadClassRegistration()
+    {
+        return "classRegistration";
+    }
+
+    @RequestMapping(value = "/loadClassUpdate",method = RequestMethod.GET)
+    public String loadClassUpdate()
+    {
+        return "classUpdate";
+    }
+
+    @RequestMapping(value = "/loadClassDelete",method = RequestMethod.GET)
+    public String loadClassDelete()
+    {
+        return "classDelete";
+    }
 }
