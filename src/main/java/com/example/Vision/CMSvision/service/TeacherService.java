@@ -67,6 +67,7 @@ public class TeacherService {
     public TeacherDTO getByRegNO (int regNo)
     {
         Teacher teacher = teacherRepo.getTeachersByRegNO(regNo);
+        
         return modelMapper.map(teacher,TeacherDTO.class);
     }
 

@@ -35,27 +35,43 @@
             <div id="divSelectHallBox" name="divSelectHallBox"></div>
           </div>
           <div class="col-auto">
-            <button type="button" class="btn btn-primary">Search</button>
+            <button type="submit" onclick="getDataById()" class="btn btn-primary">Search</button>
           </div>
 
         </div>
 
         <form action="">
-          <div class="row">
 
+          <div class="row">
             <div class="col my-2">
               <input type="hidden" id="hallId" name="hallId">
-              <label class="inputLbl"for="hallNumber">Hall Number</label>
-              <input type="text" id="hallNumber" name="hallNumber" class="form-control p-lg-2 "placeholder="Hall Number">
-              <div id="divHallNumber" name="divHallNumber"></div>
+              <label class="inputLbl"for="hallCode">Hall Code</label>
+              <input type="text"style="text-transform: capitalize" id="hallCode" name="hallCode" class="form-control p-lg-2 "placeholder="Hall Code">
+              <div id="divHallCode" name="divHallCode"></div>
             </div>
-
           </div>
+
           <div class="row">
             <div class="col my-2">
               <label class="inputLbl"for="hallName">Hall Name</label>
-              <input type="text" id="hallName" name="hallName" class="form-control p-lg-2 "placeholder="Hall Name">
+              <input type="text" style="text-transform: capitalize" id="hallName" name="hallName" class="form-control p-lg-2 "placeholder="Hall Name">
               <div id="divHallName" name="divHallName"></div>
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <div class="col my-2">
+              <label class="inputLbl"for="floor">Floor</label>
+              <select id="floor" name="floor"  class="form-control">
+                <option value=null>==SELECT==</option>
+                <option value="Ground Floor">Ground Floor</option>
+                <option value="1st Floor">1st Floor</option>
+                <option value="2nd Floor">2nd Floor</option>
+                <option value="3rd Floor">3rd Floor</option>
+                <option value="4th Floor">4th Floor</option>
+
+              </select>
+              <div id="divFloor" name="divFloor"></div>
             </div>
           </div>
 

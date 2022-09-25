@@ -14,20 +14,21 @@ import java.util.Date;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-public class Teacher {
+public class Officer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int teacherId;
+    private int officerId;
     private String firstName;
     private String lastName;
     private Date birthDay;
-    private  Date attendDate;
+    private Date attendDate;
     private String address;
+    private String dutyType;
     private String gender;
-    private String mobNum1;
-    private String mobNum2;
-    private String emailAddress;
-    private int regNO;
-    private int status;
+    public String mobNum1;
+    public String mobNum2;
+    public String emailAddress;
+    private int regNo;
+
 
 }

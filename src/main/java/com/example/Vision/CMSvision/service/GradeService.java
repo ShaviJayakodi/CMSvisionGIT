@@ -67,7 +67,7 @@ public class GradeService {
     }
 
     public GradeDTO findByGradeId(int gradeId) {
-        return modelMapper.map(gradeRepo.findById(gradeId).get(),GradeDTO.class);
+            return modelMapper.map(gradeRepo.findById(gradeId).get(),GradeDTO.class);
 
     }
 

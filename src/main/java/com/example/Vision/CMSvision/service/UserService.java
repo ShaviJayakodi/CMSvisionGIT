@@ -20,7 +20,6 @@ public class UserService {
 
     public UserDTO userSave(UserDTO userDTO) {
         userRepo.save(modelMapper.map(userDTO, User.class));
-        System.out.println(userDTO);
         return userDTO;
     }
 

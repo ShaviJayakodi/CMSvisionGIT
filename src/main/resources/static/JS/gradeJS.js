@@ -106,7 +106,7 @@ function submit()
 function setGradeListToSelectBox(gradeList)
 {
     $("#selectGradeCode").append(
-        "<option value=0>==SELECT==</option>"
+        "<option value=null>==SELECT==</option>"
     );
     $.each(gradeList,function (index,grade){
         $("#selectGradeCode").append(

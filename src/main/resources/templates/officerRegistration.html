@@ -8,7 +8,7 @@
 
 
   <link rel="stylesheet" th:href="@{/CSS/bootstrap.min.css}">
-  <link rel="stylesheet" th:href="@{/CSS/officer.css}">
+  <link rel="stylesheet" th:href="@{/CSS/officerUpdate.css}">
 
 </head>
 <body class="body">
@@ -33,26 +33,31 @@
             <div class="col my-2">
               <label class="inputLbl"for="firstName">First Name</label>
               <input type="text" id="firstName" name="firstName" class="form-control p-lg-2 "placeholder="First Name">
+              <div id="divFirstName" name="divFirstName"></div>
             </div>
             <div class="col my-2">
               <label class="inputLbl"for="lastName">Last Name</label>
               <input type="text" id="lastName" name="lastName" class="form-control p-lg-2 "placeholder="Last Name">
+              <div id="divLastName" name="divLastName"></div>
             </div>
           </div>
           <div class="row">
             <div class="col my-2">
               <label class="inputLbl"for="birthDay">Birth Day</label>
               <input type="date" id="birthDay" name="birthDay" class="form-control  p-lg-2 "placeholder="Birth Day">
+              <div id="divBirthDay" name="divBirthDay"></div>
             </div>
             <div class="col my-2">
               <label class="inputLbl"for="attendDate">Attend Date</label>
               <input type="date"  id="attendDate" name="attendDate" class="form-control  p-lg-2 "placeholder="Attend Date">
+              <div id="divAttendDate" name="divAttendDate"></div>
             </div>
           </div>
           <div class="row">
             <div class="col my-2">
               <label class="inputLbl"for="address">Address</label>
               <input type="text" class="form-control p-lg-2 " name="address" id="address" placeholder="Address">
+              <div id="divAddress" name="divAddress"></div>
 
             </div>
           </div>
@@ -65,16 +70,17 @@
                 <option value="Checker">Checker</option>
                 <option value="Administrator">Administrator</option>
               </select>
+              <div id="divSelectDuty" name="divSelectDuty"></div>
             </div>
             <div class="col my-2 ">
               <label class="inputLbl"for="firstName">Gender</label><br>
               <div class="form-check form-check-inline m-1">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                <label class="form-check-label" for="inlineRadio1">Male</label>
+                <input class="form-check-input" type="radio" name="gender" id="male" value="Male">
+                <label class="form-check-label" for="male">Male</label>
               </div>
               <div class="form-check form-check-inline m-1">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                <label class="form-check-label" for="inlineRadio2">Female</label>
+                <input class="form-check-input" type="radio" name="gender" id="female" value="Female">
+                <label class="form-check-label" for="female">Female</label>
               </div>
             </div>
 
@@ -88,17 +94,20 @@
           <div class="row">
             <div class="col my-2">
               <label class="inputLbl"for="mobileNumber1">Mobile Number - 1</label>
-              <input type="text" id="mobileNumber1" name="mobileNumber1" class="form-control p-lg-2 "placeholder="Mobile Number - 1">
+              <input type="text" id="mobileNumber1" name="mobileNumber1" class="form-control p-lg-2"placeholder="Mobile Number - 1">
+              <div id="divMobileNumber1" name="divMobileNumber1"></div>
             </div>
             <div class="col my-2">
               <label class="inputLbl" for="mobileNumber2">Mobile Number - 1</label>
               <input type="text"  class="form-control p-lg-2 " id="mobileNumber2" name="mobileNumber2" placeholder="Mobile Number - 2">
+              <div id="divMobileNumber2" name="divMobileNumber2"></div>
             </div>
           </div>
           <div class="row  mb-4">
             <div class="col my-2">
               <label class="inputLbl"for="emailAddress">Address</label>
               <input type="email" class="form-control p-lg-2 " name="emailAddress" id="emailAddress" placeholder="Email Address">
+              <div id="divEmailAddress" name="divEmailAddress"></div>
 
             </div>
           </div>
