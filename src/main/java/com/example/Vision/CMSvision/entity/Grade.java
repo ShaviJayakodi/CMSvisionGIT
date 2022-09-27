@@ -1,12 +1,15 @@
 package com.example.Vision.CMSvision.entity;
 
 import com.example.Vision.CMSvision.dto.GradeDTO;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @Entity
@@ -18,6 +21,13 @@ public class Grade {
     private int gradeId;
     private String gradeCode;
     private String gradeDescription;
+    @JsonIgnore
+    @OneToMany(mappedBy = "grade")
+    private Set<Student> students;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "grade")
+    private Set<ClassInfo> classInfo = new HashSet<>();
 
 
 

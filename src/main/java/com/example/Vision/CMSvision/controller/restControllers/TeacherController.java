@@ -1,9 +1,12 @@
 package com.example.Vision.CMSvision.controller.restControllers;
 
 import com.example.Vision.CMSvision.dto.TeacherDTO;
+import com.example.Vision.CMSvision.entity.Teacher;
 import com.example.Vision.CMSvision.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @CrossOrigin
@@ -23,6 +26,12 @@ public class TeacherController {
     public TeacherDTO getUnique(@RequestParam int regNo)
     {
         return teacherService.getByRegNO(regNo);
+    }
+
+    @GetMapping("/getAllTeachers")
+    public List<TeacherDTO> getAllTeachers()
+    {
+        return teacherService.findAllTeachers();
     }
 
     @GetMapping("/getById")

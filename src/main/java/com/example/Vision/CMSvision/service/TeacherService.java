@@ -2,15 +2,18 @@ package com.example.Vision.CMSvision.service;
 
 import com.example.Vision.CMSvision.dto.GradeDTO;
 import com.example.Vision.CMSvision.dto.TeacherDTO;
+import com.example.Vision.CMSvision.entity.Hall;
 import com.example.Vision.CMSvision.entity.Teacher;
 import com.example.Vision.CMSvision.repo.TeacherRepo;
 import com.example.Vision.CMSvision.enums.stakeHolderValues;
 import com.example.Vision.CMSvision.enums.statusValue;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 @Transactional
@@ -77,6 +80,14 @@ public class TeacherService {
     {
         return modelMapper.map(teacherRepo.findById(teacherId).get(),TeacherDTO.class);
     }
+
+    public List<TeacherDTO> findAllTeachers()
+    {
+        List<Teacher> teacherList = teacherRepo.findAll();
+        return modelMapper.map(teacherList,new TypeToken<List<Teacher>>(){}.getType());
+
+    }
+
 
     public String deleteByTeacherId(int teacherId)
     {

@@ -8,6 +8,7 @@ function submit() {
         var subjectCode = document.getElementById("subjectCode").value;
         var subjectName = document.getElementById("subjectName").value;
 
+
         var requestObj =
             {
                 subjectCode:subjectCode,
@@ -30,6 +31,7 @@ function submit() {
             });
 
     }
+
 
     if($("#rbUpdate").prop("checked"))
     {
@@ -92,7 +94,12 @@ function submit() {
     }
 }
 
-
+function genarateCode()
+{
+    var subjectName=document.getElementById("subjectName").value;
+    var code = subjectName.charAt(0).toUpperCase()+subjectName.charAt(1).toUpperCase()+subjectName.charAt(2).toUpperCase();
+    document.getElementById("subjectCode").value=code;
+}
 
 
 function loadSubjects()

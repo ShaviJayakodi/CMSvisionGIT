@@ -100,6 +100,12 @@ public class otherController {
         return "teacherDelete";
     }
 
+    @RequestMapping(value = "/loadTeacherInquiry" , method = RequestMethod.GET)
+    public String loadTeacherInquiry()
+    {
+        return "teacherInquiry";
+    }
+
 
     //Officer Mapping
     @RequestMapping(value = "/loadOfficerMain", method = RequestMethod.GET)

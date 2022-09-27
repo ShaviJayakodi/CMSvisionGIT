@@ -231,6 +231,23 @@ function clear()
     document.getElementById("teacherName").value="";
 }
 
+function getAllTeachers()
+{
+    $.ajax({
+        url:"/teacherController/getAllTeachers",
+        type:"GET",
+        data: {},
+        success:function (data)
+        {
+
+        },
+        error:function (xhr)
+        {
+            alert("Error");
+        }
+    });
+}
+
 
 function loadRegistrationPage()
 {
@@ -246,5 +263,11 @@ function loadUpdatePage()
 function loadDeletePage()
 {
     $("#mainContainerPage").load("loadTeacherDelete/");
+    $("#mainContainerPage").value=true;
+}
+
+function inquiry()
+{
+    $("#mainContainerPage").load("loadTeacherInquiry/");
     $("#mainContainerPage").value=true;
 }

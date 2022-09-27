@@ -18,13 +18,12 @@ import java.util.List;
 
 public class StudentController {
 
-    @Autowired
-    private StudentRepo studentRepo;
+
     @Autowired
     private StudentService studentService;
 
     @PostMapping("/saveStudent")
-    public Student saveNewStudent(@RequestBody StudentDTO studentDTO)
+    public StudentDTO saveNewStudent(@RequestBody StudentDTO studentDTO)
     {
         System.out.println(studentDTO);
         return studentService.saveNewStudent(studentDTO);
@@ -36,9 +35,9 @@ public class StudentController {
         return new ResponseEntity<StudentDTO>(studentService.saveNewStudent(studentDTO), HttpStatus.OK);
     }*/
 
-    @GetMapping("/getByStudentId")
+  /*  @GetMapping("/getByStudentId")
     public ResponseEntity<List<Student>> getStudentById(@RequestParam int studentId)
     {
         return new ResponseEntity<List<Student>>(studentRepo.findByStudentId(studentId), HttpStatus.OK);
-    }
+    }*/
 }

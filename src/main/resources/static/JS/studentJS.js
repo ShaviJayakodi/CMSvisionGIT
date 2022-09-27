@@ -16,7 +16,7 @@ function submit() {
                 var address = document.getElementById("address").value;
                 var school = document.getElementById("school").value;
                 var gradeId = document.getElementById("gradeSelect").value;
-                var intGradeId =parseInt(gradeId);
+
                 var gender = "";
                 if ($("#male").prop("checked")) {
                         gender = document.getElementById("male").value;
@@ -31,7 +31,7 @@ function submit() {
                             attendDate: attendDate,
                             address: address,
                             school: school,
-                            gradeId: intGradeId,
+                            gradeId: gradeId,
                             gender: gender
 
                             }

@@ -23,7 +23,7 @@ public class StudentDTO {
     private String parentName;
     private String relationship;
     private String mobileNumber;
-    private Grade gradeId;
+    private int gradeId;
     private String school;
     private String landNumber;
     private String gender;

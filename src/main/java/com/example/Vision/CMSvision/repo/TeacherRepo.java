@@ -15,10 +15,8 @@ public interface TeacherRepo extends JpaRepository<Teacher,Integer> {
 
 
 
-
     @Query(value = "SELECT *  FROM teacher WHERE regNo=?1",nativeQuery = true)
     Teacher getTeachersByRegNO(int regNo);
-
 
 
 }
