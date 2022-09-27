@@ -149,6 +149,7 @@ function submit()
         });
     }
 
+
 }
 
 
@@ -239,13 +240,33 @@ function getAllTeachers()
         data: {},
         success:function (data)
         {
-
+            setTeacherToTable(data);
+            console.log(data);
         },
         error:function (xhr)
         {
             alert("Error");
         }
     });
+}
+
+function setTeacherToTable(teacherList)
+{
+    $.each(teacherList,function (index,teacher)
+    {
+        $("#teacherInqTable").append(
+
+            "<tr>" +
+            "<td>"+teacher.regNO+"</td>"+
+            "<td>"+teacher.firstName+" "+teacher.lastName+"</td>"+
+            "<td>"+teacher.mobNum1+"</td>"+
+            "<td>"+teacher.mobNum2+"</td>"+
+            "<td>"+teacher.address+"</td>"+
+            "</tr>"
+        );
+
+    });
+
 }
 
 
@@ -270,4 +291,6 @@ function inquiry()
 {
     $("#mainContainerPage").load("loadTeacherInquiry/");
     $("#mainContainerPage").value=true;
+    getAllTeachers();
+
 }

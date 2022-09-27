@@ -26,6 +26,8 @@ body
 {
     height: 400px;
     overflow: auto;
+    display: flex;
+    justify-content: space-between;
 }
 
 .row .col label
@@ -41,7 +43,19 @@ body
 
 
     top: 0;
-    background-color: rgb(226,226,219);
     position: sticky;
+    border-bottom: none;
+
+}
+
+.scrollable thead tr
+{
     border-bottom: 4px solid black;
+    justify-content: space-between;
+    display: flex;
+    background-color: rgb(226,226,219);
+}
+.scrollable tbody {
+    justify-content: space-between;
+    display: flex;
 }
