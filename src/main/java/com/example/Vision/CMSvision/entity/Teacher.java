@@ -30,8 +30,6 @@ public class Teacher {
     private int regNO;
     private int status;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "teacher")
-    private Set<ClassInfo> classInfo = new HashSet<>();
+
 
 }

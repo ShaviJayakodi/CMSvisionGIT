@@ -23,13 +23,14 @@ public class Student {
     private String attendDate;
     private String parentName;
     private String relationship;
-    private String mobileNumber;
-    @ManyToOne(cascade = CascadeType.ALL)
+    private String mob1;
+    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name = "grade_gradeId",nullable = false)
     private Grade grade;
     private String school;
-    private String landNumber;
+    private String mob2;
     private String gender;
+    private int status;
 
 
 }

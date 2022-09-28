@@ -21,8 +21,5 @@ public class Subject {
     private String subjectCode;
     private String subjectName;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "subject")
-    private Set<ClassInfo> classInfo = new HashSet<>();
 
 }

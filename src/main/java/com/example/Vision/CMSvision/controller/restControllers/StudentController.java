@@ -25,19 +25,38 @@ public class StudentController {
     @PostMapping("/saveStudent")
     public StudentDTO saveNewStudent(@RequestBody StudentDTO studentDTO)
     {
-        System.out.println(studentDTO);
         return studentService.saveNewStudent(studentDTO);
-
     }
-    /*@PostMapping("/save")
-    public ResponseEntity<StudentDTO> saveStudent(@RequestBody StudentDTO studentDTO)
-    {
-        return new ResponseEntity<StudentDTO>(studentService.saveNewStudent(studentDTO), HttpStatus.OK);
-    }*/
 
-  /*  @GetMapping("/getByStudentId")
-    public ResponseEntity<List<Student>> getStudentById(@RequestParam int studentId)
+    @GetMapping("/getAllStudent")
+    public List<StudentDTO> getAllStudent()
     {
-        return new ResponseEntity<List<Student>>(studentRepo.findByStudentId(studentId), HttpStatus.OK);
-    }*/
+        return studentService.getAllStudent();
+    }
+
+    @GetMapping("/getUniqueById")
+    public StudentDTO getUniqueBYId(@RequestParam int studentId)
+    {
+       return studentService.getUniqueById(studentId);
+    }
+
+    @GetMapping("/getUniqueByRegNo")
+    public Student getUniqueByRegNo (@RequestParam int regNo)
+    {
+        return studentService.getUniqueByRegNo(regNo);
+    }
+
+    @DeleteMapping("/deleteStudentById")
+    public String deleteById(@RequestParam int studentId)
+    {
+        return studentService.deleteById(studentId);
+    }
+
+    @GetMapping("/studentGetByGradeId")
+    public List<Student> studentGetByGradeId(@RequestParam int gradeId)
+    {
+        return studentService.getStudentByGradeId(gradeId);
+    }
+
+
 }

@@ -37,7 +37,9 @@ public class TeacherController {
     @GetMapping("/getById")
     public TeacherDTO getById(@RequestParam int teacherId)
     {
+
         return teacherService.findById(teacherId);
+
     }
 
     @DeleteMapping("/teacherDelete")

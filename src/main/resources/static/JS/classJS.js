@@ -11,7 +11,7 @@ function submit()
         var subjectId=document.getElementById("selectSubject").value;
         var classType=document.getElementById("classType").value;
         var fullFee=document.getElementById("fullPrice").value;
-        var halfFree = document.getElementById("halfPrice").value;
+        var halfFee = document.getElementById("halfPrice").value;
         var freeFee = document.getElementById("freePrice").value;
         var commission = document.getElementById("commissionPercentage").value;
         var requestObj={
@@ -20,7 +20,7 @@ function submit()
             subjectId:subjectId,
             classType:classType,
             fullFee:fullFee,
-            halfFree:halfFree,
+            halfFee:halfFee,
             freeFee:freeFee,
             commission:commission
         }
@@ -50,7 +50,44 @@ function submit()
     }
 }
 
+function getAllClass()
+{
+    $.ajax({
+        url:"/classController/getAllClass",
+        type:"GET",
+        data: {},
+        success:function (data)
+        {
+            //setToSelectClass(data);
+        },
+        error:function (xhr)
+        {
+            alert("Error");
+        }
+    });
+}
+function clear()
+{
+    document.getElementById("selectClass").innerHTML=null;
+}
+function getAllClassByTeacherId()
+{
 
+    var teacherId1=document.getElementById("selectUpdateTeacher").value;
+    $.ajax({
+        url:"/classController/getAllClassByTeacher?teacherId="+teacherId1,
+        type:"GET",
+        data: {},
+        success:function (data)
+        {
+            setToSelectClass(data);
+        },
+        error:function (xhr)
+        {
+            alert("Error");
+        }
+    });
+}
 
 function getAllTeachers()
 {
@@ -61,6 +98,7 @@ function getAllTeachers()
         success:function (data)
         {
             setToTeacherSelectBox(data);
+            setToSearchTeacher(data);
         },
         error:function (xhr)
         {
@@ -69,22 +107,7 @@ function getAllTeachers()
     });
 }
 
-function getAllSubjects()
-{
-    $.ajax({
-        url:"/subjectController/getAll",
-        type:"GET",
-        data: {},
-        success:function (data)
-        {
-            setToSubjectSelectBox(data);
-        },
-        error:function (xhr)
-        {
-            alert("Error");
-        }
-    });
-}
+
 
 function getAllGrades()
 {
@@ -102,9 +125,76 @@ function getAllGrades()
         }
     });
 }
+function getAllSubjects()
+{
+    $.ajax({
+        url:"/subjectController/getAll",
+        type:"GET",
+        data: {},
+        success:function (data)
+        {
+            setToSubjectSelectBox(data);
+        },
+        error:function (xhr)
+        {
+            alert("Error");
+        }
+    });
+}
+
+function getClassByClassId()
+{
+    var classId = document.getElementById("selectClass").value;
+    $.ajax({
+        url:"/classController/getClassByClassId?classId="+classId,
+        type:"GET",
+        data: {},
+        success:function (data)
+        {
+            console.log(data);
+            setDataToFields(data);
+
+        },
+        error:function (xhr)
+        {
+            alert("Error");
+        }
+    });
+
+
+}
+
+
+function setToSelectClass(classList)
+{ document.getElementById("selectClass").innerHTML=null;
+
+    $("#selectClass").append(
+        "<option value=null>==SELECT==</option>"
+    );
+    $.each(classList,function (index,classInfo){
+        $("#selectClass").append(
+            "<option value="+classInfo.classId+">"+classInfo.classCode+"</option>"
+        );
+    });
+}
+
+function setToSearchTeacher(teacherList)
+{
+
+    $("#selectUpdateTeacher").append(
+        "<option value=null>==SELECT==</option>"
+    );
+    $.each(teacherList,function (index,teacher){
+
+        $("#selectUpdateTeacher").append(
+            "<option value ="+teacher.teacherId+">"+teacher.firstName+" "+teacher.lastName+"</option>"
+        );
+    });
+}
 
 function setToTeacherSelectBox(teacherList)
 {
+    document.getElementById("selectTeacher").innerHTML=null;
     $("#selectTeacher").append(
         "<option value=null>==SELECT==</option>"
     );
@@ -117,6 +207,7 @@ function setToTeacherSelectBox(teacherList)
 }
 function setToSubjectSelectBox(subjectList)
 {
+    document.getElementById("selectSubject").innerHTML=null;
     $("#selectSubject").append(
         "<option value=null>==SELECT==</option>"
     );
@@ -141,6 +232,31 @@ function setToGradeSelectBox(gradeList)
     });
 }
 
+function setDataToFields(uniqueClass)
+{
+    console.log(uniqueClass);
+    document.getElementById("classId").value=uniqueClass.classId;
+    document.getElementById("classCode").value=uniqueClass.classCode;
+    $('#selectGrade').append(
+        "<option value="+uniqueClass.grade.gradeId+" selected=\"selected\" >"+uniqueClass.grade.gradeCode+" || "+uniqueClass.grade.gradeDescription +"</option>"
+    );
+    $('#selectSubject').append(
+    "<option value="+uniqueClass.subject.subjectId+" selected=\"selected\">"+uniqueClass.subject.subjectCode+" || " +uniqueClass.subject.subjectName+"</option>"
+    );
+
+    $('#selectTeacher').append("" +
+        "<option value="+uniqueClass.teacherId+" selected=\"selected\">"+uniqueClass.subject.subjectCode+" || " +uniqueClass.subject.subjectName+"</option>"
+
+    );
+
+
+    document.getElementById("classType").value=uniqueClass.classType;
+    document.getElementById("fullPrice").value=uniqueClass.fullFee;
+    document.getElementById("halfPrice").value=uniqueClass.halfFee;
+    document.getElementById("freePrice").value=uniqueClass.freeFee;
+    document.getElementById("commissionPercentage").value=uniqueClass.commission;
+}
+
 
 function loadRegistrationPage()
 {
@@ -150,15 +266,28 @@ function loadRegistrationPage()
     getAllGrades();
     getAllSubjects();
 
+
 }
 
 function loadUpdatePage()
 {
     $("#mainContainerPage").load("loadClassUpdate/");
     $("#mainContainerPage").value=true;
+    getAllClass();
+    getAllTeachers();
+    getAllGrades();
+    getAllSubjects();
+
+
+
 }
 function loadDeletePage()
 {
     $("#mainContainerPage").load("loadClassDelete/");
     $("#mainContainerPage").value=true;
+    getAllClass();
+    getAllTeachers();
+    getAllGrades();
+    getAllSubjects();
+
 }

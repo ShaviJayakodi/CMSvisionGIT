@@ -21,13 +21,8 @@ public class Grade {
     private int gradeId;
     private String gradeCode;
     private String gradeDescription;
-    @JsonIgnore
-    @OneToMany(mappedBy = "grade")
-    private Set<Student> students;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "grade")
-    private Set<ClassInfo> classInfo = new HashSet<>();
+
 
 
 

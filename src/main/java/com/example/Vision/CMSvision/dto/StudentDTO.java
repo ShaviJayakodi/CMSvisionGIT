@@ -22,11 +22,13 @@ public class StudentDTO {
     private String attendDate;
     private String parentName;
     private String relationship;
-    private String mobileNumber;
+    private String mob1;
     private int gradeId;
     private String school;
-    private String landNumber;
+    private String mob2;
     private String gender;
+    private int status;
+
 
 }
 

@@ -29,7 +29,7 @@
                 <div class="d-flex row" id="searchBar">
                     <div class="col" style="width: 50%;">
                         <label  class="visually-hidden" for="regNo">RegNo</label>
-                        <input type="text" id="regNo" name="regNo" class="form-control"  placeholder="RegNo">
+                        <input type="text" id="regNo"  onchange="getUniqueStudentByRegNo()" name="regNo" class="form-control"  placeholder="RegNo">
 
                     </div>
                     <div class="col-auto">
@@ -42,12 +42,14 @@
 
                     </div>
                     <div class="col-auto">
-                        <button type="submit" class="btn btn-primary ">Confirm</button>
+                        <button type="submit" onclick="getUniqueStudentById()" class="btn btn-primary ">Confirm</button>
                     </div>
                 </div>
 
                 <form action="">
                     <div class="row">
+                        <input type="hidden" id="studentId" name="studentId">
+                        <input type="hidden" id="studentRegNo" name="studentRegNo">
                         <div class="row m-auto pt-3 ">
                             <h4 class="head p-1" id="head">Personal Details</h4>
                         </div>
@@ -92,21 +94,20 @@
                     <div class="row">
                         <div class="col my-2">
                             <label class="inputLbl">Grade</label>
-                            <select  disabled class="form-control p-lg-2 "name="" >
-                                <option value="null">==SELECT==</option>
-                                <option value="G06">G06 || Grade 06</option>
+                            <select  disabled class="form-control p-lg-2" id="gradeSelect" name="gradeSelect" >
+
                             </select>
 
                         </div>
                         <div class="col my-2 ">
                             <label class="inputLbl">Gender</label><br>
                             <div   class="form-check form-check-inline mt-1">
-                                <input  disabled class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                                <label class="form-check-label" for="inlineRadio1">Male</label>
+                                <input  disabled class="form-check-input" type="radio" name="gender" id="male" value="Male">
+                                <label class="form-check-label" for="male">Male</label>
                             </div>
                             <div class="form-check form-check-inline mt-1">
-                                <input  disabled  class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                                <label class="form-check-label" for="inlineRadio2">Female</label>
+                                <input  disabled  class="form-check-input" type="radio" name="gender" id="female" value="Female">
+                                <label class="form-check-label" for="female">Female</label>
                             </div>
 
                         </div>

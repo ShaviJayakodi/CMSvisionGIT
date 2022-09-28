@@ -15,22 +15,22 @@
     <div class="searchBar" >
         <div class="row" style="border-radius: 0">
             <div class="col pb-2">
-                <label for="regNo">RegNo</label>
-                <input type="text" name="regNo" id="regNo" class="form-control">
+                <label for="searchRegNo">RegNo</label>
+                <input type="text" name="searchRegNo" id="searchRegNo" class="form-control">
             </div>
             <div class="col pb-2">
-                <label for="name">Name</label>
-                <input type="text" name="name" id="name" class="form-control">
+                <label for="searchName">Name</label>
+                <input type="text" name="searchName" id="searchName" class="form-control">
             </div>
             <div class="col pb-2">
-                <label for="regNo">Grade</label>
-                <select name="grade" id="grade" class="form-control">
-                    <option value="null">==SELECT==</option>
+                <label for="gradeSelect">Grade</label>
+                <select name="gradeSelect" onchange="getStudentByGradeId()" id="gradeSelect" class="form-control">
+
                 </select>
             </div>
             <div class="col pb-2">
-                <label for="school">School</label>
-                <input type="text" name="school" id="school" class="form-control">
+                <label for="searchSchool">School</label>
+                <input type="text" name="searchSchool" id="searchSchool" class="form-control">
             </div>
         </div>
 
@@ -44,223 +44,12 @@
                 <th>RegNo</th>
                 <th>Name</th>
                 <th>School</th>
-                <th>Birth Day</th>
+                <th>Contact</th>
                 <th>new</th>
 
             </tr>
             </thead>
-            <tbody>
-            <tr>
-                <td>RegNo</td>
-                <td>Name</td>
-                <td>School</td>
-                <td>Birth Day</td>
-                <td>new</td>
-            </tr>
-
-            <tr>
-                <td>RegNo43</td>
-                <td>Name4234</td>
-                <td>School42342</td>
-                <td>Birth Day432423</td>
-                <td>new42342</td>
-            </tr>
-
-            <tr>
-                <td>RegNo43</td>
-                <td>Name4234</td>
-                <td>School42342</td>
-                <td>Birth Day432423</td>
-                <td>new42342</td>
-            </tr>
-            <tr>
-                <td>RegNo43</td>
-                <td>Name4234</td>
-                <td>School42342</td>
-                <td>Birth Day432423</td>
-                <td>new42342</td>
-            </tr>
-            <tr>
-                <td>RegNo43</td>
-                <td>Name4234</td>
-                <td>School42342</td>
-                <td>Birth Day432423</td>
-                <td>new42342</td>
-            </tr>
-            <tr>
-                <td>RegNo43</td>
-                <td>Name4234</td>
-                <td>School42342</td>
-                <td>Birth Day432423</td>
-                <td>new42342</td>
-            </tr>
-            <tr>
-                <td>RegNo43</td>
-                <td>Name4234</td>
-                <td>School42342</td>
-                <td>Birth Day432423</td>
-                <td>new42342</td>
-            </tr>
-            <tr>
-                <td>RegNo43</td>
-                <td>Name4234</td>
-                <td>School42342</td>
-                <td>Birth Day432423</td>
-                <td>new42342</td>
-            </tr>
-            <tr>
-                <td>RegNo43</td>
-                <td>Name4234</td>
-                <td>School42342</td>
-                <td>Birth Day432423</td>
-                <td>new42342</td>
-            </tr>
-            <tr>
-                <td>RegNo43</td>
-                <td>Name4234</td>
-                <td>School42342</td>
-                <td>Birth Day432423</td>
-                <td>new42342</td>
-            </tr>
-            <tr>
-                <td>RegNo43</td>
-                <td>Name4234</td>
-                <td>School42342</td>
-                <td>Birth Day432423</td>
-                <td>new42342</td>
-            </tr>
-            <tr>
-                <td>RegNo43</td>
-                <td>Name4234</td>
-                <td>School42342</td>
-                <td>Birth Day432423</td>
-                <td>new42342</td>
-            </tr>
-            <tr>
-                <td>RegNo43</td>
-                <td>Name4234</td>
-                <td>School42342</td>
-                <td>Birth Day432423</td>
-                <td>new42342</td>
-            </tr>
-            <tr>
-                <td>RegNo43</td>
-                <td>Name4234</td>
-                <td>School42342</td>
-                <td>Birth Day432423</td>
-                <td>new42342</td>
-            </tr>
-            <tr>
-                <td>RegNo43</td>
-                <td>Name4234</td>
-                <td>School42342</td>
-                <td>Birth Day432423</td>
-                <td>new42342</td>
-            </tr>
-            <tr>
-                <td>RegNo43</td>
-                <td>Name4234</td>
-                <td>School42342</td>
-                <td>Birth Day432423</td>
-                <td>new42342</td>
-            </tr>
-            <tr>
-                <td>RegNo43</td>
-                <td>Name4234</td>
-                <td>School42342</td>
-                <td>Birth Day432423</td>
-                <td>new42342</td>
-            </tr>
-            <tr>
-                <td>RegNo43</td>
-                <td>Name4234</td>
-                <td>School42342</td>
-                <td>Birth Day432423</td>
-                <td>new42342</td>
-            </tr>
-            <tr>
-                <td>RegNo43</td>
-                <td>Name4234</td>
-                <td>School42342</td>
-                <td>Birth Day432423</td>
-                <td>new42342</td>
-            </tr>
-            <tr>
-                <td>RegNo43</td>
-                <td>Name4234</td>
-                <td>School42342</td>
-                <td>Birth Day432423</td>
-                <td>new42342</td>
-            </tr><tr>
-                <td>RegNo43</td>
-                <td>Name4234</td>
-                <td>School42342</td>
-                <td>Birth Day432423</td>
-                <td>new42342</td>
-            </tr>
-            <tr>
-                <td>RegNo43</td>
-                <td>Name4234</td>
-                <td>School42342</td>
-                <td>Birth Day432423</td>
-                <td>new42342</td>
-            </tr>
-            <tr>
-                <td>RegNo43</td>
-                <td>Name4234</td>
-                <td>School42342</td>
-                <td>Birth Day432423</td>
-                <td>new42342</td>
-            </tr>
-            <tr>
-                <td>RegNo43</td>
-                <td>Name4234</td>
-                <td>School42342</td>
-                <td>Birth Day432423</td>
-                <td>new42342</td>
-            </tr>
-            <tr>
-                <td>RegNo43</td>
-                <td>Name4234</td>
-                <td>School42342</td>
-                <td>Birth Day432423</td>
-                <td>new42342</td>
-            </tr>
-            <tr>
-                <td>RegNo43</td>
-                <td>Name4234</td>
-                <td>School42342</td>
-                <td>Birth Day432423</td>
-                <td>new42342</td>
-            </tr>
-            <tr>
-                <td>RegNo43</td>
-                <td>Name4234</td>
-                <td>School42342</td>
-                <td>Birth Day432423</td>
-                <td>new42342</td>
-            </tr>
-            <tr>
-                <td>RegNo43</td>
-                <td>Name4234</td>
-                <td>School42342</td>
-                <td>Birth Day432423</td>
-                <td>new42342</td>
-            </tr>
-            <tr>
-                <td>RegNo43</td>
-                <td>Name4234</td>
-                <td>School42342</td>
-                <td>Birth Day432423</td>
-                <td>new42342</td>
-            </tr>
-            <tr>
-                <td>RegNo43</td>
-                <td>Name4234</td>
-                <td>School42342</td>
-                <td>Birth Day432423</td>
-                <td>new42342</td>
-            </tr>
+            <tbody id="studentList" name="studentList">
 
             </tbody>
 
@@ -270,5 +59,24 @@
 </div>
 
 <script src="../JS/bootstrap.bundle.min.js"></script>
+<script>
+    const searchInput = document.getElementById("searchName");
+    const rows = document.querySelectorAll("tbody tr");
+    console.log(rows);
+    searchInput.addEventListener("keyup" , function (event)
+    {
+      const q = event.target.value.toLowerCase();
+      rows.forEach((row) =>{
+         row.querySelector("td:nth-child(2)").textContent.toLowerCase().startsWith(q)
+             ? row.style.display=''
+             :(row.style.display="none");
+      });
+    });
+
+    $('.tbody').on('click','tr td:nth-child(1)', function () {
+        var id = $(this).closest("td").find('td:eq(1)').text();
+        alert(id)
+    });
+</script>
 </body>
 </html>
