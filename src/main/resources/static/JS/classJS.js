@@ -58,7 +58,8 @@ function getAllClass()
         data: {},
         success:function (data)
         {
-            //setToSelectClass(data);
+            console.log(data);
+          setClassTable(data);
         },
         error:function (xhr)
         {
@@ -256,7 +257,20 @@ function setDataToFields(uniqueClass)
     document.getElementById("freePrice").value=uniqueClass.freeFee;
     document.getElementById("commissionPercentage").value=uniqueClass.commission;
 }
+function setClassTable(classList)
+{
+    $.each(classList,function (index,uniqueClass){
+        $("#classInqTable").append(
+            "<tr>" +
+            "<td>"+uniqueClass.classCode+"</td>"+
+            "<td>"+uniqueClass.grade.gradeCode+" || "+ uniqueClass.grade.gradeDescription+"</td>"+
+            "<td>"+uniqueClass.subject.subjectName+"</td>"+
 
+            "</tr>"
+        )
+    });
+
+}
 
 function loadRegistrationPage()
 {
@@ -290,4 +304,11 @@ function loadDeletePage()
     getAllGrades();
     getAllSubjects();
 
+}
+
+function inquiry()
+{
+    $("#mainContainerPage").load("loadClassInquiry/");
+    $("#mainContainerPage").value=true;
+    getAllClass();
 }

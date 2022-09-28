@@ -132,6 +132,12 @@ public class otherController {
         return "officerDelete";
     }
 
+    @RequestMapping(value = "/loadOfficerInquiry" ,method = RequestMethod.GET)
+    public String loadOfficerInquiry()
+    {
+        return "officerInquiry";
+    }
+
     //Grade Mapping
 
     @RequestMapping(value = "/loadGradeMain",method = RequestMethod.GET)
@@ -185,6 +191,12 @@ public class otherController {
         return "subjectDelete";
     }
 
+    @RequestMapping(value = "/loadSubjectInquiry",method = RequestMethod.GET)
+    public String loadSubjectInquiry()
+    {
+        return "subjectInquiry";
+    }
+
     //Hall Mapping
 
     @RequestMapping(value = "/loadHallMain",method = RequestMethod.GET)
@@ -211,6 +223,12 @@ public class otherController {
         return "hallDelete";
     }
 
+    @RequestMapping(value = "/loadHallInquiry",method = RequestMethod.GET)
+    public String loadHallInquiry ()
+    {
+        return "hallInquiry";
+    }
+
     //Class Mapping
     @RequestMapping(value = "/loadClassMain",method = RequestMethod.GET)
     public String loadClassMain()
@@ -235,4 +253,12 @@ public class otherController {
     {
         return "classDelete";
     }
+
+
+    @RequestMapping(value = "/loadClassInquiry",method = RequestMethod.GET)
+    public String loadClassInquiry()
+    {
+        return "/classInquiry";
+    }
+
 }

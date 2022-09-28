@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http:www.thymeleaf.org">
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Officer Management</title>
+  <link rel="stylesheet" th:href="@{/CSS/bootstrap.min.css}">
+  <link rel="stylesheet" th:href="@{/CSS/teacherInq.css}">
+
+</head>
+<body>
+<div class="container mt-5 pb-2 mb-5"  style= "width:90%; height: 500px; align-items: center;">
+  <div class="searchBar" >
+    <div class="row" style="border-radius: 0">
+      <div class="col pb-2">
+        <label for="regNo">RegNo</label>
+        <input type="text" name="regNo" id="regNo" class="form-control">
+      </div>
+      <div class="col pb-2">
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name" class="form-control">
+      </div>
+    </div>
+  </div>
+
+
+  <div  class="scrollable">
+    <table class="table table-striped table-hover" style="background-color: #fff;" >
+      <thead>
+      <tr>
+        <th>RegNo</th>
+        <th>Name</th>
+        <th>Mobile-1</th>
+        <th>Mobile-2</th>
+        <th>Gender</th>
+
+      </tr>
+      </thead>
+      <tbody id="officerInqTable" name="officerInqTable">
+
+      </tbody>
+
+
+    </table>
+  </div>
+</div>
+
+<script src="../JS/bootstrap.bundle.min.js"></script>
+</body>
+</html>

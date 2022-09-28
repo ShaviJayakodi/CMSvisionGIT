@@ -157,7 +157,20 @@ function submit()
 
 }
 
-
+function setOfficerToTable(officerList)
+{
+    $.each(officerList,function (index,officer){
+       $("#officerInqTable").append(
+         "<tr>"+
+             "<td>"+officer.regNo+"</td>"+
+           "<td>"+officer.firstName+" "+officer.lastName+"</td>"+
+           "<td>"+officer.mobNum1+"</td>"+
+           "<td>"+officer.mobNum2+"</td>"+
+           "<td>"+officer.gender+"</td>"+
+         "</tr>"
+       );
+    });
+}
 
 function getAllOfficers()
 {
@@ -167,7 +180,7 @@ function getAllOfficers()
         data:{},
         success:function (data)
         {
-            console.log(data);
+            setOfficerToTable(data);
         },
         error:function (xhr)
         {
@@ -262,3 +275,9 @@ function loadDeletePage()
     $("#mainContainerPage").load("loadOfficerDelete/");
     $("#mainContainerPage").value=true;
 }
+ function inquiry()
+ {
+     $("#mainContainerPage").load("loadOfficerInquiry/");
+     $("#mainContainerPage").value=true;
+     getAllOfficers();
+ }

@@ -120,6 +120,7 @@ function getAllHalls()
         success:function (data)
         {
             setHallSelectBox(data);
+            setHallToTable(data);
 
         },
         error:function (xhr)
@@ -130,7 +131,18 @@ function getAllHalls()
 
     });
 }
-
+function setHallToTable(hallList)
+{
+    $.each(hallList,function (index,hall) {
+        $("#hallInqTable").append(
+            "<tr>"+
+            "<td>"+hall.hallCode+"</td>"+
+            "<td>"+hall.hallName+"</td>"+
+            "<td>"+hall.floor+"</td>"+
+            "</tr>"
+        );
+    });
+}
 function getDataById()
 {
     var hallId = document.getElementById("selectHall").value;
@@ -195,4 +207,9 @@ function loadDeletePage()
     $("#mainContainerPage").value=true;
     getAllHalls();
 }
-
+function inquiry()
+{
+    $("#mainContainerPage").load("loadHallInquiry/");
+    $("#mainContainerPage").value=true;
+    getAllHalls();
+}

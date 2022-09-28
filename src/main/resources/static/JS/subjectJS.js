@@ -8,7 +8,6 @@ function submit() {
         var subjectCode = document.getElementById("subjectCode").value;
         var subjectName = document.getElementById("subjectName").value;
 
-
         var requestObj =
             {
                 subjectCode:subjectCode,
@@ -111,6 +110,7 @@ function loadSubjects()
        success:function (data)
        {
            setSubjectToSelectBox(data);
+           setSubjectsToTable(data);
        },
         error: function(xhr) {
             alert("Error");
@@ -118,6 +118,18 @@ function loadSubjects()
 
     });
 }
+function setSubjectsToTable(subjectList)
+{
+    $.each(subjectList,function (index,subject){
+        $("#subjectInqTable").append(
+            "<tr>"+
+                "<td>"+subject.subjectCode+"</td>"+
+                "<td>"+subject.subjectName+"</td>"+
+            "</tr>"
+        );
+    });
+}
+
 function setSubjectToSelectBox(subjectList)
 {
     $("#selectSubjectBox").append(
@@ -177,3 +189,11 @@ function loadDeletePage()
     $("#mainContainerPage").value=true;
     loadSubjects();
 }
+
+function inquiry()
+{
+    $("#mainContainerPage").load("loadSubjectInquiry/");
+    $("#mainContainerPage").value=true;
+    loadSubjects();
+}
+
