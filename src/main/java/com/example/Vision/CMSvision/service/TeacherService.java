@@ -76,9 +76,10 @@ public class TeacherService {
         return modelMapper.map(teacher,TeacherDTO.class);
     }
 
-    public TeacherDTO findById(int teacherId)
+    public Teacher findById(int teacherId)
     {
-        return modelMapper.map(teacherRepo.findById(teacherId).get(),TeacherDTO.class);
+        Teacher teacher =modelMapper.map(teacherRepo.findById(teacherId).get(),Teacher.class);
+        return teacher;
     }
 
     public List<TeacherDTO> findAllTeachers()

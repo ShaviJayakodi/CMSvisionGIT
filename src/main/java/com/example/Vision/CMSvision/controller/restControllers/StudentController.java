@@ -35,7 +35,7 @@ public class StudentController {
     }
 
     @GetMapping("/getUniqueById")
-    public StudentDTO getUniqueBYId(@RequestParam int studentId)
+    public Student getUniqueBYId(@RequestParam int studentId)
     {
        return studentService.getUniqueById(studentId);
     }

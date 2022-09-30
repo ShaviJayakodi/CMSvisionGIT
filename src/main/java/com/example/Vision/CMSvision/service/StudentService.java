@@ -95,10 +95,10 @@ public class StudentService {
         return studentList;
     }
 
-    public StudentDTO getUniqueById(int studentId)
+    public Student getUniqueById(int studentId)
     {
-        StudentDTO studentDTO= modelMapper.map(studentRepo.findById(studentId).get(),StudentDTO.class);
-        return studentDTO;
+        Student student= modelMapper.map(studentRepo.findById(studentId).get(),Student.class);
+        return student;
     }
 
     public Student getUniqueByRegNo(int regNo)

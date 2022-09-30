@@ -257,7 +257,6 @@ function setOfficerDataToFields(officer){
     }
 }
 
-
 function loadRegistrationPage()
 {
     $("#mainContainerPage").load("loadOfficerRegistration/");

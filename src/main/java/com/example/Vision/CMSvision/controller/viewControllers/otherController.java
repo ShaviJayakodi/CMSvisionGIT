@@ -261,4 +261,25 @@ public class otherController {
         return "/classInquiry";
     }
 
+
+
+    //Student Mapping to class
+
+    @RequestMapping(value = "/loadMappingMain",method = RequestMethod.GET)
+    public String loadClassMapping()
+    {
+        return "/classMappingMain";
+    }
+
+    @RequestMapping(value = "/loadAddMapping", method = RequestMethod.GET)
+    public String loadAddMapping()
+    {
+        return "/addClassMapping";
+    }
+
+    @RequestMapping(value = "/loadClassMappingDetails",method = RequestMethod.GET)
+    public String loadClassDetails()
+    {
+        return "/classMappingDetails";
+    }
 }
