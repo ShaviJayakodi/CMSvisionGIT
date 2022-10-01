@@ -39,4 +39,11 @@ public class ClassMappingController {
             return classMappingService.deleteById(mappingId);
 
     }
+
+    @GetMapping("/getMappingsByMappingId")
+    public ClassMapping getMappingsByMappingId(@RequestParam int mappingId)
+    {
+        System.out.println(mappingId);
+        return classMappingService.getMappingsByMappingId(mappingId);
+    }
 }

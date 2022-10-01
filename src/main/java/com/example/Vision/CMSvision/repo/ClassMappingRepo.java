@@ -27,5 +27,10 @@ public interface ClassMappingRepo extends JpaRepository<ClassMapping , Integer> 
 
    // @Query(value = "delete from ClassMapping where classMappingId=?1")
 
+    @Query(value = "SELECT * FROM class_mapping",nativeQuery = true)
+    List<ClassMapping> getAll();
+
+
+
 
 }

@@ -71,5 +71,11 @@ public class ClassMappingService {
     public int deleteById(int mappingId) {
         return  classMappingRepo.deleteByClassMappingId(mappingId);
     }
+
+    public ClassMapping getMappingsByMappingId(int mappingId) {
+
+        ClassMapping classMapping = modelMapper.map(classMappingRepo.findById(mappingId).get(),ClassMapping.class);
+        return classMapping;
+    }
 }
 

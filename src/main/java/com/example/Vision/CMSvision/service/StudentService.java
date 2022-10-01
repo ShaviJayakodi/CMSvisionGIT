@@ -76,7 +76,7 @@ public class StudentService {
             }
 
 
-            System.out.println(student);
+            //System.out.println(student);
             student =  studentRepo.save(student);
             dto = modelMapper.map(student, StudentDTO.class);
         }

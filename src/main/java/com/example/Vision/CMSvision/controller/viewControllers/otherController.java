@@ -282,4 +282,28 @@ public class otherController {
     {
         return "/classMappingDetails";
     }
+
+    //Class open and close
+    @RequestMapping(value = "/loadOpenClass",method = RequestMethod.GET)
+    public String loadOpenClass()
+    {
+        return "/classOpenClose";
+
+    }
+
+    //student attendance
+    @RequestMapping(value = "/studentAttendance",method = RequestMethod.GET)
+    public String loadAttendance()
+    {
+        return "/studentAttendance";
+    }
+
+
+    //popup window
+    @RequestMapping(value = "loadPopupSearch",method = RequestMethod.GET)
+    public String loadPopupSearchWindow()
+    {
+        return "popupSearch";
+    }
+
 }
