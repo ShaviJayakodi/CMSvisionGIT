@@ -1,6 +1,7 @@
 package com.example.Vision.CMSvision.service;
 
 import com.example.Vision.CMSvision.dto.ClassMappingDTO;
+import com.example.Vision.CMSvision.dto.MarkAttendanceDTO;
 import com.example.Vision.CMSvision.dto.OpenClassDTO;
 import com.example.Vision.CMSvision.entity.ClassInfo;
 import com.example.Vision.CMSvision.entity.ClassMapping;
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.Access;
 import javax.transaction.Transactional;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -73,7 +75,10 @@ public class OpenClassService {
         return openClass;
     }
 
-    public List<OpenClass> save(int regNo)
+
+
+
+   /* public List<OpenClass> save(int regNo)
     {
         List<OpenClass> showOpenClassForStudent= new ArrayList<>();
         OpenClass oClass = new OpenClass();
@@ -104,9 +109,8 @@ public class OpenClassService {
                 }
             }
         }
-    return showOpenClassForStudent;
-        }
-
-    }
+        return showOpenClassForStudent;
+    }*/
+}
 
 

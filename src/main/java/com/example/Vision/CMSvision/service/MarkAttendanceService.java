@@ -1,23 +1,18 @@
 package com.example.Vision.CMSvision.service;
 
 import com.example.Vision.CMSvision.dto.MarkAttendanceDTO;
-import com.example.Vision.CMSvision.entity.ClassInfo;
-import com.example.Vision.CMSvision.entity.MarkAttendance;
-import com.example.Vision.CMSvision.entity.OpenClass;
-import com.example.Vision.CMSvision.entity.Student;
-import com.example.Vision.CMSvision.repo.ClassInfoRepo;
-import com.example.Vision.CMSvision.repo.OpenClassRepo;
-import com.example.Vision.CMSvision.repo.StudentRepo;
-import com.example.Vision.CMSvision.repo.MarkAttendnaceRepo;
+import com.example.Vision.CMSvision.dto.OpenClassDTO;
+import com.example.Vision.CMSvision.entity.*;
+import com.example.Vision.CMSvision.enums.statusValue;
+import com.example.Vision.CMSvision.repo.*;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -33,9 +28,11 @@ public class MarkAttendanceService {
     @Autowired
     private MarkAttendnaceRepo markAttendnaceRepo;
     @Autowired
+    private ClassMappingRepo classMappingRepo;
+    @Autowired
     private ModelMapper modelMapper;
     //attendance
-    public MarkAttendanceDTO markAttendance(int studentId,int openClassId)
+  /*  public MarkAttendanceDTO getOpenedClassesForStudent(int studentId,int openClassId)
     {
         Student student = modelMapper.map(studentRepo.findById(studentId).get(),Student.class);
 
@@ -73,9 +70,169 @@ public class MarkAttendanceService {
 
         return markAttendanceDTO;
     }
+*/
+
+    public List<MarkAttendanceDTO> getAll()
+    {
+       List<MarkAttendance> list =markAttendnaceRepo.findAll();
+       return modelMapper.map(list, new TypeToken<List<MarkAttendanceDTO>>(){}.getType());
+
+    }
+
+    public List<OpenClass> getOpenedClassesForStudent(int regNo)
+    {
+
+        List<OpenClass> showOpenClassForStudent= new ArrayList<>();
+        OpenClass oClass = new OpenClass();
+        OpenClassDTO openClassDTO =new OpenClassDTO();
+        Student student = studentRepo.getUniqueStudentByRegNo(regNo);
+        List<ClassMapping> classMappingList = classMappingRepo.getClassMappingByStudentId(student.getStudentId());
+        List<OpenClass> openClassList = openClassRepo.findActiveClasses(statusValue.ACTIVE.sts());
+        for (OpenClass openClass : openClassList)
+        {
+            for (ClassMapping classMapping :classMappingList)
+            {
+                System.out.println(openClass.getClassInfo().getClassId()+" "+classMapping.getClassInfo().getClassId());
+                if(openClass.getClassInfo().getClassId()==classMapping.getClassInfo().getClassId())
+                {
+                    int openClassId=openClass.getOpenClassId();
+                    Date openDate = openClass.getOpenDate();
+                    int status = openClass.getStatus();
+
+
+                    int classId = openClass.getClassInfo().getClassId();
+                    oClass.setClassInfo(openClass.getClassInfo());
+                    oClass.setOpenDate(openClass.getOpenDate());
+                    oClass.setStatus(openClass.getStatus());
+                    oClass.setOpenClassId(openClass.getOpenClassId());
+                    showOpenClassForStudent.add(modelMapper.map(oClass,OpenClass.class));
+                    System.out.println(openClassId+" "+openDate+" "+status+" "+classId);
+
+                }
+            }
+        }
+        return showOpenClassForStudent;
+    }
+
+    public MarkAttendanceDTO addAttendance(MarkAttendanceDTO markDTO) {
+        String message = "";
+        // ClassInfo classInfo = modelMapper.map(classInfoRepo.findById(markDTO.getClassInfoId()).get(),ClassInfo.class);
+        Student student = modelMapper.map(studentRepo.findById(markDTO.getStudentId()).get(), Student.class);
+        OpenClass openClass = modelMapper.map(openClassRepo.findById(markDTO.getOpenClassId()).get(), OpenClass.class);
+        List<MarkAttendance> list = markAttendnaceRepo.getAllAttendanceByStudentId(markDTO.getStudentId());
+        MarkAttendanceDTO markAttendanceDTO;
+        MarkAttendance markAttendance = new MarkAttendance();
+        SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
+/*formatter = new SimpleDateFormat("yyyy-MM-dd");
+	strDate = formatter.format(date);
+	System.out.println("Date Format with dd-M-yyyy : "+strDate);
+*/
+        //already attend
+        /*  if(markDTO.getAttendanceDate().equals(list.))*/
+
+            /* if(markDTO.getStudentId()==markAttendance1.getStudent().getStudentId())
+            {
+               if(markDTO.getOpenClassId()==markAttendance1.getOpenClass().getOpenClassId())
+                {
+
+                    if(markAttendance1.getAttendanceId()>0)
+                    {
+                      message="already attend";
+                    }
+                    else
+                    {
+                        message="";
+                    }
+                }message="";
+            }
+            message="";
+*/
+         /*   if (markDTO.getOpenClassId() == markAttendance1.getOpenClass().getOpenClassId()) {
+                if (markAttendance1.getAttendanceDate() == markDTO.getAttendanceDate()) {
+                    //message="Already Added";
+
+
+                } else {
+                    message = "";
+                }
+
+
+            }
+
+            //not attend yet
+            if (message == "" || message == null) {
+
+                markAttendance.setAttendanceDate(markDTO.getAttendanceDate());
+                markAttendance.setStudent(student);
+                markAttendance.setClassInfo(openClass.getClassInfo());
+                markAttendance.setOpenClass(openClass);
+                markAttendnaceRepo.save(markAttendance);
+            }
+            else
+            {
+                return modelMapper.map(markAttendance,MarkAttendanceDTO.class);
+            }
+        }
+*/
+            String strDate = fmt.format(markDTO.getAttendanceDate());
+            List<MarkAttendance> mrkAttDTO = markAttendnaceRepo.checkAttendance(student.getStudentId(),openClass.getClassInfo().getClassId(),strDate,openClass.getOpenClassId());
+           /* if(strDate.equals(listAttDate)&&markAttendance1.getOpenClass().getOpenClassId()==openClass.getOpenClassId()&&markAttendance1.getClassInfo().getClassId()==openClass.getClassInfo().getClassId())
+            {
+                System.out.println("already Attednded");
+            }
+            else
+            {
+                System.out.println("not");
+                markAttendance.setAttendanceDate(markDTO.getAttendanceDate());
+                markAttendance.setStudent(student);
+                markAttendance.setClassInfo(openClass.getClassInfo());
+                markAttendance.setOpenClass(openClass);
+                markAttendnaceRepo.save(markAttendance);
+            }*/
+            if(mrkAttDTO.size()>0)
+            {
+                System.out.println("already");
+            }
+            else
+            {
+                System.out.println("not");
+                markAttendance.setAttendanceDate(markDTO.getAttendanceDate());
+                markAttendance.setStudent(student);
+                markAttendance.setClassInfo(openClass.getClassInfo());
+                markAttendance.setOpenClass(openClass);
+                markAttendnaceRepo.save(markAttendance);
+            }
+
+            markAttendanceDTO = modelMapper.map(markAttendance, MarkAttendanceDTO.class);
+            return markAttendanceDTO;
+    }
+
+
+/*
+   public List<MarkAttendance>  getAttendanceReviewForStudentId(int studentId,int classId,Date fromDate,Date toDate)
+    {
+       // List<ClassMapping> classMappedList = classMappingRepo.getAttendanceReviewForStudentId(studentId);
+      //System.out.println(classMappedList);
+        System.out.println(studentId+" "+classId);
+       /* SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            Date fromDate=new Date(2022-10-01);
+            Date toDate =new Date(2022-10-03);*/
+       /* SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
+
+
+            List<OpenClass> openClassList = openClassRepo.getOpenClassByClassInfoClassId(classId,fromDate,toDate);
+        System.out.println(openClassList);
+            for (OpenClass openClass : openClassList)
+            {
+                System.out.println(openClass.getClassInfo().getClassId()+" || "+openClass.getOpenDate()+" || "+ openClass.getOpenClassId());
+
+            }
 
 
 
+
+        return null;
+    }*/
 
 
 

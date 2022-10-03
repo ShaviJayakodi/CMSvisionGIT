@@ -15,13 +15,13 @@ public class ClassInfo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int classId;
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "teacher_teacherId",nullable = false)
+    @JoinColumn(name = "teacher_teacherId")
     private Teacher teacher;
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "grade_gradeId",nullable = false)
+    @JoinColumn(name = "grade_gradeId")
     private Subject subject;
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "subject_subjectId",nullable = false)
+    @JoinColumn(name = "subject_subjectId")
     private Grade grade;
     private String classCode;
     private String classType;

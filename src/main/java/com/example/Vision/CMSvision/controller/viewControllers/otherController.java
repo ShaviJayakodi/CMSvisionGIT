@@ -300,10 +300,17 @@ public class otherController {
 
 
     //popup window
-    @RequestMapping(value = "loadPopupSearch",method = RequestMethod.GET)
+    @RequestMapping(value = "/loadPopupSearch",method = RequestMethod.GET)
     public String loadPopupSearchWindow()
     {
         return "popupSearch";
+    }
+
+    //Student Attendance Review
+    @RequestMapping(value = "/loadAttendanceReview")
+    public String loadAttendanceReview()
+    {
+        return "attendanceReview";
     }
 
 }

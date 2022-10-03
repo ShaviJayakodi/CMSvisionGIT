@@ -209,17 +209,71 @@ function getStudentDataByRegNo()
     });
 }
 
+function getDataFromTable()
+{
+    var table = document.getElementById("openedClassTableBody"),rIndex;
+    for(var i=0;i<table.rows.length; i++) {
+        table.rows[i].onclick = function () {
+            rIndex = this.rowIndex;
+            var openClassId=this.cells[0].innerHTML;
+            var classId=this.cells[1].innerHTML;
+            var object={
+                openClassId:openClassId,
+                classId:classId
+            }
+            console.log(object);
+            mark(object);
+
+        }
+    }
+}
+
+function mark(object)
+{
+    var studentId = document.getElementById("studentId").value;
+    var attendanceDate =formatDate(Date.now());
+    var requestObj ={
+        studentId:studentId,
+        openClassId:object.openClassId,
+        classInfoId :object.classId,
+        attendanceDate:attendanceDate
+    }
+    console.log(requestObj);
+    $.ajax({
+        url:"/markAttendanceController/markAttendance",
+        type:"POST",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        dataType: JSON,
+        data: JSON.stringify(requestObj),
+        success: function (data) {
+
+
+                alert("Successfully Registered.")
+
+        },
+        error: function (data) {
+            console.log(data.success);
+            alert("Student Already Added For This Class")
+
+        },
+    });
+}
+
 function setToTableToSelect(openedClassList)
 {
     $.each(openedClassList,function (index,list){
         $("#openedClassTableBody").append(
             "<tr>" +
-            "<td>"+list.openClassId+"</td>" +
-            "<td>"+list.classInfo.classId+"</td>" +
+            "<td style=\"display:none;\">"+list.openClassId+"</td>" +
+            "<td style=\"display:none;\">"+list.classInfo.classId+"</td>" +
             "<td>"+list.classInfo.classCode+"</td>" +
-            "<td>"+list.openDate+"</td>" +
-            "<td>SELECT</td>" +
-            "</tr>"
+            "<td style=\"display:none;\" >"+list.openDate+"</td>" +
+            "<td>"+list.classInfo.teacher.firstName+" "+list.classInfo.teacher.lastName+"</td>" +
+             "<td><button type=\"button\" onclick=\"getDataFromTable()\" class=\"btn btn-primary btn-sm\"style=\"width:fit-content; margin-right: 20px;\">SELECT</button>"
+       + "</tr>"
         );
     });
 }
@@ -240,13 +294,34 @@ function getSelectedMappedClassOpenForStudent()
             setToTableToSelect(data);
         },
         error: function (data) {
-            console.log(data.success)
+            console.log(data.success);
+            alert("Not Class Opened For This Student");
         },
     });
 
 }
+/*function createId(){
+    var sids = [];
+    sids=getSeletedStudents();
+    browser=window.open("studentController/createId?sids="+sids,'winname','directories=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=700,height=350');
+    browser.moveTo(595, 842);
+    if (window.focus) {browser.focus()}
+    return false
 
+}*/
+var newWin;
 function popup()
 {
-    newWin = window.open('/loadPopupSearch','Student Inquiry', 'width=800,height=500');
+    newWin = window.open('/loadPopupSearch','Student Inquiry', 'directories=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=800,height=500');
+
+    document.onmousedown=focusPopup;
+    document.onkeyup=focusPopup;
+    document.onmousemove=focusPopup;
+
+        function focusPopup(){
+            if(!newWin.closed){
+                newWin.focus();
+            }
+        }
+    //getStudentDataByRegNo();
 }

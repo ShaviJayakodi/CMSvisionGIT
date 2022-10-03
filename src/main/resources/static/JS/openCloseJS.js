@@ -117,18 +117,37 @@ function checkOpened(rowList)
             errorMg = "Class Not Selected";
         }
         if (errorMg == "") {
+            var message =1;
             if(rowList.length == 0)
+            {
+                message=message;
+            }
+
+            $.each(rowList, function (index, row) {
+                var cId = document.getElementById("selectClass").value;
+                if (row.classInfoId != cId) {
+                   message=message;
+                }
+                else
+                {
+                    message= message +1;
+                    message="Class Is Already Opened";
+
+
+                }
+
+
+            }
+
+            );
+            if(message==1)
             {
                 openClass();
             }
-            $.each(rowList, function (index, row) {
-                var cId = document.getElementById("selectClass").value;
-                if (row.classInfoId == cId) {
-                    alert("Class Is Already Opened")
-                } else {
-                    openClass();
-                }
-            });
+            else
+            {
+                alert(message);
+            }
         } else {
             alert(errorMg);
 

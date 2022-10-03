@@ -28,6 +28,6 @@ public class MarkAttendance {
     @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name = "openedClassId")
     private OpenClass openClass;
-
+    @Temporal(TemporalType.DATE)
     private Date attendanceDate;
 }

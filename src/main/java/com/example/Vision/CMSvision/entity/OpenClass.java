@@ -15,6 +15,7 @@ public class OpenClass {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int openClassId;
+    @Temporal(TemporalType.DATE)
     private Date openDate;
     private int status;
     @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
