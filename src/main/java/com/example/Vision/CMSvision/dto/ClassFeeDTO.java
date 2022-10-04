@@ -19,10 +19,12 @@ public class ClassFeeDTO {
     private int studentId;
     private int classId;
     private int teacherId;
-    private String month;
+    private int month;
+    private int year;
     private double amount;
     private Date payDate;
     private String payMethod;
     private int isWithdraw;//byTeachers
     private int isRelease;
+    private int authorizedBy;
 }

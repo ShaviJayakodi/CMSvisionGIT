@@ -21,6 +21,7 @@ public class ClassMapping {
     @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name = "class_classId")
     private ClassInfo classInfo;
+    @Temporal(TemporalType.DATE)
     private Date attendDate;
     private int status;
     private String classCode;

@@ -32,6 +32,8 @@ public interface ClassMappingRepo extends JpaRepository<ClassMapping , Integer> 
 
     @Query(value = "SELECT * FROM class_mapping WHERE student_student_id=?1",nativeQuery = true)
     List<ClassMapping> getAttendanceReviewForStudentId(int studentId);
+    @Query(value = "SELECT * FROM class_mapping WHERE student_student_id=?1 AND class_class_id=?2",nativeQuery = true)
+    ClassMapping getPaymentMethod (int studentId,int classId);
 
 
 

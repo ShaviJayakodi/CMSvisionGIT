@@ -57,7 +57,7 @@ public class ClassInfoService {
               classInfo.setFreeFee(classInfoDTO.getFreeFee());
               classInfo.setClassCode(classInfoDTO.getClassCode());
               classInfo.setStatus(statusValue.ACTIVE.sts());
-              classInfo.setCommission(classInfoDTO.getCommission());
+
           }
           else
           {
@@ -75,7 +75,7 @@ public class ClassInfoService {
                               classInfoDTO.getClassType().substring(0,3).toUpperCase()
               );
               classInfo.setStatus(statusValue.ACTIVE.sts());
-              classInfo.setCommission(classInfoDTO.getCommission());
+
 
 
           }

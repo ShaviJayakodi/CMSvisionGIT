@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Data
@@ -19,8 +20,10 @@ public class Student {
     private String firstName;
     private String lastName;
     private String address;
-    private String birthDay;
-    private String attendDate;
+    @Temporal(TemporalType.DATE)
+    private Date birthDay;
+    @Temporal(TemporalType.DATE)
+    private Date attendDate;
     private String parentName;
     private String relationship;
     private String mob1;

@@ -26,14 +26,12 @@ function submit()
                 dataType: JSON,
                 data: JSON.stringify(requestObj),
                 success: function (data) {
-                    if (!data.success) {
-                        alert(data.statusList);
-                    } else {
-                        alert("Successfully Registered.")
-                    }
+                    alert("Successfully Registered.")
+
                 },
                 error: function (data) {
                     console.log(data.success);
+                    alert("Not Success Please ReTry.")
 
                 }
             });

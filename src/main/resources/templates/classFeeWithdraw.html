@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http:www.thymeleaf.org">
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cash Withdraw</title>
+  <link rel="stylesheet" th:href="@{/CSS/bootstrap.min.css}">
+  <link rel="stylesheet" th:href="@{/CSS/teacherInq.css}">
+  <script th:src="@{/JS/jquery.min.js}"></script>
+  <script th:src="@{/JS/sweetAlert.js}"></script>
+  <script th:src="@{/JS/classFeeJS.js}"></script>
+  <script th:src="@{/JS/commonJS.js}"></script>
+  <script th:src="@{/JS/format.js}"></script>
+
+  <style>
+
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins',sans-serif;
+    }
+
+    .body
+    {
+      background: rgb(219, 226, 226);
+    }
+    .mt-2{
+
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+    .head
+    {
+      font-weight :500;
+      width: 350px;
+      background-color: aqua;
+      border-radius: 0;
+      padding-left: 0;
+
+    }
+    .head#head,.head#head1
+    {
+      width: fit-content;
+      height: 30px;
+      letter-spacing: 2px;
+      border-radius: 5px;
+      background: rgb(219, 226, 226);
+      margin-bottom: 10px;
+      align-items:center ;
+      justify-content: center;
+    }
+
+    .row
+    {
+      background: white;
+      border-radius: 30px;
+    }
+    .row#new
+    {
+      background-color: transparent;
+      width: 80%;
+      margin: auto;
+      align-items: center;
+      justify-content: space-between;
+      border-radius: 0;
+    }
+
+    .col .row#titleN
+    {
+      display: none;
+    }
+    .form-control
+    {
+      font-size: 14px;
+      padding-left: 10px;
+    }
+    .col input,.col select, .col .form-check-label
+    {
+      font-size: 16px;
+
+    }
+    .inputLbl
+    {
+      font-size: 18px;
+    }
+    img{
+      border-bottom-left-radius: 30px;
+      border-top-left-radius: 30px;
+
+
+    }
+    .btn
+    {
+      border: none;
+      outline: none;
+      color: white;
+      width: 100px;
+
+
+
+    }
+
+    .after .col
+    {
+      color: black;
+    }
+
+
+  </style>
+</head>
+<body>
+<div class="container mt-5 pb-2 mb-5"  style= "width:90%; height: 500px; align-items: center;">
+  <div class="searchBar" >
+    <div class="row" style="border-radius: 0">
+      <div class="col pb-2">
+        <label class="inputLbl" for="selectTeacher" style="font-size: 16px">Teacher</label>
+      <select id="selectTeacher" onchange="loadAllClassByTeacherId()" name="selectTeacher" class="form-control">
+      </select>
+      </div>
+      <div class="col pb-2">
+        <label class="inputLbl" for="selectClass"style="font-size: 16px">Class</label>
+        <select id="selectClass" onchange="getActiveClassFeesForClassId()" name="selectClass" class="form-control">
+        </select>
+      </div>
+    </div>
+  </div>
+
+
+  <div  class="scrollable">
+    <table class="table table-striped table-hover" id="activeClassFeeTable" name="activeClassFeeTable" style="background-color: #fff;" >
+      <thead>
+      <tr>
+        <th style="display: none">classFeeId</th>
+        <th><input type="checkbox" style="cursor: pointer" class="form-check-input"  id="selectAll"></th>
+        <th>Student Name</th>
+        <th>Pay Date</th>
+        <th>Month</th>
+        <th>Amount</th>
+
+      </tr>
+      </thead>
+      <tbody id="activeClassFeeTableBody" name="activeClassFeeTableBody">
+
+      </tbody>
+
+
+    </table>
+  </div>
+  <div class="row">
+    <div class="col my-2">
+      <button type="button" class="btn btn-primary" onclick="getDataFromRow()" style="width: fit-content">Claim</button>
+    </div>
+  </div>
+</div>
+
+<script src="../JS/bootstrap.bundle.min.js"></script>
+<script>
+
+</script>
+</body>
+</html>

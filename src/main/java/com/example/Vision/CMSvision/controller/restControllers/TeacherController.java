@@ -19,6 +19,7 @@ public class TeacherController {
     @PostMapping("saveTeacher")
     public TeacherDTO saveTeacher(@RequestBody TeacherDTO teacherDTO)
     {
+        System.out.println(teacherDTO);
         return teacherService.saveTeacher(teacherDTO);
     }
 

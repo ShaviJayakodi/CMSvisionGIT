@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
+import java.util.Date;
 
 
 @Data
@@ -18,8 +18,8 @@ public class StudentDTO {
     private String firstName;
     private String lastName;
     private String address;
-    private String birthDay;
-    private String attendDate;
+    private Date birthDay;
+    private Date attendDate;
     private String parentName;
     private String relationship;
     private String mob1;

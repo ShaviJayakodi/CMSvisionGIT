@@ -21,6 +21,7 @@ function submit()
      var mobNum1 = document.getElementById("mobileNumber1").value;
      var mobNum2 = document.getElementById("mobileNumber2").value;
      var emailAddress = document.getElementById("emailAddress").value;
+     var commission = document.getElementById("commissionPercentage").value;
 
      var requestObj =
          {
@@ -32,7 +33,8 @@ function submit()
              gender:gender,
              mobNum1:mobNum1,
              mobNum2:mobNum2,
-             emailAddress:emailAddress
+             emailAddress:emailAddress,
+             commission:commission
          }
          console.log(requestObj);
         $.ajax({
@@ -80,6 +82,7 @@ function submit()
         var mobNum1=document.getElementById("mobileNumber1").value;
         var mobNum2=document.getElementById("mobileNumber2").value;
         var emailAddress=document.getElementById("emailAddress").value;
+        var commission = document.getElementById("commissionPercentage").value;
 
         var requestObj = {
             teacherId:teacherId,
@@ -92,7 +95,8 @@ function submit()
             gender:gender,
             mobNum1:mobNum1,
             mobNum2:mobNum2,
-            emailAddress:emailAddress
+            emailAddress:emailAddress,
+            commission:commission
         }
 
         $.ajax({
@@ -223,6 +227,11 @@ function setDataToTeacherFields(teacherUnique)
     document.getElementById("mobileNumber1").value=teacherUnique.mobNum1;
     document.getElementById("mobileNumber2").value=teacherUnique.mobNum2;
     document.getElementById("emailAddress").value=teacherUnique.emailAddress;
+    //document.getElementById("commissionPercentage").value=teacherUnique.commision;
+   $("#commissionPercentage").append(
+        "<option value="+teacherUnique.commision+" selected=\"selected\" >"+teacherUnique.commision+"</option>"
+    );
+
 
 }
 

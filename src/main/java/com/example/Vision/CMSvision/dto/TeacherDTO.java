@@ -22,5 +22,6 @@ public class TeacherDTO {
     private String emailAddress;
     private int regNO;
     private int status;
+    private int commission;
 
 }

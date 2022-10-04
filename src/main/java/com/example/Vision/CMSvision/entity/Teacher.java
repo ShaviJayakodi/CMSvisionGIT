@@ -20,7 +20,9 @@ public class Teacher {
     private int teacherId;
     private String firstName;
     private String lastName;
+    @Temporal(TemporalType.DATE)
     private Date birthDay;
+    @Temporal(TemporalType.DATE)
     private  Date attendDate;
     private String address;
     private String gender;
@@ -29,6 +31,7 @@ public class Teacher {
     private String emailAddress;
     private int regNO;
     private int status;
+    private int commission;
 
 
 

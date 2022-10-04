@@ -303,14 +303,60 @@ public class otherController {
     @RequestMapping(value = "/loadPopupSearch",method = RequestMethod.GET)
     public String loadPopupSearchWindow()
     {
-        return "popupSearch";
+        return "/popupSearch";
     }
 
     //Student Attendance Review
-    @RequestMapping(value = "/loadAttendanceReview")
+    @RequestMapping(value = "/loadAttendanceReview",method = RequestMethod.GET)
     public String loadAttendanceReview()
     {
-        return "attendanceReview";
+        return "/attendanceReview";
     }
+
+    @RequestMapping(value = "/loadClassFee",method = RequestMethod.GET)
+    public  String loadClassFee()
+    {
+        return "/classFee";
+    }
+
+    //CLassFeeWithdraw
+    @RequestMapping(value = "/loadClassFeeWithdraw",method = RequestMethod.GET)
+    public String loadClassFeeWithdraw()
+    {
+        return "/classFeeWithdraw";
+    }
+
+
+    //Expense Management
+    @RequestMapping(value = "/loadExpenseInfoMain",method = RequestMethod.GET)
+    public String loadExpenseInfoMain()
+    {
+        return "/expenseInfoMain";
+    }
+
+    @RequestMapping(value = "/loadExpenseRegistration",method = RequestMethod.GET)
+    public String loadExpenseRegistration()
+    {
+        return "/expenseInfoRegistration";
+    }
+
+    @RequestMapping(value = "/loadExpenseUpdate",method = RequestMethod.GET)
+    public String loadExpenseUpdate()
+    {
+        return "/expenseUpdate";
+    }
+
+    @RequestMapping(value = "/loadExpenseDelete",method = RequestMethod.GET)
+    public String loadExpenseDelete()
+    {
+        return "/expenseDelete";
+    }
+    @RequestMapping(value = "/loadExpenseInquiry")
+    public String loadExpenseInquiry()
+    {
+        return "/expenseInquiry";
+    }
+
+
 
 }

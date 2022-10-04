@@ -45,10 +45,12 @@ public class TeacherService {
             teacher.setMobNum2(teacherDTO.getMobNum2());
             teacher.setEmailAddress(teacherDTO.getEmailAddress());
             teacher.setRegNO(teacherDTO.getRegNO());
+            teacher.setCommission(teacherDTO.getCommission());
             teacher.setStatus(statusValue.ACTIVE.sts());
         }
         else
         {
+            System.out.println(teacherDTO.getCommission());
             int maxId = teacherRepo.getMaxTeacherId();
             teacher.setFirstName(teacherDTO.getFirstName());
             teacher.setLastName(teacherDTO.getLastName());
@@ -59,11 +61,13 @@ public class TeacherService {
             teacher.setMobNum1(teacherDTO.getMobNum1());
             teacher.setMobNum2(teacherDTO.getMobNum2());
             teacher.setEmailAddress(teacherDTO.getEmailAddress());
+            teacher.setCommission(teacherDTO.getCommission());
             teacher.setRegNO(Integer.parseInt(commonService.genarateRegNo(maxId,stakeHolderValues.TEACHER.code())));
             teacher.setStatus(statusValue.ACTIVE.sts());
 
         }
-        teacherRepo.save(modelMapper.map(teacher, Teacher.class));
+         teacherRepo.save(modelMapper.map(teacher, Teacher.class));
+        System.out.println(teacher);
         return teacher;
     }
 
@@ -108,4 +112,3 @@ public class TeacherService {
     }
 
 }
-

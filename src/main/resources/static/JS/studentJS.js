@@ -282,7 +282,7 @@ function setStudentDataToFields(studentList)
 
 function  inquiry()
 {
-    $("#mainContainerPage").load("loadStudentInquiry/");
+    $("#mainContainerPage").load("loadPopupSearch/");
     $("#mainContainerPage").value=true;
     gradeLoad();
 }

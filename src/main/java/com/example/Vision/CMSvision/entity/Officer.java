@@ -4,10 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @Data
@@ -20,7 +17,9 @@ public class Officer {
     private int officerId;
     private String firstName;
     private String lastName;
+    @Temporal(TemporalType.DATE)
     private Date birthDay;
+    @Temporal(TemporalType.DATE)
     private Date attendDate;
     private String address;
     private String dutyType;

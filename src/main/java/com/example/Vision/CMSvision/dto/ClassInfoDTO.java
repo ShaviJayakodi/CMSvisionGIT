@@ -21,7 +21,6 @@ public class ClassInfoDTO {
     private double fullFee;
     private double halfFee;
     private double freeFee;
-    private int commission;
     private int status;
 }
 
