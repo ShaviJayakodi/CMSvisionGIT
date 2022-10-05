@@ -23,7 +23,7 @@
       font-family: 'Poppins',sans-serif;
     }
 
-    .body
+    body
     {
       background: rgb(219, 226, 226);
     }
@@ -56,7 +56,7 @@
     .row
     {
       background: white;
-      border-radius: 30px;
+
     }
     .row#new
     {
@@ -112,7 +112,7 @@
   </style>
 </head>
 <body>
-<div class="container mt-5 pb-2 mb-5"  style= "width:90%; height: 500px; align-items: center;">
+<div class="container mt-5 pb-2 mb-5"  style="background-color: #fff;width:90%; height: auto; align-items: center;">
   <div class="searchBar" >
     <div class="row" style="border-radius: 0">
       <div class="col pb-2">
@@ -121,6 +121,7 @@
       </select>
       </div>
       <div class="col pb-2">
+        <input type="hidden" id="comPercentage" name="comPercentage">
         <label class="inputLbl" for="selectClass"style="font-size: 16px">Class</label>
         <select id="selectClass" onchange="getActiveClassFeesForClassId()" name="selectClass" class="form-control">
         </select>
@@ -129,8 +130,8 @@
   </div>
 
 
-  <div  class="scrollable">
-    <table class="table table-striped table-hover" id="activeClassFeeTable" name="activeClassFeeTable" style="background-color: #fff;" >
+  <div  class="scrollable" >
+    <table class="table" id="activeClassFeeTable" name="activeClassFeeTable"  >
       <thead>
       <tr>
         <th style="display: none">classFeeId</th>
@@ -138,7 +139,7 @@
         <th>Student Name</th>
         <th>Pay Date</th>
         <th>Month</th>
-        <th>Amount</th>
+        <th style="text-align: right;" >Amount</th>
 
       </tr>
       </thead>
@@ -151,7 +152,26 @@
   </div>
   <div class="row">
     <div class="col my-2">
-      <button type="button" class="btn btn-primary" onclick="getDataFromRow()" style="width: fit-content">Claim</button>
+      <button type="button" class="btn btn-primary" onclick="getDataFromRow()" style="width: fit-content; margin-bottom: 20px;" >Calculate</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col my-2">
+      <label class="inputLbl" for="totalAmount" >Total Amount</label>
+      <input class="form-control" style="text-align: right;" disabled id="totalAmount" name="totalAmount" placeholder="Total Amount">
+    </div>
+  <div class="col my-2">
+    <label class="inputLbl" for="commission">Commission</label>
+    <input class="form-control" disabled id="commission" style="text-align: right;" name="commission" placeholder="Commission">
+  </div>
+    <div class="col my-2">
+      <label class="inputLbl" for="payAmount">Pay Amount</label>
+        <input class="form-control" disabled id="payAmount" style="text-align: right;" name="payAmount" placeholder="Pay Amount">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col mb-3">
+      <button type="button" id="collectButton" class="btn btn-primary" name="collectButton">Pay</button>
     </div>
   </div>
 </div>

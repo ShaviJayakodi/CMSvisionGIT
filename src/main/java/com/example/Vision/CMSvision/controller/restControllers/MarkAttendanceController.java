@@ -8,6 +8,7 @@ import com.example.Vision.CMSvision.service.MarkAttendanceService;
 import com.example.Vision.CMSvision.service.OpenClassService;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.Temporal;
@@ -41,7 +42,7 @@ public class MarkAttendanceController {
 
 
     @PostMapping("/markAttendance")
-    public MarkAttendanceDTO markAttendance(@RequestBody MarkAttendanceDTO markDTO)
+    public ResponseEntity<?> markAttendance(@RequestBody MarkAttendanceDTO markDTO)
     {
         return markService.addAttendance(markDTO);
     }
@@ -53,9 +54,9 @@ public class MarkAttendanceController {
 
     }
 
-   /* @GetMapping("/getAttendanceReviewForStudentId")
+    @GetMapping("/getAttendanceReviewForStudentId")
     @Temporal(TemporalType.DATE)
-    public List<MarkAttendance> getAttendanceReviewForStudentId(@RequestParam int studentId, int classId, String fromDate, String toDate) throws ParseException {
+    public List<MarkAttendance> getAttendanceReviewForStudentId(@RequestParam int studentId, @RequestParam int classId,@RequestParam String fromDate, @RequestParam String toDate) throws ParseException {
         System.out.println(studentId+" "+classId);
 
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
@@ -66,5 +67,8 @@ public class MarkAttendanceController {
 
         return markService.getAttendanceReviewForStudentId(studentId,classId,fDate,tDate);
 
-    }*/
+    }
+
+
+
 }

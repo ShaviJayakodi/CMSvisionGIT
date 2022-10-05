@@ -246,13 +246,10 @@ function mark(object)
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
-        dataType: JSON,
+        dataType: "json",
         data: JSON.stringify(requestObj),
         success: function (data) {
-
-
-                alert("Successfully Registered.")
-
+            alert("Successfully Registered.")
         },
         error: function (data) {
             console.log(data.success);
@@ -291,6 +288,7 @@ function getSelectedMappedClassOpenForStudent()
         },
         dataType: "json",
         success: function (data) {
+            console.log(data);
             setToTableToSelect(data);
         },
         error: function (data) {

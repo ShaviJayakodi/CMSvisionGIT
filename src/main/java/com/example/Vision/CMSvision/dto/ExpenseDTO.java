@@ -1,6 +1,5 @@
 package com.example.Vision.CMSvision.dto;
 
-import com.example.Vision.CMSvision.entity.ExpenseInfo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

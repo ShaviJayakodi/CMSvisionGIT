@@ -4,12 +4,11 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Add Expense</title>
+    <title>User Management</title>
 
 
     <link rel="stylesheet" th:href="@{/CSS/bootstrap.min.css}">
     <link rel="stylesheet" th:href="@{/CSS/gradeUpdate.css}">
-
 
 </head>
 <body class="body">
@@ -23,41 +22,37 @@
             </div>
             <div class="col-lg-7">
                 <div class="row" id="titleN">
-                    <h1 class="mt-2">ADD EXPENSE</h1>
+                    <h1 class="mt-2">USER REGISTRATION</h1>
                 </div>
 
                 <form action="">
+                    <div class="col my-2">
+                        <label class="inputLbl"for="selectOfficer">Select Officer</label>
+                        <select id="selectOfficer" name="selectOfficer" class="form-control">
 
+                        </select>
+                        <div id="divPassWord" name="divPassWord"></div>
+                    </div>
                     <div class="row">
-
                         <div class="col my-2">
-                            <label class="inputLbl"for="selectExpense">Expense Type</label>
-                            <select value="null" class="form-control" id="selectExpense" name="selectExpense">
-
-                            </select>
-                            <div id="divSelectExpenseType" name="divSelectExpenseType"></div>
+                            <label class="inputLbl"for="userName">User Name</label>
+                            <input type="text" id="userName" name="userName" class="form-control p-lg-2 "placeholder="User Name">
+                            <div id="divUserName" name="divUserName"></div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col my-2">
-                            <label class="inputLbl"for="expenseDescription">Expense Description</label>
-                            <input type="text" style="text-transform: capitalize" id="expenseDescription" name="expenseDescription" class="form-control p-lg-2 "placeholder="Expense Description">
-                            <div id="divExpenseDescription" name="divExpenseDescription"></div>
+                            <label class="inputLbl"for="passWord1">Password</label>
+                            <input onclick="clearErr()" style="text-transform: capitalize" type="password" id="passWord1" name="passWord1" class="form-control p-lg-2 "placeholder="Password">
+                            <div class="err mb-2" id="divPassWord1" name="divPassWord1"></div>
+                        </div>
+                        <div class="col my-2">
+                            <label class="inputLbl"for="passWord2">Confirm Password</label>
+                            <input onclick="clearErr()" style="text-transform: capitalize" type="password" id="passWord2" name="passWord2" class="form-control p-lg-2 "placeholder="Password">
+                            <div class="err mb-2" id="divPassWord2" name="divPassWord2"></div>
                         </div>
                     </div>
-                    <div class="row">
 
-                        <div class="col my-2">
-                            <label class="inputLbl"for="expenseValue">Expense Value</label>
-                            <input type="text" style="text-transform:capitalize" id="expenseValue" name="expenseValue" class="form-control p-lg-2 "placeholder="Expense Value">
-                            <div id="divExpenseValue" name="divExpenseValue"></div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col my-2">
-                        <button type="button" class="btn btn-primary" id="addButton" style="width: fit-content" onclick="addExpense()" name="addButton">Add Expense</button>
-                        </div>
-                    </div>
 
 
                 </form>

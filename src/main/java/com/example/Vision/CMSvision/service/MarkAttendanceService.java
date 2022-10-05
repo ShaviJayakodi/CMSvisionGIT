@@ -8,13 +8,17 @@ import com.example.Vision.CMSvision.repo.*;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.transaction.Transactional;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -83,7 +87,7 @@ public class MarkAttendanceService {
     {
 
         List<OpenClass> showOpenClassForStudent= new ArrayList<>();
-        OpenClass oClass = new OpenClass();
+
         OpenClassDTO openClassDTO =new OpenClassDTO();
         Student student = studentRepo.getUniqueStudentByRegNo(regNo);
         List<ClassMapping> classMappingList = classMappingRepo.getClassMappingByStudentId(student.getStudentId());
@@ -92,9 +96,10 @@ public class MarkAttendanceService {
         {
             for (ClassMapping classMapping :classMappingList)
             {
-                System.out.println(openClass.getClassInfo().getClassId()+" "+classMapping.getClassInfo().getClassId());
+                //System.out.println(openClass.getClassInfo().getClassId()+" "+classMapping.getClassInfo().getClassId());
                 if(openClass.getClassInfo().getClassId()==classMapping.getClassInfo().getClassId())
                 {
+                    OpenClass oClass = new OpenClass();
                     int openClassId=openClass.getOpenClassId();
                     Date openDate = openClass.getOpenDate();
                     int status = openClass.getStatus();
@@ -106,15 +111,18 @@ public class MarkAttendanceService {
                     oClass.setStatus(openClass.getStatus());
                     oClass.setOpenClassId(openClass.getOpenClassId());
                     showOpenClassForStudent.add(modelMapper.map(oClass,OpenClass.class));
-                    System.out.println(openClassId+" "+openDate+" "+status+" "+classId);
+                    System.out.println(openClassId+" || "+openDate+" || "+status+" || "+classId);
 
                 }
             }
+
         }
+
+        System.out.println(showOpenClassForStudent);
         return showOpenClassForStudent;
     }
 
-    public MarkAttendanceDTO addAttendance(MarkAttendanceDTO markDTO) {
+    public ResponseEntity addAttendance(MarkAttendanceDTO markDTO) {
         String message = "";
         // ClassInfo classInfo = modelMapper.map(classInfoRepo.findById(markDTO.getClassInfoId()).get(),ClassInfo.class);
         Student student = modelMapper.map(studentRepo.findById(markDTO.getStudentId()).get(), Student.class);
@@ -204,35 +212,39 @@ public class MarkAttendanceService {
             }
 
             markAttendanceDTO = modelMapper.map(markAttendance, MarkAttendanceDTO.class);
-            return markAttendanceDTO;
+            return ResponseEntity.ok( markAttendanceDTO);
     }
 
 
-/*
+
    public List<MarkAttendance>  getAttendanceReviewForStudentId(int studentId,int classId,Date fromDate,Date toDate)
     {
-       // List<ClassMapping> classMappedList = classMappingRepo.getAttendanceReviewForStudentId(studentId);
-      //System.out.println(classMappedList);
+        List<ClassMapping> classMappedList = classMappingRepo.getAttendanceReviewForStudentId(studentId);
+        System.out.println(classMappedList);
         System.out.println(studentId+" "+classId);
-       /* SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            Date fromDate=new Date(2022-10-01);
-            Date toDate =new Date(2022-10-03);*/
-       /* SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
 
 
             List<OpenClass> openClassList = openClassRepo.getOpenClassByClassInfoClassId(classId,fromDate,toDate);
-        System.out.println(openClassList);
-            for (OpenClass openClass : openClassList)
+            System.out.println(openClassList);
+            List<Integer> collect = openClassList.stream().map(x -> x.getOpenClassId()).collect(Collectors.toList());
+            List<MarkAttendance> markAttendances = markAttendnaceRepo.getMarkAttendance(studentId,collect);
+        System.out.println(markAttendances);
+            /* for (OpenClass openClass : openClassList)
             {
                 System.out.println(openClass.getClassInfo().getClassId()+" || "+openClass.getOpenDate()+" || "+ openClass.getOpenClassId());
 
-            }
+            }*/
+        System.out.println(collect);
 
 
 
 
         return null;
-    }*/
+    }
+
+
 
 
 

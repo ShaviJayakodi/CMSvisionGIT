@@ -4,10 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -19,7 +16,10 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int userId;
     private String userName;
-    private Date birthDay;
-    private String pass;
+    private String passWord;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "officer_officerId")
+    private Officer officer;
+    private int status;
 
 }

@@ -5,6 +5,9 @@ import com.example.Vision.CMSvision.dto.ClassMappingDTO;
 import com.example.Vision.CMSvision.entity.ClassFee;
 import com.example.Vision.CMSvision.entity.ClassMapping;
 import com.example.Vision.CMSvision.service.ClassFeeService;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,6 +21,8 @@ public class ClassFeeController {
 
     @Autowired
     private ClassFeeService classFeeService;
+    @Autowired
+    private ModelMapper modelMapper;
     @GetMapping("/getPayMethod")
     public ClassMapping getPayMethod(@RequestParam int studentId, @RequestParam  int classId)
     {
@@ -33,5 +38,13 @@ public class ClassFeeController {
     public List<ClassFee> getActiveClassFeeByClassId(@RequestParam int classId)
     {
         return classFeeService.getClassFeesByClassIdToWithdraw(classId);
+    }
+
+    @PostMapping("/claimCash")
+    public List<ClassFee> getClassFeeId(@RequestBody List<ClassFee> classFeeIdList)
+    {
+        List<ClassFee> newFee =modelMapper.map(classFeeIdList,new TypeToken<List<ClassFee>>(){}.getType());
+        System.out.println(newFee);
+        return null;
     }
 }

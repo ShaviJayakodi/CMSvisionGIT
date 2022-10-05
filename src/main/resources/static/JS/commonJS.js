@@ -42,6 +42,7 @@ function loadAllClassByTeacherId()
             data: {},
             success:function (data)
             {
+                getTeacherByTeacherId();
                 setToSelectClassByTeacherId(data);
             },
             error:function (xhr)
@@ -50,5 +51,23 @@ function loadAllClassByTeacherId()
             },
 
 
+    });
+}
+
+function getTeacherByTeacherId(){
+    var tId = document.getElementById("selectTeacher").value;
+    $.ajax({
+        url: "teacherController/getById?teacherId="+tId,
+        type: "GET",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        dataType: "json",
+        success:function (data)
+        {
+            document.getElementById("comPercentage").value=data.commission;
+
+        }
     });
 }

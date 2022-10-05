@@ -85,11 +85,13 @@ function getStudentDataByRegNo()
 function getStudentAttendance()
 {
     var studentId = document.getElementById("studentId").value;
-    fromDate =new Date(document.getElementById("fromDate").value);
+    fDate =new Date(document.getElementById("fromDate").value);
     //let date = Date;
-    toDate =new Date(document.getElementById("toDate").value);
+    tDate =new Date(document.getElementById("toDate").value);
     var classId = document.getElementById("selectClass").value;
-
+    fromDate=formatDate(fDate);
+    toDate=formatDate(tDate);
+    console.log(fromDate+" "+toDate);
     $.ajax({
         url:"/markAttendanceController/getAttendanceReviewForStudentId?studentId="+studentId+"&classId="+classId+"&fromDate="+fromDate+"&toDate="+toDate,
         type:"GET",

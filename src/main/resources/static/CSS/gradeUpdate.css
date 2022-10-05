@@ -58,7 +58,10 @@
     align-items: center;
     background-color: rgba(114,129 ,155,0.3);
 }
-
+.err
+{
+    color: red;
+}
 .col .row#titleN
 {
     display: none;

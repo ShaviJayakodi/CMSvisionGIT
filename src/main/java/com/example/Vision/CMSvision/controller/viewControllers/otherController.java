@@ -351,12 +351,54 @@ public class otherController {
     {
         return "/expenseDelete";
     }
-    @RequestMapping(value = "/loadExpenseInquiry")
+    @RequestMapping(value = "/loadExpenseInquiry",method =RequestMethod.GET)
     public String loadExpenseInquiry()
     {
         return "/expenseInquiry";
     }
 
 
+
+    //Expense
+    @RequestMapping(value = "/loadAddExpenseMain",method = RequestMethod.GET)
+    public String loadAddExpenseMain()
+    {
+        return "/addExpenseMain";
+    }
+
+    @RequestMapping(value = "/loadAddExpense",method = RequestMethod.GET)
+    public String loadAddExpense()
+    {
+        return "/addExpense";
+    }
+
+    @RequestMapping(value = "/loadAddExpenseDetails",method = RequestMethod.GET)
+    public String loadAddExpenseDetails()
+    {
+        return "/addExpenseDetails";
+    }
+
+
+    //User
+    @RequestMapping(value = "/loadUserMain",method = RequestMethod.GET)
+    public String loadUserMain()
+    {
+        return "/userMain";
+    }
+
+    @RequestMapping(value = "loadUserRegistration",method = RequestMethod.GET)
+    public String loadUserRegistration()
+    {
+        return "userRegistration";
+    }
+    
+    
+    //login
+    
+    @RequestMapping(value = "/login",method = RequestMethod.GET)
+    public String loadLoginPage()
+    {
+        return "login";
+    }
 
 }

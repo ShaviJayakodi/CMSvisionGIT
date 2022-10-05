@@ -1,7 +1,9 @@
 package com.example.Vision.CMSvision.service;
 
 import com.example.Vision.CMSvision.dto.UserDTO;
+import com.example.Vision.CMSvision.entity.Officer;
 import com.example.Vision.CMSvision.entity.User;
+import com.example.Vision.CMSvision.repo.OfficerRepo;
 import com.example.Vision.CMSvision.repo.UserRepo;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +19,15 @@ public class UserService {
     private UserRepo userRepo;
     @Autowired
     private ModelMapper modelMapper;
+    @Autowired
+    private OfficerRepo officerRepo;
 
     public UserDTO userSave(UserDTO userDTO) {
-        userRepo.save(modelMapper.map(userDTO, User.class));
-        return userDTO;
+        Officer officer = modelMapper.map(officerRepo.findById(userDTO.getUserId()).get(),Officer.class);
+        User user = new User();
+        user.setUserName(userDTO.getUserName());
+
+return null;
     }
 
     public UserDTO findById(int userId) {

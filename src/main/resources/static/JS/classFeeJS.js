@@ -3,6 +3,7 @@ $(document).ready(function (){
     $("#lblCheck").hide();
     $("#selectAuthor").empty();
     loadAllTeachers();
+    $("#collectButton").hide();
 
 });
 function getStudentDataByRegNo()
@@ -36,6 +37,7 @@ function getStudentDataByRegNo()
 }
 function setToSelectClassByTeacherId(clasList)
 {
+
     $("#selectClass").empty();
     $("#selectClass").append(
         "<option value=null>==Select Class==</option>"
@@ -271,7 +273,7 @@ function setDateToTable(activeClassFeeList)
                 +"<td>"+activeFee.student.firstName+" "+activeFee.student.lastName+"</td>"
                 +"<td>"+formatDate(activeFee.payDate)+"</td>"
                 +"<td>"+month+"</td>"
-                +"<td>"+activeFee.amount+"</td>"
+                +"<td style=\"text-align: right;\" >"+activeFee.amount+".00</td>"
 
             +"</tr>"
             );
@@ -283,9 +285,9 @@ function setDateToTable(activeClassFeeList)
                 +"<td style=\"display: none\">"+activeFee.classFeeId+"</td>"
                 + "<td><input type=\"checkbox\"style=\"cursor: pointer\" class=\"checkItem form-check-input\" id=\"uniqueRow\" ></td>"
                 +"<td>" + activeFee.student.firstName + " " + activeFee.student.lastName + "</td>"
-                + "<td>" + formatDate(activeFee.payDate) + "</td>"
+                + "<td  >" + formatDate(activeFee.payDate) + "</td>"
                 +"<td>"+month+"</td>"
-                + "<td>" + activeFee.amount + "</td>"
+                + "<td style=\"text-align: right;\" >" + activeFee.amount + ".00</td>"
 
                 + "</tr>"
             );
@@ -303,6 +305,37 @@ function setDateToTable(activeClassFeeList)
 
     );
 */
+}
+function pay(classFeeIdList)
+{ $("#collectButton").click(function ()
+    {
+        var requestObj =
+            {
+                classFeeIdList:classFeeIdList
+            }
+        $.ajax({
+            url: "/classFeeController/claimCash",
+            type: "POST",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            dataType: JSON,
+            data: JSON.stringify(requestObj),
+            success: function (data) {
+                alert("Successfully Registered.")
+
+
+            },
+            error: function (data) {
+                console.log(data.success);
+                alert("Not Success Please ReTry.")
+
+
+            }
+        });
+    });
+
 }
 function checkAll()
 {
@@ -324,58 +357,56 @@ function checkAll()
 }
 function getDataFromRow()
 {
-/*    var table = document.getElementById("activeClassFeeTable")
-    if($(".checkItem").prop("checked")) {
-        for (var i = 0; i < table.rows.length; i++) {
-            table.rows[i].onclick = function () {
-                rIndex = this.rowIndex;
-                var classFeeId = this.cells[0].innerHTML;
-                var amount = this.cells[5].innerHTML;
-                var requestObj =
-                    {
-                        classFeeId: classFeeId,
-                        amount: amount
-                    }
-                claim(requestObj);
 
-            }
-        }
-    }*/
     var mainArray=[];
         $("#activeClassFeeTable input[type=checkbox]:checked").each(function (){
            var row = $(this).closest("tr")[0];
            var classFeeId=row.cells[0].innerHTML;
            var amount = row.cells[5].innerHTML;
-
            var object=
                {
                    classFeeId:classFeeId,
                    amount:amount,
-
                }
                mainArray.push(object);
         });
         claim(mainArray);
 }
 function claim(list)
-{ var fullAmount="";
-    let fAmount;
-     fAmount = 0;
-    console.log(list);
-    $.each(list,function (index,ary){
+{
+    $("#totalAmount").empty();
+    $("#commission").empty();
+    $("#payAmount").value="";
+    $("#collectButton").hide();
 
-        if(ary.classFeeId=="classFeeId"&& ary.amount=="Amount"){
-            console.log("matched")
-        }
-        else {
-            fAmount=    fAmount=ary.amount;
+    if(list.length!=0)
+    {
+        var fAmount =0;
+        var classFeeIdArray=[];
+        $.each(list,function (index,ary){
 
-            //console.log(ary.classFeeId + " " + ary.amount);
-        }
-    });
-    fullAmount=fAmount;
-    console.log(fullAmount+" "+fAmount);
+            if(ary.classFeeId=="classFeeId"&& ary.amount=="Amount"){
+                console.log("matched")
+            }
+            else {
+              fAmount= fAmount+parseInt(ary.amount);
+              classFeeIdArray.push(ary.classFeeId);
+            }
+        });
+        let com = document.getElementById("comPercentage").value;
+        let commission = (fAmount * com) / 100;
+        let payAmount = fAmount - commission;
+        $("#collectButton").show();
+        document.getElementById("totalAmount").value=fAmount+".00";
+        document.getElementById("commission").value=commission+".00";
+        document.getElementById("payAmount").value=payAmount+".00";
+        pay(classFeeIdArray);
+    }
 
+    else
+    {
+        alert("Please Select Class Fee To Claim")
+    }
 }
 
 

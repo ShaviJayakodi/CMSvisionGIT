@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http:www.thymeleaf.org">
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Expense Details</title>
+  <link rel="stylesheet" th:href="@{/CSS/bootstrap.min.css}">
+  <link rel="stylesheet" th:href="@{/CSS/teacherInq.css}">
+
+</head>
+<body>
+<div class="container mt-5 pb-2 mb-5"  style= "width:90%; height: 500px; background-color: #fff; align-items: center;">
+ <!-- <div class="searchBar mt-2" >
+    <div class="row p-2" style="border-radius: 0">
+
+      <div class="col pb-2">
+
+        <input type="text" name="regNo" onchange="getUniqueStudentByRegNo()" id="regNo" class="form-control" placeholder="Reg No">
+        <div id="divRegNo" name="divRegNo"></div>
+      </div>
+      <div class="col pb-2">
+        <input type="hidden" id="studentId" name="studentId">
+        <input type="hidden" id="grade" name="grade">
+
+        <input type="text" name="studentName" disabled id="studentName" class="form-control" placeholder="Name">
+      </div>
+      <div class="col pb-2">
+        <button type="button" onclick="getClassDetailsByStudentId()"class="btn btn-primary ">Confirm</button>
+      </div>
+
+
+    </div>
+  </div>-->
+  <div class="row p-2" style="border-radius: 0">
+
+    <div class="col pb-2">
+      <h1>Expense Details</h1>
+
+    </div>
+  </div>
+
+  <div  class="scrollable">
+    <table class="table table-striped table-hover" style="background-color: #fff;" >
+      <thead>
+      <tr>
+        <th>Code</th>
+        <th>Expense Type</th>
+        <th>Date</th>
+        <th>Amount</th>
+      </tr>
+      </thead>
+      <tbody id="expenseInqTableBody" name="expenseInqTableBody">
+
+      </tbody>
+
+
+    </table>
+  </div>
+</div>
+<script th:src="@{/JS/bootstrap.bundle.min.js}"></script>
+</body>
+</html>
