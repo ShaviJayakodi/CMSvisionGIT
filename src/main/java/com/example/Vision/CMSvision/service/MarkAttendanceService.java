@@ -230,7 +230,7 @@ public class MarkAttendanceService {
             System.out.println(openClassList);
             List<Integer> collect = openClassList.stream().map(x -> x.getOpenClassId()).collect(Collectors.toList());
             List<MarkAttendance> markAttendances = markAttendnaceRepo.getMarkAttendance(studentId,collect);
-        System.out.println(markAttendances);
+            System.out.println(markAttendances);
             /* for (OpenClass openClass : openClassList)
             {
                 System.out.println(openClass.getClassInfo().getClassId()+" || "+openClass.getOpenDate()+" || "+ openClass.getOpenClassId());
@@ -241,7 +241,7 @@ public class MarkAttendanceService {
 
 
 
-        return null;
+        return markAttendances;
     }
 
 

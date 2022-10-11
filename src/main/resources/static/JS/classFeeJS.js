@@ -1,11 +1,25 @@
 $(document).ready(function (){
+
+load();
+});
+
+
+function load()
+{
     $("#selectAuthor").hide();
     $("#lblCheck").hide();
     $("#selectAuthor").empty();
     loadAllTeachers();
+    $("#selectClass").empty();
+    $("#activeClassFeeTableBody").empty();
+    $("#selectAll").prop("unchecked");
+    document.getElementById("payAmount").value="";
+    document.getElementById("totalAmount").value="";
+    document.getElementById("commission").value="";
+    document.getElementById("selectAll").checked = false;
     $("#collectButton").hide();
 
-});
+}
 function getStudentDataByRegNo()
 {
     var regNo = document.getElementById("regNo").value;
@@ -309,34 +323,76 @@ function setDateToTable(activeClassFeeList)
 function pay(classFeeIdList)
 { $("#collectButton").click(function ()
     {
-        var requestObj =
-            {
-                classFeeIdList:classFeeIdList
-            }
-        $.ajax({
-            url: "/classFeeController/claimCash",
+        $.each(classFeeIdList,function (index, fee){
+           console.log(fee);
+
+            console.log(fee);
+            $.ajax({
+            url: "/classFeeController/claimCash?classFeeId="+fee,
             type: "POST",
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            dataType: JSON,
-            data: JSON.stringify(requestObj),
+           /* dataType: "json",
+            //data: JSON.stringify(requestObj),
             success: function (data) {
                 alert("Successfully Registered.")
-
-
             },
             error: function (data) {
                 console.log(data.success);
                 alert("Not Success Please ReTry.")
-
-
-            }
+            }*/
+        });
         });
     });
 
 }
+
+
+function withdraw(withdrawObj)
+{$("#collectButton").click(function () {
+    var teacherId = document.getElementById("selectTeacher").value;
+    var requestBody =
+        {
+            teacherId: teacherId,
+            fullAmount: withdrawObj.fullAmount,
+            teacherAmount: withdrawObj.payAmount,
+            commission: withdrawObj.commission
+        }
+    $.ajax({
+        url: "/cashWithdraw/withdraw",
+        type: "POST",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        dataType: "json",
+        data: JSON.stringify(requestBody),
+        success: function (data) {
+            Swal.fire(
+                'PAID',
+                'Successfully Withdraw',
+                'success'
+            );
+            load();
+
+
+        },
+        error: function (data) {
+            console.log(data.success);
+            Swal.fire({
+                icon: 'error',
+                title: 'ERROR',
+                text: 'Something went wrong!',
+
+            });
+
+        }
+    });
+});
+}
+
 function checkAll()
 {
     $("#selectAll").change(function (){
@@ -396,11 +452,23 @@ function claim(list)
         let com = document.getElementById("comPercentage").value;
         let commission = (fAmount * com) / 100;
         let payAmount = fAmount - commission;
+
+        var withdrawObj =
+            {
+               commission:commission,
+               fullAmount : fAmount,
+               payAmount:payAmount
+            }
+
+
+
         $("#collectButton").show();
         document.getElementById("totalAmount").value=fAmount+".00";
         document.getElementById("commission").value=commission+".00";
         document.getElementById("payAmount").value=payAmount+".00";
+
         pay(classFeeIdArray);
+        withdraw(withdrawObj);
     }
 
     else

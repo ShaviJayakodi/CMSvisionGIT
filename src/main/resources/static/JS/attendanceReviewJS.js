@@ -67,11 +67,10 @@ function getStudentDataByRegNo()
         {
             document.getElementById("studentId").value=data.studentId;
             document.getElementById("studentName").value=data.firstName+" "+data.lastName;
-            alert("Student Found")
         },
         error: function (data) {
             console.log(data.success)
-            alert("Invalid Student Register No");
+            notFoundStudent();
             document.getElementById("regNo").value="";
 
             setTimeout(function ()
@@ -102,13 +101,28 @@ function getStudentAttendance()
         dataType: "json",
         success:function (data)
         {
-            console.log("success");
+            setToAttendanceTable(data);
         },
         error: function (data) {
             console.log(data.success)
+            notFoundData();
         },
 
     });
 
 
+}
+
+function setToAttendanceTable(attendanceList)
+{
+    $("#openedClassTableBody").empty();
+    $.each(attendanceList, function (index,attendance){
+        $("#openedClassTableBody").append(
+            "<tr class=\"table-info\">"
+            +"<td>"+attendance.classInfo.classCode+"</td>"
+            +"<td>"+attendance.attendanceDate+"</td>"
+            +"<td>"+attendance.classInfo.grade.gradeDescription+"</td>"
+            +"</tr>"
+        );
+    });
 }

@@ -83,4 +83,28 @@ public class ClassFeeService {
         return modelMapper.map(classFeeList,new TypeToken<List<ClassFee>>(){}.getType());
     }
 
+    public ClassFeeDTO classFeeWithdraw(int classFeeId) {
+        ClassFee classFee = modelMapper.map(classFeeRepo.findById(classFeeId).get(),ClassFee.class);
+        Student student = modelMapper.map(studentRepo.findById(classFee.getStudent().getStudentId()).get(),Student.class);
+        ClassInfo classInfo = modelMapper.map(classInfoRepo.findById(classFee.getClassInfo().getClassId()).get(),ClassInfo.class);
+
+        ClassFee newClassFee = new ClassFee();
+
+        newClassFee.setClassFeeId(classFee.getClassFeeId());
+        newClassFee.setAmount(classFee.getAmount());
+        newClassFee.setIsRelease(classFee.getIsRelease());
+        newClassFee.setMonth(classFee.getMonth());
+        newClassFee.setPayDate(classFee.getPayDate());
+        newClassFee.setPayMethod(classFee.getPayMethod());
+        newClassFee.setTeacherId(classFee.getTeacherId());
+        newClassFee.setYear(classFee.getYear());
+        newClassFee.setClassInfo(classInfo);
+        newClassFee.setStudent(student);
+        newClassFee.setAuthorizedBy(classFee.getAuthorizedBy());
+        newClassFee.setIsWithdraw(statusValue.DEACTIVE.sts());
+
+        classFeeRepo.save(newClassFee);
+        ClassFeeDTO dto = modelMapper.map(newClassFee,ClassFeeDTO.class);
+        return dto;
+    }
 }
