@@ -1,6 +1,6 @@
 $(document).ready(function() {
     $("#rbRegistration").prop("checked", true);
-    loadRegistrationPage();
+        loadRegistrationPage();
 });
 
 
@@ -32,19 +32,18 @@ function submit(tableObj)
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            dataType: JSON,
+            dataType: "json",
             data: JSON.stringify(requestObj),
             success: function (data) {
-                if (!data.success) {
-                    alert(data.statusList);
+                    Swal.fire(
+                        'Class Added Successfully',
+                        'Student Mapping to '+data.classCode,
+                        'success'
+                    );
                     getClassDetailsByStudentId();
-                } else {
-                    alert("Successfully Registered.")
-                    getClassDetailsByStudentId();
-                }
             },
             error: function (data) {
-                console.log(data.success);
+                errorAlert();
                 getClassDetailsByStudentId();
 
             },
@@ -72,6 +71,10 @@ function getUniqueStudentByRegNo()
             document.getElementById("studentName").value=data.firstName+" "+data.lastName;
             setStudentDataToFields(data);
 
+        },
+        error:function (data)
+        {
+            errorAlert();
         }
     });
 }
@@ -80,6 +83,8 @@ function setStudentDataToFields(uniqueStudent)
     console.log(uniqueStudent);
     document.getElementById("studentId").value=uniqueStudent.studentId;
     document.getElementById("grade").value= uniqueStudent.grade.gradeCode+" || "+uniqueStudent.grade.gradeDescription;
+    document.getElementById("gradeIdForStudent").value = uniqueStudent.grade.gradeId;
+    getAllClass();
 }
 function getUniqueStudentById()
 {
@@ -103,8 +108,10 @@ function getUniqueStudentById()
 
 function getAllClass()
 {
+    var gradeId = document.getElementById("gradeIdForStudent").value;
+
     $.ajax({
-        url:"/classController/getAllClass",
+        url:"/classController/getClassesByGradeId?gradeId="+gradeId,
         type:"GET",
         data: {},
         success:function (data)
@@ -113,13 +120,20 @@ function getAllClass()
         },
         error:function (xhr)
         {
-            alert("Error");
+            errorAlert();
         }
     });
 }
 
 function setClassSelectBox(classList)
 {
+
+    console.log(classList);
+    $("#selectClass").empty();
+    $("#selectClass").append(
+        "<option value = null>==Select Class==</option>"
+    );
+
     $.each(classList,function (index,uniqueClass){
     $("#selectClass").append(
         "<option value="+uniqueClass.classId+">"+uniqueClass.classCode+"</option>"
@@ -129,6 +143,22 @@ function setClassSelectBox(classList)
 }
 
 
+var newWin;
+function popup()
+{
+    newWin = window.open('/loadPopupSearch','Student Inquiry', 'directories=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=800,height=500');
+
+    document.onmousedown=focusPopup;
+    document.onkeyup=focusPopup;
+    document.onmousemove=focusPopup;
+
+    function focusPopup(){
+        if(!newWin.closed){
+            newWin.focus();
+        }
+    }
+
+}
 function getClassDetailsByStudentId()
 {
     getUniqueStudentByRegNo()
@@ -148,7 +178,7 @@ function getClassDetailsByStudentId()
         },
         error:function (xhr)
         {
-            alert("Error");
+           errorAlert();
         }
     });
 }
@@ -191,7 +221,7 @@ function getClassByClassId(classId)
         },
         error:function (xhr)
         {
-            alert("Error");
+          errorAlert();
         }
     });
 }
@@ -231,21 +261,17 @@ function deleteByMappingId(mappingId)
         },
         dataType:"json",
         success:function (data) {
-            if (!data.success) {
-                alert(data.statusList);
+                Swal.fire(
+                    'Deleted!',
+                    'Your file has been deleted.',
+                    'success'
+                );
                 getClassDetailsByStudentId();
-            } else {
-                alert("Successfully Deleted.")
-                getClassDetailsByStudentId();
-
-            }
         },
 
         error: function (data) {
-            console.log(data.success);
+           errorAlert();
             getClassDetailsByStudentId();
-
-
         },
 
     });
@@ -285,9 +311,17 @@ function setClassToTable(classInfo) {
         console.log(rowArray);
         var errorMessage = "";
         if (document.getElementById("paymentMethod").selectedIndex == 0) {
-            alert("Please Select Payment Method");
+            Swal.fire({
+                icon: 'error',
+                title: 'ERROR',
+                text: 'Please Select Payment Method',
+            });
         } else if (document.getElementById("classYear").selectedIndex == 0) {
-            alert("Please Select classYear");
+            Swal.fire({
+                icon: 'error',
+                title: 'ERROR',
+                text: 'Please Select classYear',
+            });
         } else {
             var paymentMethod = document.getElementById("paymentMethod").value;
             var classYear = document.getElementById("classYear").value;
@@ -313,7 +347,11 @@ function setClassToTable(classInfo) {
                     + "</tr>"
                 );
             } else {
-                alert(errorMessage);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'ERROR',
+                    text: errorMessage,
+                });
             }
         }
 
@@ -353,7 +391,12 @@ function getClassIn() {
         }
         else
         {
-            alert("Please Select A Student");
+            Swal.fire({
+                icon: 'error',
+                title: 'ERROR',
+                text: 'Please Select A Student',
+            });
+
         }
     }
 
@@ -365,7 +408,7 @@ function inquiry() {
 function loadRegistrationPage() {
         $("#mainContainerPage").load("loadAddMapping/");
         $("#mainContainerPage").value = true;
-        getAllClass();
+
 
 
 }

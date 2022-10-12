@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en"  dir="ltr" xmlns:th="http:www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VEI SMS</title>
+  <link rel="stylesheet" th:href=@{/CSS/mainPage.css}>
+  <link th:href="@{https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css}" rel="stylesheet">
+
+</head>
+<body>
+<div class="sidebar close">
+
+
+
+  <ul class="nav-links">
+    <li>
+      <a href="#">
+        <i class='bx bx-grid-alt' ></i>
+        <span class="link_name">Dashboard</span>
+      </a>
+      <ul class="sub-menu blank">
+        <li><a class="link_name" href="#">Dashboard</a></li>
+      </ul>
+    </li>
+    <li>
+      <div class="iocn-link">
+        <a href="#">
+          <i class='bx bx-folder' ></i>
+          <span class="link_name">Registrations</span>
+        </a>
+        <i class='bx bxs-chevron-down arrow' ></i>
+      </div>
+      <ul class="sub-menu">
+        <li><a class="link_name">Registrations</a></li>
+        <li><a href="/loadStudentMain" target="_blank">Student</a></li>
+        <li><a href="/loadTeacherMain" target="_blank">Teacher</a></li>
+        <li><a href="/loadOfficerMain" target="_blank">Officer</a></li>
+        <li><a href="/loadGradeMain" target="_blank">Grade</a></li>
+        <li><a href="/loadClassMain" target="_blank">Class</a></li>
+        <li><a href="/loadHallMain" target="_blank">Hall</a></li>
+        <li><a href="/loadExpenseInfoMain" target="_blank">Expense</a></li>
+      </ul>
+    </li>
+    <li>
+      <div class="iocn-link">
+        <a href="#">
+          <i class='bx bx-folder' ></i>
+          <span class="link_name">Class Management</span>
+        </a>
+        <i class='bx bxs-chevron-down arrow' ></i>
+      </div>
+      <ul class="sub-menu">
+        <li><a class="link_name" href="#">Class Management</a></li>
+        <li><a href="/loadMappingMain">Student Mapping</a></li>
+        <li><a href="/loadOpenClass">Class Open</a></li>
+        <li><a href="/studentAttendance">Mark Attendance</a></li>
+        <li><a href="/loadAttendanceReview">Attendance Review</a></li>
+      </ul>
+    </li>
+    <li>
+      <div class="iocn-link">
+      <a href="#">
+        <i class='bx bx-wallet' ></i>
+        <span class="link_name">Finance</span>
+      </a>
+        <i class='bx bxs-chevron-down arrow' ></i>
+      </div>
+      <ul class="sub-menu">
+        <li><a class="link_name" href="#">Finance</a></li>
+        <li><a href="/loadClassFee">Class Fee</a></li>
+        <li><a href="/loadAddExpense">Add Expense</a></li>
+        <li><a href="/loadIncomeDetails">Income Details</a></li>
+      </ul>
+    </li>
+  <!--  <li>
+      <a href="#">
+        <i class='bx bx-line-chart' ></i>
+        <span class="link_name">Chart</span>
+      </a>
+      <ul class="sub-menu blank">
+        <li><a class="link_name" href="#">Chart</a></li>
+      </ul>
+    </li>
+    <li>
+      <div class="iocn-link">
+        <a href="#">
+          <i class='bx bx-plug' ></i>
+          <span class="link_name">Plugins</span>
+        </a>
+        <i class='bx bxs-chevron-down arrow' ></i>
+      </div>
+      <ul class="sub-menu">
+        <li><a class="link_name" href="#">Plugins</a></li>
+        <li><a href="#">UI Face</a></li>
+        <li><a href="#">Pigments</a></li>
+        <li><a href="#">Box Icons</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#">
+        <i class='bx bx-compass' ></i>
+        <span class="link_name">Explore</span>
+      </a>
+      <ul class="sub-menu blank">
+        <li><a class="link_name" href="#">Explore</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#">
+        <i class='bx bx-history'></i>
+        <span class="link_name">History</span>
+      </a>
+      <ul class="sub-menu blank">
+        <li><a class="link_name" href="#">History</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#">
+        <i class='bx bx-cog' ></i>
+        <span class="link_name">Setting</span>
+      </a>
+      <ul class="sub-menu blank">
+        <li><a class="link_name" href="#">Setting</a></li>
+      </ul>
+    </li>-->
+    <li>
+      <div class="profile-details">
+        <div class="profile-content">
+          <img th:src="@{/IMAGES/prof.png}" alt="">
+        </div>
+        <div class="name-job">
+          <div class="profile_name"></div>
+          <div class="job"></div>
+        </div>
+        <i class='bx bx-log-out' ></i>
+      </div>
+    </li>
+  </ul>
+</div>
+<section class="home-section">
+  <div class="home-content">
+    <i class='bx bx-menu' ></i>
+    <div class="picture">
+
+    </div>
+
+    <span class="text">ABC INSTITUTE</span>
+  </div>
+</section>
+<script>
+  let arrow = document.querySelectorAll(".arrow");
+  for (var i = 0; i < arrow.length; i++) {
+    arrow[i].addEventListener("click", (e)=>{
+      let arrowParent = e.target.parentElement.parentElement;//selecting main parent of arrow
+      arrowParent.classList.toggle("showMenu");
+    });
+  }
+  let sidebar = document.querySelector(".sidebar");
+  let sidebarBtn = document.querySelector(".bx-menu");
+  console.log(sidebarBtn);
+  sidebarBtn.addEventListener("click", ()=>{
+    sidebar.classList.toggle("close");
+  });
+</script>
+</body>
+</html>

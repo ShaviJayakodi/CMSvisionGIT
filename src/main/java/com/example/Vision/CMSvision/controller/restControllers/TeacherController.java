@@ -4,6 +4,7 @@ import com.example.Vision.CMSvision.dto.TeacherDTO;
 import com.example.Vision.CMSvision.entity.Teacher;
 import com.example.Vision.CMSvision.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,7 +18,7 @@ public class TeacherController {
     private TeacherService teacherService;
 
     @PostMapping("saveTeacher")
-    public TeacherDTO saveTeacher(@RequestBody TeacherDTO teacherDTO)
+    public ResponseEntity<?> saveTeacher(@RequestBody TeacherDTO teacherDTO)
     {
         System.out.println(teacherDTO);
         return teacherService.saveTeacher(teacherDTO);

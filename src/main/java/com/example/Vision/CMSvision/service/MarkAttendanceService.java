@@ -200,6 +200,7 @@ public class MarkAttendanceService {
             if(mrkAttDTO.size()>0)
             {
                 System.out.println("already");
+                return ResponseEntity.notFound().build();
             }
             else
             {
@@ -237,8 +238,6 @@ public class MarkAttendanceService {
 
             }*/
         System.out.println(collect);
-
-
 
 
         return markAttendances;

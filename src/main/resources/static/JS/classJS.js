@@ -13,7 +13,6 @@ function submit()
         var fullFee=document.getElementById("fullPrice").value;
         var halfFee = document.getElementById("halfPrice").value;
         var freeFee = document.getElementById("freePrice").value;
-        var commission = document.getElementById("commissionPercentage").value;
         var requestObj={
             teacherId:teacherId,
             gradeId:gradeId,
@@ -22,7 +21,7 @@ function submit()
             fullFee:fullFee,
             halfFee:halfFee,
             freeFee:freeFee,
-            commission:commission
+
         }
         console.log(requestObj);
         $.ajax({
@@ -32,17 +31,17 @@ function submit()
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            dataType: JSON,
+            dataType: "json",
             data: JSON.stringify(requestObj),
             success: function (data) {
-                if (!data.success) {
-                    alert(data.statusList);
-                } else {
-                    alert("Successfully Registered.")
-                }
+                Swal.fire(
+                    'Registered Successfully',
+                    'Class Code : '+data.classCode,
+                    'success'
+                );
             },
             error: function (data) {
-                console.log(data.success);
+                errorAlert();
 
             },
         });
@@ -63,7 +62,7 @@ function getAllClass()
         },
         error:function (xhr)
         {
-            alert("Error");
+          errorAlert();
         }
     });
 }
@@ -85,7 +84,7 @@ function getAllClassByTeacherId()
         },
         error:function (xhr)
         {
-            alert("Error");
+            errorAlert();
         }
     });
 }
@@ -103,7 +102,7 @@ function getAllTeachers()
         },
         error:function (xhr)
         {
-            alert("Error");
+           errorAlert();
         }
     });
 }
@@ -245,9 +244,8 @@ function setDataToFields(uniqueClass)
     "<option value="+uniqueClass.subject.subjectId+" selected=\"selected\">"+uniqueClass.subject.subjectCode+" || " +uniqueClass.subject.subjectName+"</option>"
     );
 
-    $('#selectTeacher').append("" +
+    $('#selectTeacher').append(
         "<option value="+uniqueClass.teacherId+" selected=\"selected\">"+uniqueClass.subject.subjectCode+" || " +uniqueClass.subject.subjectName+"</option>"
-
     );
 
 
@@ -255,7 +253,6 @@ function setDataToFields(uniqueClass)
     document.getElementById("fullPrice").value=uniqueClass.fullFee;
     document.getElementById("halfPrice").value=uniqueClass.halfFee;
     document.getElementById("freePrice").value=uniqueClass.freeFee;
-    document.getElementById("commissionPercentage").value=uniqueClass.commission;
 }
 function setClassTable(classList)
 {
@@ -265,7 +262,6 @@ function setClassTable(classList)
             "<td>"+uniqueClass.classCode+"</td>"+
             "<td>"+uniqueClass.grade.gradeCode+" || "+ uniqueClass.grade.gradeDescription+"</td>"+
             "<td>"+uniqueClass.subject.subjectName+"</td>"+
-
             "</tr>"
         )
     });

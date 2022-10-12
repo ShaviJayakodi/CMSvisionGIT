@@ -242,16 +242,23 @@ function getAllClassFeeData()
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
-        dataType: JSON,
+        dataType: "json",
         data: JSON.stringify(requestObj),
         success: function (data) {
-            alert("success");
-            setAlert();
+            Swal.fire({
+                title:'PAID!',
+
+                icon:'success',
+            });
 
         },
         error: function (data) {
             console.log(data.success);
-            alert("error");
+            Swal.fire({
+                icon: 'error',
+                title: 'Already Paid',
+                text: "Already Added Class Fee For This Month!",
+            })
 
         },
     });

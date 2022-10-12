@@ -18,10 +18,10 @@ public class ClassInfo {
     @JoinColumn(name = "teacher_teacherId")
     private Teacher teacher;
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "grade_gradeId")
+    @JoinColumn(name = "subject_subjectId")
     private Subject subject;
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "subject_subjectId")
+    @JoinColumn(name = "grade_gradeId")
     private Grade grade;
     private String classCode;
     private String classType;

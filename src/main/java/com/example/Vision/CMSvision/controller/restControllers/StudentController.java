@@ -23,7 +23,7 @@ public class StudentController {
     private StudentService studentService;
 
     @PostMapping("/saveStudent")
-    public StudentDTO saveNewStudent(@RequestBody StudentDTO studentDTO)
+    public ResponseEntity<?> saveNewStudent(@RequestBody StudentDTO studentDTO)
     {
         return studentService.saveNewStudent(studentDTO);
     }

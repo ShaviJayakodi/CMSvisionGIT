@@ -13,6 +13,7 @@ import com.example.Vision.CMSvision.enums.stakeHolderValues;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -32,7 +33,7 @@ public class StudentService {
     private CommonService commonService;
 
     @Transactional
-      public StudentDTO saveNewStudent(StudentDTO studentDTO) {
+      public ResponseEntity saveNewStudent(StudentDTO studentDTO) {
         int maxId =studentRepo.getMaxGradeId();
         StudentDTO dto = new StudentDTO();
         try {
@@ -85,7 +86,7 @@ public class StudentService {
             System.out.println("something went wrong"+exception);
         }
 
-        return dto;
+        return ResponseEntity.ok(dto);
     }
 
 

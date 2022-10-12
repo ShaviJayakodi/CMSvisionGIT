@@ -4,6 +4,7 @@ import com.example.Vision.CMSvision.dto.GradeDTO;
 import com.example.Vision.CMSvision.entity.Grade;
 import com.example.Vision.CMSvision.service.GradeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -49,7 +50,7 @@ public class GradeController {
     }
 
     @DeleteMapping("/deleteGrade")
-    public String deleteByGradeId(int gradeId)
+    public ResponseEntity<?> deleteByGradeId(int gradeId)
     {
         return gradeService.deleteByGradeId(gradeId);
     }

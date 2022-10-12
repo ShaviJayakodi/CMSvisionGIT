@@ -197,8 +197,11 @@ function getStudentDataByRegNo()
         },
         error: function (data) {
             console.log(data.success)
-            alert("Invalid Student Register No");
-            //document.getElementById("regNo").value.innerHTML="";
+            Swal.fire({
+                icon: 'error',
+                title: 'ERROR',
+                text: 'Invalid Student Register No!',
+            });
             document.getElementById("regNo").value="";
 
             setTimeout(function ()
@@ -249,11 +252,19 @@ function mark(object)
         dataType: "json",
         data: JSON.stringify(requestObj),
         success: function (data) {
-            alert("Successfully Registered.")
+            Swal.fire(
+                'Attendance Marked!',
+                'Attendance Marked Successfully',
+                'success'
+            );
         },
         error: function (data) {
             console.log(data.success);
-            alert("Student Already Added For This Class")
+            Swal.fire({
+                icon: 'error',
+                title: 'ERROR',
+                text: 'Student Already Added For This Class!',
+            });
 
         },
     });
@@ -261,6 +272,7 @@ function mark(object)
 
 function setToTableToSelect(openedClassList)
 {
+    $("#openedClassTableBody").empty();
     $.each(openedClassList,function (index,list){
         $("#openedClassTableBody").append(
             "<tr>" +
@@ -293,20 +305,16 @@ function getSelectedMappedClassOpenForStudent()
         },
         error: function (data) {
             console.log(data.success);
-            alert("Not Class Opened For This Student");
+            Swal.fire({
+                icon: 'error',
+                title: 'ERROR',
+                text: 'Not Class Opened For This Student',
+            });
         },
     });
 
 }
-/*function createId(){
-    var sids = [];
-    sids=getSeletedStudents();
-    browser=window.open("studentController/createId?sids="+sids,'winname','directories=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=700,height=350');
-    browser.moveTo(595, 842);
-    if (window.focus) {browser.focus()}
-    return false
 
-}*/
 var newWin;
 function popup()
 {
@@ -321,5 +329,5 @@ function popup()
                 newWin.focus();
             }
         }
-    //getStudentDataByRegNo();
+
 }

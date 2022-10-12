@@ -8,6 +8,8 @@
   <title>Officer Management</title>
   <link rel="stylesheet" th:href="@{/CSS/bootstrap.min.css}">
   <link rel="stylesheet" th:href="@{/CSS/teacherInq.css}">
+  <script th:src="@{/JS/jquery.min.js}"></script>
+  <script th:src="@{/JS/officerPopup.js}"></script>
 
 </head>
 <body>
@@ -27,7 +29,7 @@
 
 
   <div  class="scrollable">
-    <table class="table table-striped table-hover" style="background-color: #fff;">
+    <table class="table table-striped table-hover" id="officerInqTable" name="officerInqTable" style="background-color: #fff;">
       <thead>
       <tr>
         <th>RegNo</th>
@@ -38,7 +40,7 @@
 
       </tr>
       </thead>
-      <tbody id="officerInqTable" name="officerInqTable">
+      <tbody id="officerInqTableBody" name="officerInqTableBody">
 
       </tbody>
 

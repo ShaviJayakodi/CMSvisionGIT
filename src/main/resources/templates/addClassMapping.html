@@ -31,7 +31,7 @@
                         <div id="divRegNo" name="divRegNo"></div>
                     </div>
                     <div class="col-auto">
-                        <button type="submit" class="btn btn-primary">Search</button>
+                        <button type="submit" onclick="popup();" class="btn btn-primary">Search</button>
                     </div>
 
                     <div class="col" style="width: 50%;">
@@ -98,6 +98,7 @@
 
                         <div class="col my-2">
                             <label class="inputLbl"for="grade">Grade</label>
+                            <input type="hidden" id="gradeIdForStudent" name="gradeIdForStudent">
                             <input type="text"  disabled id="grade" name="grade" class="form-control p-lg-2 "placeholder="Grade">
                             <div id="divGrade" name="divGrade"></div>
                         </div>

@@ -11,6 +11,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.Access;
@@ -32,7 +33,7 @@ public class ClassFeeController {
             return classFeeService.getPaymentMethod(studentId,classId);
     }
     @PostMapping("/addPayment")
-    public ClassFeeDTO addPayment (@RequestBody ClassFeeDTO classFeeDTO)
+    public ResponseEntity<?> addPayment (@RequestBody ClassFeeDTO classFeeDTO)
     {
         return classFeeService.addPayment(classFeeDTO);
     }

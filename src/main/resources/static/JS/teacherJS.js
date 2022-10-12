@@ -44,18 +44,23 @@ function submit()
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            dataType:JSON,
+            dataType:"json",
             data: JSON.stringify(requestObj),
             success:function (data)
             {
-                if(!data.success) {
-                    alert(data.statusList);
-                } else {
-                    alert("Successfully Registered.")
-                }
+                Swal.fire(
+                    'Registered Successfully',
+                    'Teacher Name '+data.firstName+" "+data.lastName +' & Teacher Reg No is '+data.regNO,
+                    'success'
+                );
             },
             error: function(data){
-                console.log(data.success);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'ERROR',
+                    text: 'Something went wrong!',
+
+                });
 
             },
         });
@@ -106,18 +111,24 @@ function submit()
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            dataType:JSON,
+            dataType:"json",
             data: JSON.stringify(requestObj),
             success:function (data)
             {
-                if(!data.success) {
-                    alert(data.statusList);
-                } else {
-                    alert("Successfully Registered.")
-                }
+                Swal.fire(
+                    'Updated Successfully',
+                    'Teacher Name '+data.firstName+" "+data.lastName +' & Teacher Reg No is '+data.regNO,
+                    'success'
+                );
             },
             error: function(data){
-                console.log(data.success);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'ERROR',
+                    text: 'Something went wrong!',
+
+                });
+
 
             }
         });
@@ -136,16 +147,21 @@ function submit()
             },
                 dataType:"json",
                 success:function (data) {
-                    if (!data.success) {
-                        alert(data.statusList);
-                    } else {
-                        alert("Successfully Deleted.")
+                    Swal.fire(
+                        'Deleted!',
+                        'Your file has been deleted.',
+                        'success'
+                    );
                         loadDeletePage();
-                    }
+
                 },
 
                 error: function (data) {
-                    console.log(data.success);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'ERROR',
+                        text: 'Something went wrong!',
+                    });
                     loadDeletePage();
 
                 },
@@ -199,7 +215,16 @@ function getUniqueById()
         success:function (data)
         {
             setDataToTeacherFields(data);
+        },
+        error:function (data)
+        {
+            Swal.fire({
+                icon: 'error',
+                title: 'ERROR',
+                text: 'Something went wrong!',
+            });
         }
+
     });
 
 }
@@ -241,23 +266,8 @@ function clear()
     document.getElementById("teacherName").value="";
 }
 
-function getAllTeachers()
-{
-    $.ajax({
-        url:"/teacherController/getAllTeachers",
-        type:"GET",
-        data: {},
-        success:function (data)
-        {
-            setTeacherToTable(data);
-            console.log(data);
-        },
-        error:function (xhr)
-        {
-            alert("Error");
-        }
-    });
-}
+
+/*
 
 function setTeacherToTable(teacherList)
 {
@@ -277,7 +287,24 @@ function setTeacherToTable(teacherList)
     });
 
 }
+*/
 
+var newWin;
+function popup()
+{
+    newWin = window.open('/loadPopupTeacher','Teacher Inquiry', 'directories=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=800,height=500');
+
+    document.onmousedown=focusPopup;
+    document.onkeyup=focusPopup;
+    document.onmousemove=focusPopup;
+
+    function focusPopup(){
+        if(!newWin.closed){
+            newWin.focus();
+        }
+    }
+
+}
 
 function loadRegistrationPage()
 {
@@ -298,8 +325,8 @@ function loadDeletePage()
 
 function inquiry()
 {
-    $("#mainContainerPage").load("loadTeacherInquiry/");
+    $("#mainContainerPage").load("loadPopupTeacher/");
     $("#mainContainerPage").value=true;
-    getAllTeachers();
+
 
 }

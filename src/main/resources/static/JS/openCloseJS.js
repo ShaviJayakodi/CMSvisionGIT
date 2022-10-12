@@ -30,7 +30,7 @@ function  loadAllTeachers()
         },
         error:function (xhr)
         {
-            alert("Error");
+           errorAlert();
         }
     });
 }
@@ -61,7 +61,7 @@ function  loadAllClassByTeacherId()
         },
         error:function (xhr)
         {
-            alert("Error");
+            errorAlert();
         }
     });
 }
@@ -84,22 +84,22 @@ function openClass()
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
-        dataType:JSON,
+        dataType:"json",
         data: JSON.stringify(reqestObj),
         success:function (data)
         {
-            if(!data.success) {
-                alert(data.statusList);
-                getALlOpenedClass();
-            } else {
-                alert("Class Opened");
-                getALlOpenedClass();
-            }
+            Swal.fire(
+                'Class Opened Successfully',
+                data.classCode,
+                'success'
+            );
+            getALlOpenedClass();
+
         },
         error:function (data)
         {
             console.log(data.success);
-            alert("Class Opened");
+            errorAlert();
             getALlOpenedClass();
 
         },
@@ -146,10 +146,20 @@ function checkOpened(rowList)
             }
             else
             {
-                alert(message);
+
+                Swal.fire({
+                    icon: 'error',
+                    title: 'ERROR',
+                    text: message,
+                });
             }
         } else {
             alert(errorMg);
+            Swal.fire({
+                icon: 'error',
+                title: 'ERROR',
+                text: errorMg,
+            });
 
         }
 
@@ -208,7 +218,7 @@ function getALlOpenedClass()
         },
         error:function (xhr)
         {
-            alert("Error");
+          errorAlert();
         }
     });
 }
@@ -246,22 +256,21 @@ function closeClass(classData)
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
-        dataType:JSON,
+        dataType:"json",
         data: JSON.stringify(reqestObj),
         success:function (data)
         {
-            if(!data.success) {
-                alert(data.statusList);
-                getALlOpenedClass();
-            } else {
-                alert("Class Closed");
-                getALlOpenedClass();
-            }
+            Swal.fire(
+                'Class Closed Successfully',
+                data.classCode,
+                'success'
+            );
+            getALlOpenedClass();
         },
         error:function (data)
         {
             console.log(data.success);
-            alert("Class Closed");
+            errorAlert();
             getALlOpenedClass();
 
         },

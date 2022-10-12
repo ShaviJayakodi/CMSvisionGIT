@@ -14,3 +14,13 @@ function notFoundData()
         text: 'Please Try Again!',
     });
 }
+
+function errorAlert()
+{
+    Swal.fire({
+        icon: 'error',
+        title: 'ERROR',
+        text: 'Something went wrong!',
+
+    });
+}

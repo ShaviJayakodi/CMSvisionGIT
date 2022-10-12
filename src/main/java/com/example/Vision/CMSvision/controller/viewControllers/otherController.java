@@ -164,6 +164,12 @@ public class otherController {
         return "gradeDelete";
     }
 
+    @RequestMapping(value = "loadGradeInquiry",method = RequestMethod.GET)
+    public String loadGradeInquiry()
+    {
+        return "gradeInquiry";
+    }
+
 
     //Subject Mapping
 
@@ -306,6 +312,12 @@ public class otherController {
         return "/popupSearch";
     }
 
+    @RequestMapping(value = "/loadPopupTeacher",method = RequestMethod.GET)
+    public String loadPopupTeacher()
+    {
+        return "/popupTeacher";
+    }
+
     //Student Attendance Review
     @RequestMapping(value = "/loadAttendanceReview",method = RequestMethod.GET)
     public String loadAttendanceReview()
@@ -313,6 +325,7 @@ public class otherController {
         return "/attendanceReview";
     }
 
+    //loadClassFee
     @RequestMapping(value = "/loadClassFee",method = RequestMethod.GET)
     public  String loadClassFee()
     {
@@ -386,12 +399,24 @@ public class otherController {
         return "/userMain";
     }
 
-    @RequestMapping(value = "loadUserRegistration",method = RequestMethod.GET)
+    @RequestMapping(value = "/loadUserRegistration",method = RequestMethod.GET)
     public String loadUserRegistration()
     {
-        return "userRegistration";
+        return "/userRegistration";
     }
-    
+
+    //Income
+    @RequestMapping(value = "/loadIncomeDetails",method = RequestMethod.GET)
+    public String loadIncomeDetails()
+    {
+        return "/income";
+    }
+
+    @RequestMapping(value = "/loadAllIncomePopup",method = RequestMethod.GET)
+    public String loadAllIncomePopup()
+    {
+        return "/allIncome";
+    }
     
     //login
     
@@ -399,6 +424,13 @@ public class otherController {
     public String loadLoginPage()
     {
         return "login";
+    }
+
+    //mainPage
+    @RequestMapping(value = "/mainPage",method = RequestMethod.GET)
+    public String loadMainPage()
+    {
+        return "mainPage";
     }
 
 }

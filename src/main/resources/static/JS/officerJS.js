@@ -45,19 +45,19 @@ function submit()
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            dataType:JSON,
+            dataType:"json",
             data: JSON.stringify(requestObj),
             success:function (data)
             {
-                if(!data.success) {
-                    alert(data.statusList);
-                } else {
-                    alert("Successfully Registered.")
-                }
+                swal.fire({
+                    title:'Registered Successfully!',
+                    text:'Officer Name '+data.firstName+' '+data.lastName+' & Officer id '+data.regNo,
+                    icon:'success'
+                });
             },
             error:function (data)
             {
-                console.log(data.success)
+                errorAlert();
             },
         });
 
@@ -107,19 +107,18 @@ function submit()
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            dataType:JSON,
+            dataType:"json",
             data: JSON.stringify(requestObj),
             success:function (data)
-            {
-                if(!data.success) {
-                    alert(data.statusList);
-                } else {
-                    alert("Successfully Updated.")
-                }
+            { swal.fire({
+                title:'Updated Successfully!',
+                text:'Officer Name '+data.firstName+' '+data.lastName+' & Officer id '+data.regNo,
+                icon:'success'
+            });
             },
             error:function (data)
             {
-                console.log(data.success)
+                errorAlert();
             },
         });
 
@@ -138,16 +137,17 @@ function submit()
             },
             dataType:"json",
             success:function (data) {
-                if (!data.success) {
-                    alert(data.statusList);
-                } else {
-                    alert("Successfully Deleted.")
+                swal.fire({
+                    title:'Deleted!',
+                    text:'Officer Name '+data.firstName+' '+data.lastName+' & Officer id '+data.regNo,
+                    icon:'success'
+                })
                     loadDeletePage();
-                }
+
             },
 
             error: function (data) {
-                console.log(data.success);
+              errorAlert();
                 loadDeletePage();
 
             },
@@ -157,20 +157,6 @@ function submit()
 
 }
 
-function setOfficerToTable(officerList)
-{
-    $.each(officerList,function (index,officer){
-       $("#officerInqTable").append(
-         "<tr>"+
-             "<td>"+officer.regNo+"</td>"+
-           "<td>"+officer.firstName+" "+officer.lastName+"</td>"+
-           "<td>"+officer.mobNum1+"</td>"+
-           "<td>"+officer.mobNum2+"</td>"+
-           "<td>"+officer.gender+"</td>"+
-         "</tr>"
-       );
-    });
-}
 
 function getAllOfficers()
 {
@@ -184,7 +170,7 @@ function getAllOfficers()
         },
         error:function (xhr)
         {
-            alert("Error Loading");
+           errorAlert();
         }
     });
 }
@@ -207,7 +193,11 @@ function getUniqueOfficerByRegNo()
         },
         error:function (xhr)
         {
-            alert("Error");
+            Swal.fire({
+                icon: 'error',
+                title: 'Officer Not Found!',
+                text: 'Invalid Officer Id',
+            });
         }
     });
 }
@@ -228,7 +218,7 @@ function getUniqueOfficerById()
         },
         error:function (xhr)
         {
-            alert("Error");
+          errorAlert();
         }
     });
 
@@ -257,6 +247,24 @@ function setOfficerDataToFields(officer){
     }
 }
 
+var newWin;
+function popup()
+{
+    newWin = window.open('/loadOfficerInquiry','Officer Inquiry', 'directories=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=800,height=500');
+
+    document.onmousedown=focusPopup;
+    document.onkeyup=focusPopup;
+    document.onmousemove=focusPopup;
+
+    function focusPopup(){
+        if(!newWin.closed){
+            newWin.focus();
+        }
+    }
+
+}
+
+
 function loadRegistrationPage()
 {
     $("#mainContainerPage").load("loadOfficerRegistration/");
@@ -278,5 +286,4 @@ function loadDeletePage()
  {
      $("#mainContainerPage").load("loadOfficerInquiry/");
      $("#mainContainerPage").value=true;
-     getAllOfficers();
  }

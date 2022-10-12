@@ -21,4 +21,5 @@ public class OpenClass {
     @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name = "class_classId")
     private ClassInfo classInfo;
+
 }

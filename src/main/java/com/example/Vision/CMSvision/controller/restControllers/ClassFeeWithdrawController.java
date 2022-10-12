@@ -1,4 +1,4 @@
-package com.example.Vision.CMSvision.controller;
+package com.example.Vision.CMSvision.controller.restControllers;
 
 import com.example.Vision.CMSvision.dto.ClassFeeWithdrawDTO;
 import com.example.Vision.CMSvision.service.CashWithdrawService;

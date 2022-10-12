@@ -25,7 +25,15 @@ function submit() {
                 data:JSON.stringify(requestObj),
                 success:function (data)
                 {
-                    alert("success");
+                    Swal.fire(
+                        'Registered Successfully',
+                        'Subject Code : '+data.subjectCode +' Subject Name : '+data.subjectName,
+                        'success'
+                    );
+                },
+                error:function (data)
+                {
+                    errorAlert();
                 }
             });
 
@@ -55,8 +63,16 @@ function submit() {
                 data:JSON.stringify(requestObj),
                 success:function (data)
                 {
-                    alert("Success");
+                    Swal.fire(
+                        'Registered Successfully',
+                        'Subject Code : '+data.subjectCode +' Subject Name : '+data.subjectName,
+                        'success'
+                    );
                     loadUpdatePage();
+                },
+                error:function (data)
+                {
+                    errorAlert();
                 }
 
             });
@@ -78,15 +94,17 @@ function submit() {
             { if (!data.success) {
                 alert(data.statusList);
             } else {
-                alert("Successfully Deleted.")
+                Swal.fire(
+                    'Deleted!',
+                    'Your file has been deleted.',
+                    'success'
+                );
                 loadUpdatePage();
-                console.log(data.status);
+
             }
             },
             error: function (data) {
-                console.log(data.success);
-                alert("ERROR")
-                console.log(data.status);
+                errorAlert();
 
             },
         });
@@ -113,7 +131,7 @@ function loadSubjects()
            setSubjectsToTable(data);
        },
         error: function(xhr) {
-            alert("Error");
+            errorAlert();
         }
 
     });

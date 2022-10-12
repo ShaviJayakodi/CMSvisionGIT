@@ -11,4 +11,7 @@ public interface ClassInfoRepo extends JpaRepository<ClassInfo,Integer> {
 
     @Query(value = "SELECT*FROM class_info WHERE teacher_teacher_id =?1",nativeQuery = true)
     List<ClassInfo> getClassInfoByTeacherId(int teacherId);
+
+    @Query(value = "SELECT * FROM class_info WHERE grade_grade_id=?1",nativeQuery = true)
+    List<ClassInfo> getClassesByGradeId(int gradeId);
 }

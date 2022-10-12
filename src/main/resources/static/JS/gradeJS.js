@@ -23,15 +23,23 @@ function submit()
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 },
-                dataType: JSON,
+                dataType: "json",
                 data: JSON.stringify(requestObj),
                 success: function (data) {
-                    alert("Successfully Registered.")
+                    Swal.fire(
+                        'Registered Successfully',
+                        'Registered Grade is '+data.gradeDescription,
+                        'success'
+                    )
 
                 },
                 error: function (data) {
                     console.log(data.success);
-                    alert("Not Success Please ReTry.")
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'ERROR',
+                        text: 'Something went wrong!',
+                    });
 
                 }
             });
@@ -62,7 +70,19 @@ function submit()
             data:JSON.stringify(requestObject),
             success:function (data)
             {
-                alert("success");
+                Swal.fire(
+                    'Updated Successfully',
+                    'Update '+data.gradeDescription,
+                    'success'
+                )
+            },
+            error:function (data)
+            {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'ERROR',
+                    text: 'Something went wrong!',
+                });
             }
         });
 
@@ -81,15 +101,20 @@ function submit()
             },
             dataType:"json",
             success:function (data)
-            { if (!data.success) {
-                alert(data.statusList);
-            } else {
-                alert("Successfully Registered.")
+            {Swal.fire(
+                'Deleted!',
+                'Your file has been deleted.',
+                'success'
+                        );
                 gradeLoad();
-            }
+
             },
             error: function (data) {
-                console.log(data.success);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'ERROR',
+                    text: 'Something went wrong!',
+                });
                 loadDeletePage();
 
             },
@@ -113,6 +138,20 @@ function setGradeListToSelectBox(gradeList)
     });
 }
 
+function setDataToGradeInquiryTable(gradeList)
+{
+    $("#gradeInqTableBody").empty();
+    $.each(gradeList,function (index,grade){
+        $("#gradeInqTableBody").append(
+            "<tr>" +
+            "<td>"+grade.gradeCode+"</td>"
+            +"<td>"+grade.gradeDescription+"</td>"
+            +"</tr>"
+        );
+    });
+
+
+}
 
 
 function gradeLoad()
@@ -123,6 +162,7 @@ function gradeLoad()
         data: {},
         success: function(data) {
             setGradeListToSelectBox(data);
+            setDataToGradeInquiryTable(data)
         },
         error: function(xhr) {
             alert("Error");
@@ -205,4 +245,12 @@ function loadDeletePage()
     $("#mainContainerPage").load("loadGradeDelete/");
     $("#mainContainerPage").value=true;
     gradeLoad();
+}
+
+function inquiry()
+{
+    $("#mainContainerPage").load("loadGradeInquiry/");
+    $("#mainContainerPage").value=true;
+    gradeLoad();
+
 }

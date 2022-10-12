@@ -8,6 +8,7 @@ import com.example.Vision.CMSvision.enums.statusValue;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -38,7 +39,7 @@ public class ClassFeeService {
         return classMapping;
     }
 
-    public ClassFeeDTO addPayment(ClassFeeDTO classFeeDTO) {
+    public ResponseEntity addPayment(ClassFeeDTO classFeeDTO) {
         ClassInfo classInfo = modelMapper.map(classInfoRepo.findById(classFeeDTO.getClassId()).get(), ClassInfo.class);
         Teacher teacher = modelMapper.map(teacherRepo.findById(classInfo.getTeacher().getTeacherId()).get(), Teacher.class);
         ClassFee checkClassFee = classFeeRepo.checkClassFee(classFeeDTO.getStudentId(), classFeeDTO.getMonth(), classFeeDTO.getYear(), classFeeDTO.getClassId());
@@ -48,7 +49,8 @@ public class ClassFeeService {
         System.out.println(checkClassFee);
         if (checkClassFee != null) {
 
-            System.out.println("Paid");
+            return ResponseEntity.badRequest().build();
+
         } else {
             //int rl = statusValue.DEACTIVE.sts();
             if (classFeeDTO.getIsRelease() == 1) {
@@ -73,7 +75,7 @@ public class ClassFeeService {
 
         }
         dto = modelMapper.map(classFee, ClassFeeDTO.class);
-        return dto;
+        return ResponseEntity.ok(dto);
     }
 
 

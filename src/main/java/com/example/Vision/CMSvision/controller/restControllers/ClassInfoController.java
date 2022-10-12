@@ -47,6 +47,12 @@ public class ClassInfoController {
         return classInfoService.getClassByClassId(classId);
     }
 
+    @GetMapping("/getClassesByGradeId")
+    public List<ClassInfo> getClassesByGradeId(@RequestParam int gradeId)
+    {
+        return classInfoService.getClassesByGradeId(gradeId);
+    }
+
 
 
 

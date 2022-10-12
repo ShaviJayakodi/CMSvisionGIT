@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http:www.thymeleaf.org">
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Management</title>
+  <link rel="stylesheet" th:href="@{/CSS/bootstrap.min.css}">
+  <link rel="stylesheet" th:href="@{/CSS/student.css}">
+  <script th:src="@{/JS/jquery.min.js}"></script>
+
+
+</head>
+<body style="background-color: rgb(219, 226, 226)">
+<div class="container mt-5 pb-2 mb-5"  style= "width:90%; height: 500px; align-items: center;">
+  <form id="popupForm">
+    <div class="searchBar" >
+      <div class="d-flex row p-2" id="searchBar" style="margin-bottom: 20px;">
+        <div class="row p-0" style="border-radius: 0; background-color: transparent">
+          <div class="col my-2">
+            <label class="inputLbl" for="fromDate">From</label>
+            <input class="form-control" type="date" id="fromDate" name="fromDate">
+            <div id="divFromDate" name="divFromDate"></div>
+          </div>
+          <div class="col my-2">
+            <label class="inputLbl" for="toDate">To</label>
+            <input class="form-control" type="date" id="toDate" name="toDate">
+            <div id="divTomDate" name="divTomDate"></div>
+          </div>
+
+        </div>
+        <div class="row p-0" style="border-radius: 0; background-color: transparent">
+          <div class="col my-2">
+            <button type="button" onclick="getIncomeData()" class="btn btn-primary">Confirm</button>
+          </div>
+        </div>
+      </div>
+
+
+
+    </div>
+
+
+    <div  class="scrollable">
+      <table class="table table-striped table-hover" id="incomeListTable" name="incomeListTable"style="background-color: #fff;">
+        <thead>
+        <tr>
+          <th>Income</th>
+          <th>Received Date</th>
+          <th>Amount</th>
+
+        </tr>
+        </thead>
+        <tbody id="incomeListTableBody" name="incomeListTableBody">
+
+        </tbody>
+
+
+      </table>
+    </div>
+  </form>
+</div>
+
+<script th:src="@{/JS/bootstrap.bundle.min.js}"></script>
+
+
+<script>
+
+</script>
+
+</body>
+</html>

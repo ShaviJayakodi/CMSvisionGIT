@@ -80,7 +80,9 @@ public class ClassInfoService {
 
           }
           classInfo=classInfoRepo.save(classInfo);
+
           dto = modelMapper.map(classInfo,ClassInfoDTO.class);
+          System.out.println(dto);
 
         }
       catch (RuntimeException exception)
@@ -106,5 +108,11 @@ public class ClassInfoService {
     public ClassInfo getClassByClassId(int classId) {
         ClassInfo classInfo = modelMapper.map(classInfoRepo.findById(classId).get(),ClassInfo.class);
         return classInfo;
+    }
+
+    public List<ClassInfo> getClassesByGradeId(int gradeId) {
+        List<ClassInfo> classListByGradeId = classInfoRepo.getClassesByGradeId(gradeId);
+        System.out.println(classListByGradeId);
+        return classListByGradeId;
     }
 }

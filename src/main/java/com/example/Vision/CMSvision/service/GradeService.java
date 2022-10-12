@@ -11,6 +11,7 @@ import com.example.Vision.CMSvision.repo.StudentRepo;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -82,7 +83,7 @@ public class GradeService {
         return grade;
     }
 
-    public String deleteByGradeId(int gradeId)
+    public ResponseEntity deleteByGradeId(int gradeId)
     {
         String data="";
         if(gradeRepo.existsById(gradeId))
@@ -94,7 +95,7 @@ public class GradeService {
         {
             data+= "Grade Id Not Exist";
         }
-        return data;
+        return ResponseEntity.ok(data);
     }
 
 }

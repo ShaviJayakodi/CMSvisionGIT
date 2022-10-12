@@ -10,6 +10,7 @@ import com.example.Vision.CMSvision.enums.statusValue;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -28,7 +29,7 @@ public class TeacherService {
 
 
 
-    public TeacherDTO saveTeacher(TeacherDTO teacherDTO) {
+    public ResponseEntity saveTeacher(TeacherDTO teacherDTO) {
         TeacherDTO teacher = new TeacherDTO();
 
         if (teacherDTO.getTeacherId() > 0)
@@ -67,8 +68,8 @@ public class TeacherService {
 
         }
          teacherRepo.save(modelMapper.map(teacher, Teacher.class));
-        System.out.println(teacher);
-        return teacher;
+
+        return ResponseEntity.ok(teacher);
     }
 
 
