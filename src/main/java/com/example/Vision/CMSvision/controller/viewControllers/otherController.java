@@ -2,7 +2,9 @@ package com.example.Vision.CMSvision.controller.viewControllers;
 
 import com.example.Vision.CMSvision.dto.StudentDTO;
 import com.example.Vision.CMSvision.entity.Student;
+import com.example.Vision.CMSvision.entity.User;
 import com.example.Vision.CMSvision.repo.StudentRepo;
+import com.example.Vision.CMSvision.service.loginService;
 import org.hibernate.loader.collection.OneToManyJoinWalker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,12 +13,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
 
 @Controller
 public class otherController {
+
+    @Autowired
+    private com.example.Vision.CMSvision.service.loginService loginService;
 
 
     @RequestMapping(value="/loadStudentRegistration1",method=RequestMethod.GET)
@@ -29,12 +36,14 @@ public class otherController {
     @RequestMapping(value = "/loadUser", method = RequestMethod.GET)
     public String loadUser()
     {
+
         return "user";
     }
 
     @RequestMapping(value = "/loadGrade", method = RequestMethod.GET)
     public String loadGrade()
     {
+
         return "gradeRegistration";
     }
 /*
@@ -46,225 +55,260 @@ public class otherController {
 
     //Student Mapping
     @RequestMapping(value = "/loadStudentMain", method =RequestMethod.GET)
-    public String loadStudentMain()
+    public String loadStudentMain(HttpSession session)
     {
-        return "studentMain";
+        return sessionValue(session,"/studentMain");
+
     }
 
     @RequestMapping(value = "/loadStudentRegistration", method = RequestMethod.GET)
-    public String loadStudentRegistration()
+    public String loadStudentRegistration(HttpSession session)
     {
-        return "studentRegistration";
+        return sessionValue(session,"/studentRegistration");
+
     }
 
     @RequestMapping(value = "/loadStudentUpdate", method = RequestMethod.GET)
-    public String loadStudentUpdate()
+    public String loadStudentUpdate(HttpSession session)
     {
-        return "studentUpdate";
+        return sessionValue(session,"/studentUpdate");
+
     }
 
     @RequestMapping(value = "/loadStudentDelete" , method = RequestMethod.GET)
-    public String loadStudentDelete()
+    public String loadStudentDelete(HttpSession session)
     {
-        return "studentDelete";
+        return sessionValue(session,"/studentDelete");
+
     }
 
     @RequestMapping(value = "/loadStudentInquiry", method = RequestMethod.GET)
-    public String loadStudentInquiry()
+    public String loadStudentInquiry(HttpSession session)
     {
-        return "studentInquiry";
+        return sessionValue(session,"/studentInquiry");
+
     }
 
 
     //Teacher Mapping
     @RequestMapping(value = "/loadTeacherMain", method = RequestMethod.GET)
-    public String loadTeacherMain()
+    public String loadTeacherMain(HttpSession session)
     {
-        return "teacherMain";
+        return sessionValue(session,"/teacherMain");
+
     }
 
     @RequestMapping(value = "/loadTeacherRegistration" , method = RequestMethod.GET)
-    public String loadTeacherRegistration()
+    public String loadTeacherRegistration(HttpSession session)
     {
-        return "teacherRegistration";
+        return sessionValue(session,"/teacherRegistration");
+
     }
     @RequestMapping(value = "/loadTeacherUpdate" , method = RequestMethod.GET)
-    public String loadTeacherUpdate()
+    public String loadTeacherUpdate(HttpSession session)
     {
-        return "teacherUpdate";
+        return sessionValue(session,"/teacherUpdate");
+
     }
 
     @RequestMapping(value = "/loadTeacherDelete" , method = RequestMethod.GET)
-    public String loadTeacherDelete()
+    public String loadTeacherDelete(HttpSession session)
     {
-        return "teacherDelete";
+        return sessionValue(session,"/teacherDelete");
+
     }
 
     @RequestMapping(value = "/loadTeacherInquiry" , method = RequestMethod.GET)
-    public String loadTeacherInquiry()
+    public String loadTeacherInquiry(HttpSession session)
     {
-        return "teacherInquiry";
+        return sessionValue(session,"/teacherInquiry");
+
     }
 
 
     //Officer Mapping
     @RequestMapping(value = "/loadOfficerMain", method = RequestMethod.GET)
-    public String loadOfficerMain()
+    public String loadOfficerMain(HttpSession session)
     {
-        return "officerMain";
+        return sessionValue(session,"/officerMain");
+
     }
 
     @RequestMapping(value = "/loadOfficerRegistration",method = RequestMethod.GET)
-    public String loadOfficerRegistration()
+    public String loadOfficerRegistration(HttpSession session)
     {
-        return "officerRegistration";
+        return sessionValue(session,"/officerRegistration");
+
     }
 
     @RequestMapping(value = "/loadOfficerUpdate", method = RequestMethod.GET)
-    public String loadOfficerUpdate()
+    public String loadOfficerUpdate(HttpSession session)
     {
-        return "officerUpdate";
+        return sessionValue(session,"/officerUpdate");
+
     }
 
     @RequestMapping(value = "/loadOfficerDelete", method = RequestMethod.GET)
-    public String loadDelete()
+    public String loadDelete(HttpSession session)
     {
-        return "officerDelete";
+        return sessionValue(session,"/officerDelete");
+
     }
 
     @RequestMapping(value = "/loadOfficerInquiry" ,method = RequestMethod.GET)
-    public String loadOfficerInquiry()
+    public String loadOfficerInquiry(HttpSession session)
     {
-        return "officerInquiry";
+        return sessionValue(session,"/officerInquiry");
+
     }
 
     //Grade Mapping
 
     @RequestMapping(value = "/loadGradeMain",method = RequestMethod.GET)
-    public String loadGradrMain()
+    public String loadGradrMain(HttpSession session)
     {
-        return "gradeMain";
+        return sessionValue(session,"/gradeMain");
+
     }
 
     @RequestMapping(value = "/loadGradeRegistration" , method = RequestMethod.GET)
-    public String loadGradeRegistration()
+    public String loadGradeRegistration(HttpSession session)
     {
-        return "gradeRegistration";
+        return sessionValue(session,"/gradeRegistration");
+
     }
 
     @RequestMapping(value = "/loadGradeUpdate",method = RequestMethod.GET)
-    public String loadGradeUpdate()
+    public String loadGradeUpdate(HttpSession session)
     {
-        return "gradeUpdate";
+        return sessionValue(session,"/gradeUpdate");
+
     }
 
     @RequestMapping(value = "/loadGradeDelete",method = RequestMethod.GET)
-    public String loadGradeDelete()
+    public String loadGradeDelete(HttpSession session)
     {
-        return "gradeDelete";
+        return sessionValue(session,"/gradeDelete");
+
     }
 
     @RequestMapping(value = "loadGradeInquiry",method = RequestMethod.GET)
-    public String loadGradeInquiry()
+    public String loadGradeInquiry(HttpSession session)
     {
-        return "gradeInquiry";
+        return sessionValue(session,"/gradeInquiry");
+
     }
 
 
     //Subject Mapping
 
     @RequestMapping(value = "/loadSubjectMain",method = RequestMethod.GET)
-    public String loadSubjectMain()
+    public String loadSubjectMain(HttpSession session)
     {
-        return "subjectMain";
+        return sessionValue(session,"/subjectMain");
+
     }
 
     @RequestMapping(value = "/loadSubjectRegistration",method = RequestMethod.GET)
-    public String loadSubjectRegistration()
+    public String loadSubjectRegistration(HttpSession session)
     {
-        return "subjectRegistration";
+        return sessionValue(session,"/subjectRegistration");
+
     }
 
     @RequestMapping(value = "/loadSubjectUpdate",method = RequestMethod.GET)
-    public String loadSubjectUpdate()
+    public String loadSubjectUpdate(HttpSession session)
     {
-        return "subjectUpdate";
+        return sessionValue(session,"/subjectUpdate");
+
     }
 
     @RequestMapping(value = "/loadSubjectDelete",method = RequestMethod.GET)
-    public String loadSubjectDelete()
+    public String loadSubjectDelete(HttpSession session)
     {
-        return "subjectDelete";
+        return sessionValue(session,"/subjectDelete");
+
     }
 
     @RequestMapping(value = "/loadSubjectInquiry",method = RequestMethod.GET)
-    public String loadSubjectInquiry()
+    public String loadSubjectInquiry(HttpSession session)
     {
-        return "subjectInquiry";
+        return sessionValue(session,"/subjectInquiry");
+
     }
 
     //Hall Mapping
 
     @RequestMapping(value = "/loadHallMain",method = RequestMethod.GET)
-    public String loadHallMain()
+    public String loadHallMain(HttpSession session)
     {
-        return "hallMain";
+        return sessionValue(session,"/hallMain");
+
     }
 
     @RequestMapping(value = "/loadHallRegistration",method = RequestMethod.GET)
-    public String loadRegistration()
+    public String loadRegistration(HttpSession session)
     {
-        return "hallRegistration";
+        return sessionValue(session,"/hallRegistration");
+
     }
 
     @RequestMapping(value = "/loadHallUpdate",method = RequestMethod.GET)
-    public String loadHallUpdate()
+    public String loadHallUpdate(HttpSession session)
     {
-        return "hallUpdate";
+        return sessionValue(session,"/hallUpdate");
+
     }
 
     @RequestMapping(value = "/loadHallDelete",method = RequestMethod.GET)
-    public String loadHllDelete()
+    public String loadHllDelete(HttpSession session)
     {
-        return "hallDelete";
+        return sessionValue(session,"/hallDelete");
+
     }
 
     @RequestMapping(value = "/loadHallInquiry",method = RequestMethod.GET)
-    public String loadHallInquiry ()
+    public String loadHallInquiry (HttpSession session)
     {
-        return "hallInquiry";
+        return sessionValue(session,"/hallInquiry");
+
     }
 
     //Class Mapping
     @RequestMapping(value = "/loadClassMain",method = RequestMethod.GET)
-    public String loadClassMain()
+    public String loadClassMain(HttpSession session)
     {
-        return "classMain";
+        return sessionValue(session,"/classMain");
+
     }
 
     @RequestMapping(value = "/loadClassRegistration",method = RequestMethod.GET)
-    public String loadClassRegistration()
+    public String loadClassRegistration(HttpSession session)
     {
-        return "classRegistration";
+        return sessionValue(session,"/classRegistration");
+
     }
 
     @RequestMapping(value = "/loadClassUpdate",method = RequestMethod.GET)
-    public String loadClassUpdate()
+    public String loadClassUpdate(HttpSession session)
     {
-        return "classUpdate";
+        return sessionValue(session,"/classUpdate");
+
     }
 
     @RequestMapping(value = "/loadClassDelete",method = RequestMethod.GET)
-    public String loadClassDelete()
+    public String loadClassDelete(HttpSession session)
     {
-        return "classDelete";
+        return sessionValue(session,"/classDelete");
+
     }
 
 
     @RequestMapping(value = "/loadClassInquiry",method = RequestMethod.GET)
-    public String loadClassInquiry()
+    public String loadClassInquiry(HttpSession session)
     {
-        return "/classInquiry";
+        return sessionValue(session,"/classInquiry");
+
     }
 
 
@@ -272,155 +316,177 @@ public class otherController {
     //Student Mapping to class
 
     @RequestMapping(value = "/loadMappingMain",method = RequestMethod.GET)
-    public String loadClassMapping()
+    public String loadClassMapping(HttpSession session)
     {
-        return "/classMappingMain";
+        return sessionValue(session,"/classMappingMain");
+
     }
 
     @RequestMapping(value = "/loadAddMapping", method = RequestMethod.GET)
-    public String loadAddMapping()
+    public String loadAddMapping(HttpSession session)
     {
-        return "/addClassMapping";
+        return sessionValue(session,"/addClassMapping");
+
     }
 
     @RequestMapping(value = "/loadClassMappingDetails",method = RequestMethod.GET)
-    public String loadClassDetails()
+    public String loadClassDetails(HttpSession session)
     {
-        return "/classMappingDetails";
+        return sessionValue(session,"/classMappingDetails");
+
     }
 
     //Class open and close
     @RequestMapping(value = "/loadOpenClass",method = RequestMethod.GET)
-    public String loadOpenClass()
+    public String loadOpenClass(HttpSession session)
     {
-        return "/classOpenClose";
+        return sessionValue(session,"/classOpenClose");
+
 
     }
 
     //student attendance
     @RequestMapping(value = "/studentAttendance",method = RequestMethod.GET)
-    public String loadAttendance()
+    public String loadAttendance(HttpSession session)
     {
-        return "/studentAttendance";
+        return sessionValue(session,"/studentAttendance");
+
     }
 
 
     //popup window
     @RequestMapping(value = "/loadPopupSearch",method = RequestMethod.GET)
-    public String loadPopupSearchWindow()
+    public String loadPopupSearchWindow(HttpSession session)
     {
-        return "/popupSearch";
+        return sessionValue(session,"/popupSearch");
+
     }
 
     @RequestMapping(value = "/loadPopupTeacher",method = RequestMethod.GET)
-    public String loadPopupTeacher()
+    public String loadPopupTeacher(HttpSession session)
     {
-        return "/popupTeacher";
+        return sessionValue(session,"/popupTeacher");
+
     }
 
     //Student Attendance Review
     @RequestMapping(value = "/loadAttendanceReview",method = RequestMethod.GET)
-    public String loadAttendanceReview()
+    public String loadAttendanceReview(HttpSession session)
     {
-        return "/attendanceReview";
+        return sessionValue(session,"/attendanceReview");
+
     }
 
     //loadClassFee
     @RequestMapping(value = "/loadClassFee",method = RequestMethod.GET)
-    public  String loadClassFee()
+    public  String loadClassFee(HttpSession session)
     {
-        return "/classFee";
+        return sessionValue(session,"/classFee");
+
     }
 
     //CLassFeeWithdraw
     @RequestMapping(value = "/loadClassFeeWithdraw",method = RequestMethod.GET)
-    public String loadClassFeeWithdraw()
+    public String loadClassFeeWithdraw(HttpSession session)
     {
-        return "/classFeeWithdraw";
+        return sessionValue(session,"/classFeeWithdraw");
+
     }
 
 
     //Expense Management
     @RequestMapping(value = "/loadExpenseInfoMain",method = RequestMethod.GET)
-    public String loadExpenseInfoMain()
+    public String loadExpenseInfoMain(HttpSession session)
     {
-        return "/expenseInfoMain";
+        return sessionValue(session,"/expenseInfoMain");
+
     }
 
     @RequestMapping(value = "/loadExpenseRegistration",method = RequestMethod.GET)
-    public String loadExpenseRegistration()
+    public String loadExpenseRegistration(HttpSession session)
     {
-        return "/expenseInfoRegistration";
+        return sessionValue(session,"/expenseInfoRegistration");
+
     }
 
     @RequestMapping(value = "/loadExpenseUpdate",method = RequestMethod.GET)
-    public String loadExpenseUpdate()
+    public String loadExpenseUpdate(HttpSession session)
     {
-        return "/expenseUpdate";
+        return sessionValue(session,"/expenseUpdate");
+
     }
 
     @RequestMapping(value = "/loadExpenseDelete",method = RequestMethod.GET)
-    public String loadExpenseDelete()
+    public String loadExpenseDelete(HttpSession session)
     {
-        return "/expenseDelete";
+        return sessionValue(session,"/expenseDelete");
+
     }
     @RequestMapping(value = "/loadExpenseInquiry",method =RequestMethod.GET)
-    public String loadExpenseInquiry()
+    public String loadExpenseInquiry(HttpSession session)
     {
-        return "/expenseInquiry";
+        return sessionValue(session,"/expenseInquiry");
+
     }
 
 
 
     //Expense
     @RequestMapping(value = "/loadAddExpenseMain",method = RequestMethod.GET)
-    public String loadAddExpenseMain()
+    public String loadAddExpenseMain(HttpSession session)
     {
-        return "/addExpenseMain";
+        return sessionValue(session,"/addExpenseMain");
+
     }
 
     @RequestMapping(value = "/loadAddExpense",method = RequestMethod.GET)
-    public String loadAddExpense()
+    public String loadAddExpense(HttpSession session)
     {
-        return "/addExpense";
+        return sessionValue(session,"/addExpense");
+
     }
 
     @RequestMapping(value = "/loadAddExpenseDetails",method = RequestMethod.GET)
-    public String loadAddExpenseDetails()
+    public String loadAddExpenseDetails(HttpSession session)
     {
-        return "/addExpenseDetails";
+        return sessionValue(session,"/addExpenseDetails");
+
     }
 
 
     //User
     @RequestMapping(value = "/loadUserMain",method = RequestMethod.GET)
-    public String loadUserMain()
+    public String loadUserMain(HttpSession session)
     {
-        return "/userMain";
+        return sessionValue(session,"/userMain");
+
     }
 
     @RequestMapping(value = "/loadUserRegistration",method = RequestMethod.GET)
-    public String loadUserRegistration()
+    public String loadUserRegistration(HttpSession session)
     {
-        return "/userRegistration";
+        return sessionValue(session,"/userRegistration");
+
     }
 
     //Income
     @RequestMapping(value = "/loadIncomeDetails",method = RequestMethod.GET)
-    public String loadIncomeDetails()
+    public String loadIncomeDetails(HttpSession session)
     {
-        return "/income";
+        return sessionValue(session,"/income");
+
     }
 
     @RequestMapping(value = "/loadAllIncomePopup",method = RequestMethod.GET)
-    public String loadAllIncomePopup()
+    public String loadAllIncomePopup(HttpSession session)
     {
-        return "/allIncome";
+        return sessionValue(session,"/allIncome");
+
     }
     
     //login
     
-    @RequestMapping(value = "/login",method = RequestMethod.GET)
+    @RequestMapping(value = "/",method = RequestMethod.GET)
     public String loadLoginPage()
     {
         return "login";
@@ -428,9 +494,41 @@ public class otherController {
 
     //mainPage
     @RequestMapping(value = "/mainPage",method = RequestMethod.GET)
-    public String loadMainPage()
+    public String loadMainPage(HttpSession session)
     {
-        return "mainPage";
+        return sessionValue(session,"/mainPage");
+
+    }
+
+    public String sessionValue(HttpSession session, String page)
+    {
+        if(session.getAttribute("name")==null)
+        {
+            return "login";
+        }
+        else
+            return page;
+    }
+
+
+
+    //login controllwe
+    @RequestMapping(value = "/login",method = RequestMethod.GET)
+    public String login(@RequestParam String userName, @RequestParam String passWord, HttpServletRequest request)
+    {
+
+        System.out.println(userName+ " " + passWord);
+
+        User user= loginService.login(userName,passWord);
+
+        if(user!=null)
+        {
+            request.getSession().setAttribute("name",user);
+            return "redirect:/mainPage";
+        }
+        else
+            return "redirect:/";
+
     }
 
 }

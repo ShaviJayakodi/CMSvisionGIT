@@ -35,6 +35,7 @@ public class CashWithdrawService {
     {
         ClassFeeWithdraw withdraw = new ClassFeeWithdraw();
         Teacher teacher = modelMapper.map(teacherRepo.findById(withdrawDTO.getTeacherId()).get(),Teacher.class);
+
         //withdraw table
         withdraw.setFullAmount(withdrawDTO.getFullAmount());
         withdraw.setCommission(withdrawDTO.getCommission());
@@ -51,10 +52,6 @@ public class CashWithdrawService {
 
         withdrawRepo.save(withdraw);
         incomeRepo.save(income);
-
-
-
-
 
         ClassFeeWithdrawDTO dto = modelMapper.map(withdraw,ClassFeeWithdrawDTO.class);
         return ResponseEntity.ok(dto);

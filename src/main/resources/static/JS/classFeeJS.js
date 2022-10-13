@@ -20,6 +20,7 @@ function load()
     $("#collectButton").hide();
 
 }
+
 function getStudentDataByRegNo()
 {
     var regNo = document.getElementById("regNo").value;
@@ -41,7 +42,6 @@ function getStudentDataByRegNo()
             alert("Invalid Student Register No");
             //document.getElementById("regNo").value.innerHTML="";
             document.getElementById("regNo").value="";
-
             setTimeout(function ()
             {
                 document.getElementById("regNo").focus();
@@ -49,6 +49,7 @@ function getStudentDataByRegNo()
         },
     });
 }
+
 function setToSelectClassByTeacherId(clasList)
 {
 
@@ -93,6 +94,7 @@ function getAllMappedClassByStudentId()
         }
     });
 }
+
 function setDataToFields(data)
 {
     document.getElementById("teacher").value=data.classInfo.teacher.firstName+" "+data.classInfo.teacher.lastName;
@@ -118,6 +120,7 @@ function setDataToFields(data)
     document.getElementById("amount").value=amount;
     document.getElementById("classYear").value=data.classYear;
 }
+
 function  getPayMethod()
 {
     var studentId= document.getElementById("studentId").value;
@@ -138,7 +141,9 @@ function  getPayMethod()
     });
 
 }
-function release() {
+
+function release()
+{
     if ($("#forRelease").prop("checked")) {
         $("#lblCheck").show();
         $("#selectAuthor").show();
@@ -377,13 +382,13 @@ function withdraw(withdrawObj)
         dataType: "json",
         data: JSON.stringify(requestBody),
         success: function (data) {
-            Swal.fire(
-                'PAID',
-                'Successfully Withdraw',
-                'success'
-            );
-            load();
+           Swal.fire({
+               title:'PAID',
+               text:'Successfully Withdraw',
+               icon:'success'
+           },
 
+        );
 
         },
         error: function (data) {
@@ -392,14 +397,18 @@ function withdraw(withdrawObj)
                 icon: 'error',
                 title: 'ERROR',
                 text: 'Something went wrong!',
-
             });
 
         }
     });
+
 });
 }
 
+function pageReload()
+{
+    window.location.reload();
+}
 function checkAll()
 {
     $("#selectAll").change(function (){
@@ -413,7 +422,6 @@ function checkAll()
        {
            $("#selectAll").prop("checked",true);
        }
-
 
     });
 
@@ -466,8 +474,6 @@ function claim(list)
                fullAmount : fAmount,
                payAmount:payAmount
             }
-
-
 
         $("#collectButton").show();
         document.getElementById("totalAmount").value=fAmount+".00";

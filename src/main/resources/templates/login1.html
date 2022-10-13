@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http:www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" th:href="@{/CSS/bootstrap.min.css}">
+    <script th:src="@{/JS/jquery.min.js}"></script>
+    <script th:src="@{/JS/loginJS.js}"></script>
+
+
+</head>
+<body><!--
+<div class="row">
+    <div class="col my-2">
+        <label for="userName" class="inputLbl">User Name</label>
+        <input type="text" class="form-control" id="userName" name="userName" placeholder="userName">
+        <div id="divUserName" name="divClassName"></div>
+    </div>
+    <div class="col my-2">
+        <label for="passWord" class="inputLbl">User Name</label>
+        <input type="password" class="form-control" id="passWord" name="passWord" placeholder="Password">
+        <div id="divPassWord" name="divPassWord"></div>
+
+</div>
+<div class ="row">
+<div class="col mt-2">
+    <input class="btn btn-primary"  onclick="login()" type="submit">
+</div>
+</div>
+</div>-->
+<form id="Login" action="login" method="GET">
+
+    <div class="form-group">
+
+
+        <input type="text" class="form-control" id="userName" name="userName" placeholder="User Name">
+
+    </div>
+
+    <div class="form-group">
+
+        <input type="password" class="form-control" id="passWord" name="passWord" placeholder="Password">
+
+    </div>
+    <div class="forgot">
+        <a href="reset.html">Forgot password?</a>
+    </div>
+    <button type="submit" class="btn btn-primary">Login</button>
+
+</form>
+</body>
+</html>

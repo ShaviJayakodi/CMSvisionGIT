@@ -4,7 +4,7 @@ function login()
     var passWord = document.getElementById("passWord").value;
 
     $.ajax({
-        url: "/loginController/login?userName=" + userName + "&passWord=" + passWord,
+        url: "/login?userName=" + userName + "&passWord=" + passWord,
         type: "GET",
         headers: {
             'Accept': 'application/json',

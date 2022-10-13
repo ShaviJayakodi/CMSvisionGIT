@@ -14,12 +14,10 @@ public class loginService {
     @Autowired
     private UserRepo userRepo;
 
-    public ResponseEntity login (String userName,String passWord)
+    public User login (String userName,String passWord)
     {
-        User user = userRepo.checkUser(userName,passWord);
+        return userRepo.checkUser(userName,passWord);
 
-        System.out.println(user);
-        return null;
     }
 
 }
