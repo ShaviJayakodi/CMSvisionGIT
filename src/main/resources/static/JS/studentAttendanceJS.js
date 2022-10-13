@@ -301,7 +301,9 @@ function getSelectedMappedClassOpenForStudent()
         dataType: "json",
         success: function (data) {
             console.log(data);
-            setToTableToSelect(data);
+
+                setToTableToSelect(data);
+
         },
         error: function (data) {
             console.log(data.success);

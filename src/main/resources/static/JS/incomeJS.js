@@ -23,7 +23,7 @@ function getAllExpense()
     });
 }
 
-
+/*
 var newWin;
 function popupAllIncome() {
     $("#allIncomeShow").click(function () {
@@ -55,7 +55,7 @@ function popupAllIncome() {
         }
 });
 }
-
+*/
 
 
 
@@ -77,12 +77,16 @@ function getIncomeData()
         },
         dataType: "json",
         success: function (data) {
-            alert("success");
+
             setData(data);
         },
         error: function (data) {
             console.log(data.success)
-            notFoundData();
+            Swal.fire({
+                icon: 'error',
+                title: 'ERROR',
+                text: 'Not found any income or expense',
+            })
         },
     });
 }
@@ -97,21 +101,21 @@ function setData(incomeData)
         "<tr   style=\"background-color:#38f173 ; font-size: 20px; \">" +
            " <td style=\"width: 250px\">Total Income</td>"+
             " <td style=\"text-align: right\">"+incomeData[0]+".00</td>"+
-            "<td style=\"float:right;\"><button type=\"button\" id=\"allIncomeShow\" onclick=\"getAllExpense();\" class=\"btn btn-primary\">Show All</button></td>"+
+            //"<td style=\"float:right;\"><button type=\"button\" id=\"allIncomeShow\" onclick=\"getAllExpense();\" class=\"btn btn-primary\">Show All</button></td>"+
         "</tr>"
         );
     $("#expenseTableBody").append(
         "<tr  style=\"background-color:#f5ea87;  font-size: 20px;  \">" +
         " <td style=\"width: 250px\">Total Expense</td>"+
         " <td style=\"text-align: right\">"+incomeData[1]+".00</td>"+
-        "<td style=\"float:right;\"><button type=\"button\"class=\"btn btn-primary\" >Show All</button></td>"+
+       // "<td style=\"float:right;\"><button type=\"button\"class=\"btn btn-primary\" >Show All</button></td>"+
         "</tr>"
     );
     if(incomeData[2] > 0)
     {
         $("#profitTableBody").append(
             "<tr style=\"font-size: 20px;\" class=\"table-success\">"
-            +"<td>This time period company got a profit & Profit is "+incomeData[2]+".00</td>"
+            +"<td>This time period company got  "+incomeData[2]+".00 Positive Income</td>"
            +"</tr>"
         );
     }
@@ -119,7 +123,7 @@ function setData(incomeData)
     {
             $("#profitTableBody").append(
                 "<tr style=\"font-size: 20px;\" class=\"table-warning\">>"
-                +"<td>This time period company not profit or lost</td>"
+                +"<td>This time period company didn't get any profit or lost</td>"
                 +"</tr>"
             );
     }
@@ -127,7 +131,7 @@ function setData(incomeData)
     {
         $("#profitTableBody").append(
             "<tr style=\"font-size: 20px;\"  class=\"table-danger\">"
-            +"<td>This time period company got a loss & Loss is "+incomeData[2]+".00</td>"
+            +"<td>This time period company got  "+incomeData[2]+".00 Negatvite Income</td>"
             +"</tr>"
         );
     }
