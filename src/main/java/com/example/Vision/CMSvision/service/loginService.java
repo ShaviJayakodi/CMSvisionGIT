@@ -16,7 +16,15 @@ public class loginService {
 
     public User login (String userName,String passWord)
     {
-        return userRepo.checkUser(userName,passWord);
+        String uName = "admin";
+        String pass = "admin@123";
+        User user = new User();
+        if(userName.equals(uName)&&passWord.equals(pass))
+        {
+            return user;
+        }
+        else
+            return null;
 
     }
 
